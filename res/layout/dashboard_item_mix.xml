@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dip"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:gravity="center" >
+    
+    <ImageView 
+        android:src="@drawable/test_icon"
+        android:contentDescription="@string/dashboard_mix"
+        android:id="@+id/dashboard_scan_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+    
+    <TextView 
+        android:id="@+id/dashbord_scan_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/dashboard_mix"
+        android:gravity="center" />
+    
+
+</LinearLayout>
