@@ -13,5 +13,4 @@ public class FragmentDashboardTable extends Fragment {
 	{
 		return inflater.inflate(R.layout.fragment_dashboard_table, container, false);
 	}
-
 }

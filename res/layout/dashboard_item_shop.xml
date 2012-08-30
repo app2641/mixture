@@ -5,7 +5,8 @@
     android:layout_weight="1"
     android:orientation="vertical"
     android:focusable="true"
-    android:gravity="center" >
+    android:gravity="center"
+    android:onClick="moveToShop" >
     
     <ImageView 
         android:src="@drawable/test_icon"

@@ -11,8 +11,8 @@
         android:orientation="horizontal" >
 
         <ImageView
-            android:layout_width="168dp"
-            android:layout_height="61dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginRight="10dip"
             android:layout_marginTop="20dip"
             android:layout_weight="1"
@@ -31,6 +31,35 @@
                 android:gravity="bottom"
                 android:text="test" />
         </LinearLayout>
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/item_result_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp" />
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+        
+        <Button 
+            android:id="@+id/get_btn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/get_material"/>
+        
+        <Button
+            android:id="@+id/sell_btn"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/sell_shop" />
+        
     </LinearLayout>
 
 </LinearLayout>

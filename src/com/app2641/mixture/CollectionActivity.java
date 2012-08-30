@@ -84,9 +84,9 @@ public class CollectionActivity extends FragmentActivity {
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0: return getString(R.string.title_section1).toUpperCase();
-                case 1: return getString(R.string.title_section2).toUpperCase();
-                case 2: return getString(R.string.title_section3).toUpperCase();
+                case 0: return getString(R.string.offline).toUpperCase();
+                case 1: return getString(R.string.online).toUpperCase();
+                case 2: return getString(R.string.title_activity_shop).toUpperCase();
             }
             return null;
         }

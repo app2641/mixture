@@ -1,15 +1,13 @@
 <resources>
 
     <string name="app_name">mixture</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section1">Section 1</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
     
     <!-- title -->
     <string name="title_activity_dashboard">mixture</string>
     <string name="title_activity_collection">CollectionActivity</string>
+    <string name="title_activity_shop">ショップ</string>
     
     <!-- dashboard item -->
     <string name="dashboard_scan">Scan</string>
@@ -20,5 +18,17 @@
     <!-- Dashoard Activity -->
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
     <string name="download_scan_app">GooglePlayからダウンロード</string>
+    <string name="get_material">素材を取得する</string>
+    <string name="sell_shop">ショップへ売却する</string>
+    
+    <!-- Shop Acitivity -->
+    <string name="offline">オフライン</string>
+    <string name="online">オンライン</string>
+    
+    <!-- Menu -->
+    <string name="menu_status">ステータス</string>
+    <string name="menu_help">ヘルプ</string>
+    <string name="menu_about_app">mixtureについて</string>
+    <string name="menu_rate_now">現在のレート</string>
 
 </resources>

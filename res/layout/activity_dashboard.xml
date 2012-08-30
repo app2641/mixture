@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     
-	<fragment 
-	    android:name="com.app2641.mixture.FragmentDashboardTable"
-	    android:id="@+id/fragment_dashboard"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent" />    
+    <LinearLayout
+        android:id="@+id/activity_dashboard_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" ></LinearLayout>
+    
+    <com.google.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="a15039a852b5ecf"
+        ads:testDevices="TEST_EMULATOR, 956777F5A66AE217DDBCC27C5CD74A6E"
+        android:gravity="bottom" >
+    </com.google.ads.AdView>
 
 </LinearLayout>
