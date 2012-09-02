@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="maincolor">#33B5E5</color>
-    <color name="weightcolor">#0099CC</color>
+    <color name="main_color">#33B5E5</color>
+    <color name="weight_color">#0099CC</color>
+    <color name="impact_color">#CC0000</color>
+    <color name="opacity_color">#555555</color>
 </resources>

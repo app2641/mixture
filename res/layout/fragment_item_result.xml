@@ -1,65 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dip" >
+    android:orientation="vertical" >
+    
+    <RelativeLayout
+        android:id="@+id/item_result_header"
+        android:background="@drawable/item_detail_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" >
+        
+        <ImageView
+    	    android:id="@+id/item_image"
+    	    android:layout_width="100dp"
+    	    android:layout_height="100dp"
+    	    android:layout_marginRight="10dp"
+    	    android:layout_alignParentLeft="true"
+    	    android:layout_alignParentTop="true"
+    	    android:src="@drawable/test_item" />
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/item_image"
+            android:layout_alignBottom="@id/item_image" >
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+    	    	android:textStyle="bold" />
+            <TextView
+                android:id="@+id/item_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+            
+            <!-- icon container -->
+            <LinearLayout
+                android:id="@+id/item_info_icon_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="New!" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Rare!" />
+            </LinearLayout>
+            
+            <!-- item note -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/accent_bottom_border"
+                android:textColor="@color/main_color"
+                android:text="@string/item_detail_header" />
+            
+            <TextView
+                android:id="@+id/item_detail_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="相場価格: 200price" />
+            
+            <TextView
+                android:id="@+id/item_detail_exp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="経験値: 10exp" />
+            
+            <!-- level info -->
+            <TextView
+                android:id="@+id/item_level_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/impact_color"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/item_level_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp" ></TextView>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:paddingBottom="4dp"
+                android:background="@drawable/accent_bottom_border"
+                android:textColor="@color/main_color"
+                android:text="@string/item_detail_header2" />
+            
+            <TextView
+                android:id="@+id/item_detail_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="20dip"
-            android:layout_weight="1"
-            android:src="@drawable/test_item" />
-
+        android:orientation="vertical"
+        android:background="@drawable/item_detail_footer" >
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical" >
-
-            <TextView
-                android:id="@+id/item_result_name"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="bottom"
-                android:text="test" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+            <Button
+                android:id="@+id/item_get_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/get_material" />
+            <Button
+                android:id="@+id/item_sell_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sell_shop" />
         </LinearLayout>
+        
+        <com.google.ads.AdView
+        	android:id="@+id/adView"
+        	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	ads:adSize="BANNER"
+        	ads:adUnitId="a15039a852b5ecf"
+        	ads:testDevices="TEST_EMULATOR, 956777F5A66AE217DDBCC27C5CD74A6E" />
     </LinearLayout>
     
-    <ListView
-        android:id="@+id/item_result_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp" />
-    
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:orientation="horizontal"
-        android:gravity="bottom">
-        
-        <Button 
-            android:id="@+id/get_btn"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/get_material"/>
-        
-        <Button
-            android:id="@+id/sell_btn"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/sell_shop" />
-        
-    </LinearLayout>
-
 </LinearLayout>

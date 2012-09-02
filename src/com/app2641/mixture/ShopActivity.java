@@ -2,6 +2,7 @@ package com.app2641.mixture;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -44,12 +46,33 @@ public class ShopActivity extends FragmentActivity implements ActionBar.TabListe
         }
 	}
 	
+	@Override
+	public void onStart ()
+	{
+		super.onStart();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
 	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_shop, menu);
         return true;
     }
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent(this, DashboardActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			break;
+		}
+		
+		return true;
+	}
 
     
 

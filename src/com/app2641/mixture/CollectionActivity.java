@@ -3,6 +3,7 @@ package com.app2641.mixture;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -47,11 +48,33 @@ public class CollectionActivity extends FragmentActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
     }
+    
+    @Override
+	public void onStart ()
+	{
+		super.onStart();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+    
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_collection, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+    	switch (item.getItemId()) {
+		case android.R.id.home:
+			Intent intent = new Intent(this, DashboardActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(intent);
+			break;
+		}
+    	
+    	return true;
     }
 
     

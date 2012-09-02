@@ -18,8 +18,8 @@
     <!-- Dashoard Activity -->
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
     <string name="download_scan_app">GooglePlayからダウンロード</string>
-    <string name="get_material">素材を取得する</string>
-    <string name="sell_shop">ショップへ売却する</string>
+    <string name="get_material">素材を取得</string>
+    <string name="sell_shop">ショップへ売却</string>
     
     <!-- Shop Acitivity -->
     <string name="offline">オフライン</string>
@@ -30,5 +30,9 @@
     <string name="menu_help">ヘルプ</string>
     <string name="menu_about_app">mixtureについて</string>
     <string name="menu_rate_now">現在のレート</string>
+    
+    <!-- item detail -->
+    <string name="item_detail_header">NOTE</string>
+    <string name="item_detail_header2">DESCRIPTION</string>
 
 </resources>

@@ -9,6 +9,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.app.FragmentManager;
 import android.util.Log;
@@ -35,22 +36,7 @@ public class DashboardActivity extends Activity {
 		// çLçêÇÃï\é¶
 		initAdMob();
 	}
-	
-	@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_dashboard, menu);
-        return true;
-    }
-	
-	public boolean onOptionsItemSelected (MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.menu_help:
-			Toast.makeText(this, "help", Toast.LENGTH_SHORT).show();
-			break;
-		}
-		return true;
-	}
-	
+
 	
 	/**
 	 * databaseèâä˙âªèàóù
@@ -150,16 +136,29 @@ public class DashboardActivity extends Activity {
 			// scanå„ÇÃèàóù
 			if (requestCode == 0) {
 				String code = intent.getStringExtra("SCAN_RESULT");
-				Toast.makeText(this, code, 0).show();
+//				Toast.makeText(this, code, 0).show();
 				
-				FragmentManager manager = getFragmentManager();
-				FragmentTransaction transaction = manager.beginTransaction();
+				DatabaseHelper helper = new DatabaseHelper(DashboardActivity.this);
+				String sql = "SELECT * FROM material ORDER BY RANDOM();";
+				Cursor c = helper.executeSql(sql, new String[]{});
 				
-				Fragment fragment = new FragmentItemResult();
-				transaction.replace(R.id.activity_dashboard_container, fragment);
-				transaction.addToBackStack(null);
+				if (c.moveToFirst()) {
+					FragmentManager manager = getFragmentManager();
+					FragmentTransaction transaction = manager.beginTransaction();
+					
+					Bundle bundle = new Bundle();
+					bundle.putInt("id", c.getInt(c.getColumnIndex("_id")));
+					
+					Fragment fragment = new FragmentItemResult();
+					fragment.setArguments(bundle);
+					transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+					transaction.replace(R.id.activity_dashboard_container, fragment);
+					transaction.addToBackStack(null);
+					
+					transaction.commit();
+				}
 				
-				transaction.commit();
+				c.close();
 			}
 		}
 	}

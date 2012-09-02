@@ -131,7 +131,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	// sqlé¿çs
-	private Cursor executeSql (String sql, String[] bind)
+	public Cursor executeSql (String sql, String[] bind)
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor c = db.rawQuery(sql, bind);
