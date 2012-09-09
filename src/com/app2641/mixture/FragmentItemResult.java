@@ -57,7 +57,7 @@ public class FragmentItemResult extends Fragment
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
 	{
-		inflater.inflate(R.menu.item_result, menu);
+		inflater.inflate(R.menu.fragment_item_result, menu);
 	}
 	
 	@Override
@@ -65,9 +65,6 @@ public class FragmentItemResult extends Fragment
 	{
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			break;
-			
-		case R.id.menu_help:
 			break;
 		}
 		

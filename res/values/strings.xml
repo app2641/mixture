@@ -5,6 +5,7 @@
     <string name="menu_settings">Settings</string>
     
     <!-- title -->
+    <string name="title_activity_network_error">ネットワークエラー</string>
     <string name="title_activity_dashboard">mixture</string>
     <string name="title_activity_collection">CollectionActivity</string>
     <string name="title_activity_shop">ショップ</string>
@@ -16,6 +17,7 @@
     <string name="dashboard_collection">Collection</string>
     
     <!-- Dashoard Activity -->
+    <string name="init">初期化中....</string>
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
     <string name="download_scan_app">GooglePlayからダウンロード</string>
     <string name="get_material">素材を取得</string>
@@ -25,8 +27,15 @@
     <string name="offline">オフライン</string>
     <string name="online">オンライン</string>
     
+    <!-- NetworkError -->
+    <string name="network_error">アプリケーションサーバーに接続することが出来ませんでした。\nネット環境をお確かめになってから再度接続を試みてください。</string>
+    <string name="close">閉じる</string>
+    <string name="server_maintenance">現在、アプリケーションサーバーがメンテナンス中です。申し訳ございませんが時間をおいて再度アクセスをして下さい。 \nなお、mixtureサイトにてサーバステータスを確認することも出来ます。</string>
+    <string name="confirm_server_status">確認する</string>
+    
     <!-- Menu -->
     <string name="menu_status">ステータス</string>
+    <string name="menu_important">だいじなもの</string>
     <string name="menu_help">ヘルプ</string>
     <string name="menu_about_app">mixtureについて</string>
     <string name="menu_rate_now">現在のレート</string>
@@ -34,5 +43,9 @@
     <!-- item detail -->
     <string name="item_detail_header">NOTE</string>
     <string name="item_detail_header2">DESCRIPTION</string>
-
+    
+    <!-- Dialog -->
+    <string name="welcome_dialog_title">ようこそ、mixtureへ！</string>
+    <string name="welcome_dialog_message">mixtureは商品バーコードをスキャンして素材を集め、素材同士を調合して新たなアイテムを生成していくゲームです。\nぜひ楽しんでいってください！</string>
+    
 </resources>

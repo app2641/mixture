@@ -31,6 +31,8 @@ public final class R {
     public static final class id {
         public static final int activity_dashboard_container=0x7f080002;
         public static final int adView=0x7f080003;
+        public static final int close_btn=0x7f080014;
+        public static final int confirm_btn=0x7f080015;
         public static final int dashboard_scan_icon=0x7f080005;
         public static final int dashbord_scan_text=0x7f080006;
         public static final int download_scan_app=0x7f080007;
@@ -46,11 +48,16 @@ public final class R {
         public static final int item_name=0x7f08000a;
         public static final int item_result_header=0x7f080008;
         public static final int item_sell_btn=0x7f080013;
-        public static final int menu_about_app=0x7f080017;
-        public static final int menu_help=0x7f080015;
+        public static final int menu_about_app=0x7f08001c;
+        public static final int menu_clear=0x7f08001d;
+        public static final int menu_dashboard_help=0x7f080019;
+        public static final int menu_help=0x7f080017;
+        public static final int menu_important=0x7f08001a;
+        public static final int menu_important_help=0x7f08001e;
+        public static final int menu_item_detail_help=0x7f08001f;
         public static final int menu_rate_nosw=0x7f080018;
-        public static final int menu_settings=0x7f080014;
-        public static final int menu_status=0x7f080016;
+        public static final int menu_settings=0x7f080016;
+        public static final int menu_status=0x7f08001b;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
         public static final int shop_activity_pager=0x7f080004;
@@ -65,51 +72,69 @@ public final class R {
         public static final int dashboard_item_shop=0x7f030006;
         public static final int fragment_dashboard_table=0x7f030007;
         public static final int fragment_datashboard_failedscan=0x7f030008;
-        public static final int fragment_item_result=0x7f030009;
-        public static final int fragment_shop_offline_list=0x7f03000a;
-        public static final int fragment_shop_online_list=0x7f03000b;
+        public static final int fragment_important=0x7f030009;
+        public static final int fragment_item_result=0x7f03000a;
+        public static final int fragment_network_error=0x7f03000b;
+        public static final int fragment_server_maintenance=0x7f03000c;
+        public static final int fragment_shop_offline_list=0x7f03000d;
+        public static final int fragment_shop_online_list=0x7f03000e;
+        public static final int welcome_dialog=0x7f03000f;
     }
     public static final class menu {
         public static final int activity_collection=0x7f070000;
-        public static final int activity_dashboard=0x7f070001;
-        public static final int activity_shop=0x7f070002;
-        public static final int item_result=0x7f070003;
+        public static final int activity_shop=0x7f070001;
+        public static final int fragment_dashboard=0x7f070002;
+        public static final int fragment_important=0x7f070003;
+        public static final int fragment_item_result=0x7f070004;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
-        public static final int dashboard_collection=0x7f050009;
-        public static final int dashboard_mix=0x7f050007;
+        public static final int close=0x7f050013;
+        public static final int confirm_server_status=0x7f050015;
+        public static final int dashboard_collection=0x7f05000a;
+        public static final int dashboard_mix=0x7f050008;
         /**  dashboard item 
          */
-        public static final int dashboard_scan=0x7f050006;
-        public static final int dashboard_shop=0x7f050008;
-        public static final int download_scan_app=0x7f05000b;
+        public static final int dashboard_scan=0x7f050007;
+        public static final int dashboard_shop=0x7f050009;
+        public static final int download_scan_app=0x7f05000d;
+        public static final int failed_scan_notice=0x7f05000c;
+        public static final int get_material=0x7f05000e;
+        public static final int hello_world=0x7f050001;
         /**  Dashoard Activity 
          */
-        public static final int failed_scan_notice=0x7f05000a;
-        public static final int get_material=0x7f05000c;
-        public static final int hello_world=0x7f050001;
+        public static final int init=0x7f05000b;
         /**  item detail 
          */
-        public static final int item_detail_header=0x7f050014;
-        public static final int item_detail_header2=0x7f050015;
-        public static final int menu_about_app=0x7f050012;
-        public static final int menu_help=0x7f050011;
-        public static final int menu_rate_now=0x7f050013;
+        public static final int item_detail_header=0x7f05001b;
+        public static final int item_detail_header2=0x7f05001c;
+        public static final int menu_about_app=0x7f050019;
+        public static final int menu_help=0x7f050018;
+        public static final int menu_important=0x7f050017;
+        public static final int menu_rate_now=0x7f05001a;
         public static final int menu_settings=0x7f050002;
         /**  Menu 
          */
-        public static final int menu_status=0x7f050010;
+        public static final int menu_status=0x7f050016;
+        /**  NetworkError 
+         */
+        public static final int network_error=0x7f050012;
         /**  Shop Acitivity 
          */
-        public static final int offline=0x7f05000e;
-        public static final int online=0x7f05000f;
-        public static final int sell_shop=0x7f05000d;
-        public static final int title_activity_collection=0x7f050004;
+        public static final int offline=0x7f050010;
+        public static final int online=0x7f050011;
+        public static final int sell_shop=0x7f05000f;
+        public static final int server_maintenance=0x7f050014;
+        public static final int title_activity_collection=0x7f050005;
+        public static final int title_activity_dashboard=0x7f050004;
         /**  title 
          */
-        public static final int title_activity_dashboard=0x7f050003;
-        public static final int title_activity_shop=0x7f050005;
+        public static final int title_activity_network_error=0x7f050003;
+        public static final int title_activity_shop=0x7f050006;
+        public static final int welcome_dialog_message=0x7f05001e;
+        /**  Dialog 
+         */
+        public static final int welcome_dialog_title=0x7f05001d;
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;

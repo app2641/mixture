@@ -1,16 +1,27 @@
 package com.app2641.mixture;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.google.ads.*;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Loader;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.preference.PreferenceManager;
 import android.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
@@ -18,14 +29,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class DashboardActivity extends Activity {
+public class DashboardActivity extends Activity implements LoaderCallbacks<String> {
+	
+	// application version
+	private int Ver = 1;
 	
 	private AdView adView;
+	private String API_KEY;
+	private ProgressDialog prog;
+	
+	// networkerror Handler
+	private Handler NetWorkErrorHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			Fragment fragment = new FragmentNetworkError();
+			setTitle(getResources().getString(R.string.title_activity_network_error));
+			
+			FragmentManager manager = getFragmentManager();
+			FragmentTransaction transaction = manager.beginTransaction();
+			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+			transaction.replace(R.id.activity_dashboard_container, fragment);
+			transaction.commit();
+		}
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
+		
+		// version設定
+		initVersion();
 		
 		// database初期化
 		initDatabse();
@@ -36,7 +70,92 @@ public class DashboardActivity extends Activity {
 		// 広告の表示
 		initAdMob();
 	}
+	
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		
+		// 初回起動時にAPIKEY生成
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+		API_KEY = sp.getString("API_KEY", "none");
+		
+		if (API_KEY == "none") {
+			getLoaderManager().initLoader(1, null, this);
+		}
+	}
+	
+	
+	// asynctak loader methods
+	public Loader<String> onCreateLoader(int id, Bundle args)
+	{
+		prog = new ProgressDialog(this);
+		prog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		prog.setMessage(getResources().getString(R.string.init));
+		prog.show();
+		
+		ApiGenerateApiKey api = new ApiGenerateApiKey(DashboardActivity.this);
+		api.forceLoad();
+		return api;
+	}
+	
+	public void onLoadFinished(Loader<String> loader, String res)
+	{
+		Pattern pattern = Pattern.compile("^false.*$");
+		Matcher matcher = pattern.matcher(res);
+		boolean match = matcher.matches();
+		
+		prog.dismiss();
+		
+		// error処理
+		if (match == true) {
+			Pattern pattern2 = Pattern.compile("false");
+			Matcher matcher2 = pattern2.matcher(res);
+			String error = matcher2.replaceFirst("");
+			
+			if (error == "server") {
+				
+			} else {
+				NetWorkErrorHandler.sendEmptyMessage(0);
+			}
+			
+		// apikey取得
+		} else {
+			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+			sp.edit().putString("API_KEY", res).commit();
+			
+			// welcomeダイアログの表示
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setIcon(android.R.drawable.ic_menu_info_details);
+			builder.setTitle(getResources().getString(R.string.welcome_dialog_title));
+			builder.setMessage(getResources().getString(R.string.welcome_dialog_message));
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+				public void onClick (DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+			builder.show();
+		}
+	}
+	
+	public void onLoaderReset (Loader<String> loader)
+	{
+	}
+	
 
+	
+	// versionごとの処理
+	public void initVersion ()
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+		int VERSION = sp.getInt("VERSION", 0);
+		
+		if (Ver > VERSION) {
+			InitVersion initVer = new InitVersion(Ver);
+			VERSION = initVer.execute();
+			sp.edit().putInt("VERSION", VERSION).commit();
+		}
+	}
 	
 	/**
 	 * database初期化処理
@@ -81,6 +200,50 @@ public class DashboardActivity extends Activity {
 		adView.loadAd(new AdRequest());
 	}
 	
+	@Override
+	public boolean onOptionsItemSelected (MenuItem item)
+	{
+		DashboardOptionsMenuEvents events = new DashboardOptionsMenuEvents(DashboardActivity.this, item);
+		
+		switch (item.getItemId()) {
+			case R.id.menu_dashboard_help:
+				events.dashboardHelp();
+				break;
+			
+			case R.id.menu_status:
+				break;
+		
+			case R.id.menu_about_app:
+				break;
+			
+			case R.id.menu_clear:
+				SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+				sp.edit().remove("API_KEY").commit();
+				break;
+			
+			case R.id.menu_item_detail_help:
+				events.detailHelp();
+				break;
+				
+			case R.id.menu_important_help:
+				events.importantHelp();
+				break;
+			
+			case R.id.menu_important:
+				FragmentManager manager = getFragmentManager();
+				FragmentTransaction transaction = manager.beginTransaction();
+				Fragment fragment = new FragmentImportant();
+				
+				transaction.replace(R.id.activity_dashboard_container, fragment);
+				transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+				transaction.addToBackStack(null);
+				transaction.commit();
+				break;
+			
+		}
+		return true;
+	}
+	
 	
 	/**********
 	 * click event
@@ -100,6 +263,7 @@ public class DashboardActivity extends Activity {
 			FragmentTransaction transaction = manager.beginTransaction();
 			
 			Fragment fragment = new FragmentDashboardFailedScan();
+			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
 			transaction.replace(R.id.activity_dashboard_container, fragment);
 			transaction.addToBackStack(null);
 			transaction.commit();
