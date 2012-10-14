@@ -46,6 +46,6 @@
     
     <!-- Dialog -->
     <string name="welcome_dialog_title">ようこそ、mixtureへ！</string>
-    <string name="welcome_dialog_message">mixtureは商品バーコードをスキャンして素材を集め、素材同士を調合して新たなアイテムを生成していくゲームです。\nぜひ楽しんでいってください！</string>
+    <string name="welcome_dialog_message">mixtureは商品バーコードをスキャンして素材を集め、素材同士を調合して新たなアイテムを生成していくアプリです。\nまずはスキャンを選択して身近にあるバーコードから素材を取得してみましょう！\n\n画面の使い方が分からない時はアクションバーにあるヘルプボタンから解説を読むことが出来ます。\n\nそれでは、mixtureの世界をぜひ楽しんでいってください！</string>
     
 </resources>

@@ -17,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,11 +39,22 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 	private String API_KEY;
 	private ProgressDialog prog;
 	
+	private int NETWORK_ERROR = 0;
+	private int SERVER_MAINTENANCE = 1;
+	
 	// networkerror Handler
 	private Handler NetWorkErrorHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			Fragment fragment = new FragmentNetworkError();
+			Fragment fragment = null;
+			
+			if (msg.what == NETWORK_ERROR) {
+				fragment = new FragmentNetworkError();
+				
+			} else if (msg.what == SERVER_MAINTENANCE) {
+				fragment = new FragmentServerMaintenance();
+			}
+			
 			setTitle(getResources().getString(R.string.title_activity_network_error));
 			
 			FragmentManager manager = getFragmentManager();
@@ -114,15 +126,28 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 			String error = matcher2.replaceFirst("");
 			
 			if (error == "server") {
-				
+				NetWorkErrorHandler.sendEmptyMessage(SERVER_MAINTENANCE);
 			} else {
-				NetWorkErrorHandler.sendEmptyMessage(0);
+				NetWorkErrorHandler.sendEmptyMessage(NETWORK_ERROR);
 			}
 			
 		// apikey取得
 		} else {
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-			sp.edit().putString("API_KEY", res).commit();
+			Editor editor = sp.edit();
+			editor.putString("API_KEY", res);	// ApiKey
+			editor.putInt("LEVEL", 1);	// level
+			editor.putInt("EXP", 200); // 残りexp
+			editor.putBoolean("MASTER", false);	// 調合師の極意
+			editor.putBoolean("VIP", false);	// 特別待遇カード
+			editor.putInt("MONEY", 0);	// 所持金
+			editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
+			editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
+			editor.putBoolean("FIRST_MIX", false);	// はじめてのミックス
+			editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
+			editor.putBoolean("FIRST_SHOP", false);	// はじめてのショップ開店
+			editor.commit();
+			
 			
 			// welcomeダイアログの表示
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
