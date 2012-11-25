@@ -1,5 +1,86 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <style name="AppTheme" parent="android:Theme.Light" />
+
+    
+    <!-- common styles -->
+    <style name="common_wrap_content_layout">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    
+    <!-- common styles -->
+    <style name="common_match_parent_layout">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    
+    <style name="common_vertical_linear_layout" parent="common_match_parent_layout">
+        <item name="android:orientation">vertical</item>
+    </style>
+    
+    
+    
+    <!-- dashboard table row -->
+    <style name="dashboard_table_row">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dip</item>
+    </style>
+    
+    <!-- dashboard table item linearlayout -->
+    <style name="dashboard_table_item_linear_layout">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    
+    <!-- dashboard table item imageview -->
+    <style name="dashboard_table_item_imageview" parent="common_wrap_content_layout">
+        <item name="android:layout_gravity">center</item>
+    </style>
+    
+    <!-- dashboard table item textview -->
+    <style name="dashboard_table_item_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    
+
+    <!-- install scanapp imageview -->
+    <style name="install_scanapp_imageview" parent="common_wrap_content_layout">
+        <item name="android:layout_gravity">center</item>
+      z  <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <!-- install scanapp textview -->
+    <style name="install_scanapp_textview" parent="common_wrap_content_layout">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">20dp</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <!-- install_scanapp_button -->
+    <style name="install_scanapp_button" parent="common_wrap_content_layout">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+
+
+    <!-- item/material detail scroll view -->
+    <style name="item_detail_scroll_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+
+
+    <!--fragment_result_scan -->
 
 </resources>

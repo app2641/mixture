@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import com.google.ads.*;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -30,7 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-public class DashboardActivity extends Activity implements LoaderCallbacks<String> {
+public class DashboardActivity extends MixtureActivity implements LoaderCallbacks<String> {
 	
 	// application version
 	private int Ver = 1;
@@ -64,22 +63,24 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 			transaction.commit();
 		}
 	};
+	
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
 		
-		// version�ݒ�
+		// versionによる初期化処理
 		initVersion();
 		
-		// database������
+		// database初期化処理
 		initDatabse();
 		
-		// fragment������
+		// fragment初期化処理(Dashboardを表示する)
 		initFragment();
 		
-		// �L���̕\��
+		// AdMob広告初期化
 		initAdMob();
 	}
 	
@@ -88,68 +89,77 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 	{
 		super.onResume();
 		
-		// ����N������APIKEY����
+		// apiキーを取得する
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 		API_KEY = sp.getString("API_KEY", "none");
 		
+		// apiキーを所持してない場合には別スレッドでapiキーの発行を行う
 		if (API_KEY == "none") {
 			getLoaderManager().initLoader(1, null, this);
 		}
 	}
 	
 	
-	// asynctak loader methods
+	// 非同期でmixtureサーバと接続してapiキーの発行する
 	public Loader<String> onCreateLoader(int id, Bundle args)
 	{
+		// プログレスウィンドウの生成、表示
 		prog = new ProgressDialog(this);
 		prog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 		prog.setMessage(getResources().getString(R.string.init));
 		prog.show();
 		
+		// apiキーを生成する
 		ApiGenerateApiKey api = new ApiGenerateApiKey(DashboardActivity.this);
 		api.forceLoad();
 		return api;
 	}
 	
+	
+	// 非同期処理レスポンスの処理
 	public void onLoadFinished(Loader<String> loader, String res)
 	{
+		// 正規表現でレスポンスを精査する
 		Pattern pattern = Pattern.compile("^false.*$");
 		Matcher matcher = pattern.matcher(res);
 		boolean match = matcher.matches();
 		
 		prog.dismiss();
 		
-		// error����
+		// レスポンスでエラーが発生していた場合
 		if (match == true) {
+			// 正規表現で false文字列を置換 
 			Pattern pattern2 = Pattern.compile("false");
 			Matcher matcher2 = pattern2.matcher(res);
 			String error = matcher2.replaceFirst("");
 			
+			// エラー内容がサーバメンテかどうか
 			if (error == "server") {
 				NetWorkErrorHandler.sendEmptyMessage(SERVER_MAINTENANCE);
 			} else {
 				NetWorkErrorHandler.sendEmptyMessage(NETWORK_ERROR);
 			}
 			
-		// apikey�擾
+		// apiキーの生成、取得に成功した場合
 		} else {
+			// 定数の生成
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 			Editor editor = sp.edit();
 			editor.putString("API_KEY", res);	// ApiKey
 			editor.putInt("LEVEL", 1);	// level
-			editor.putInt("EXP", 200); // �c��exp
-			editor.putBoolean("MASTER", false);	// �����t�̋Ɉ�
-			editor.putBoolean("VIP", false);	// ���ʑҋ��J�[�h
-			editor.putInt("MONEY", 0);	// ������
-			editor.putBoolean("FIRST_SCAN", false);	// �͂��߂ẴX�L����
-			editor.putBoolean("FIRST_RARE", false);	// �͂��߂Ẵ��A�X�L����
-			editor.putBoolean("FIRST_MIX", false);	// �͂��߂Ẵ~�b�N�X
-			editor.putBoolean("FIRST_LEVELUP", false);	// �͂��߂Ẵ��x���A�b�v
-			editor.putBoolean("FIRST_SHOP", false);	// �͂��߂ẴV���b�v�J�X
+			editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
+			editor.putBoolean("MASTER", false);	// 調合師の極意所持
+			editor.putBoolean("VIP", false);	// 特別待遇カードの所持
+			editor.putInt("MONEY", 0);	// 所持金
+			editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
+			editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
+			editor.putBoolean("FIRST_MIX", false);	// はじめてのミックス
+			editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
+			editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
 			editor.commit();
 			
 			
-			// welcome�_�C�A���O�̕\��
+			// welcomeウィンドウの生成、表示
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setIcon(android.R.drawable.ic_menu_info_details);
 			builder.setTitle(getResources().getString(R.string.welcome_dialog_title));
@@ -169,23 +179,24 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 	
 
 	
-	// version���Ƃ̏���
+	// version初期化処理
 	public void initVersion ()
 	{
+		// 定数のバージョン数を取得
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 		int VERSION = sp.getInt("VERSION", 0);
 		
+		// 現在のバージョンと比較
 		if (Ver > VERSION) {
+			// バージョン初期化処理を行う
 			InitVersion initVer = new InitVersion(Ver);
 			VERSION = initVer.execute();
 			sp.edit().putInt("VERSION", VERSION).commit();
 		}
 	}
 	
-	/**
-	 * database����������
-	 * ����N�����Ƀf�[�^�x�[�X�𐶐�����
-	 */
+	
+	// database初期化処理
 	public void initDatabse ()
 	{
 		DatabaseHelper db = new DatabaseHelper(this);
@@ -199,9 +210,7 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 	}
 	
 	
-	/**
-	 * fragment������
-	 */
+	// fragmentの初期化(Dashboardを表示する)
 	public void initFragment ()
 	{
 		FragmentManager manager = getFragmentManager();
@@ -215,15 +224,14 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 		transaction.commit();
 	}
 	
-	
-	/**
-	 * �L���̏�����
-	 */
+
+	// Admob広告の初期化処理
 	public void initAdMob ()
 	{
 		adView = (AdView) findViewById(R.id.adView);
 		adView.loadAd(new AdRequest());
 	}
+	
 	
 	@Override
 	public boolean onOptionsItemSelected (MenuItem item)
@@ -270,11 +278,8 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 	}
 	
 	
-	/**********
-	 * click event
-	 **********/
-	// scan������
-	public void moveToScan (View v)
+	// スキャンアプリを立ち上げる 
+	public void dispatchScanActivity (View v)
 	{
 		Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 		intent.putExtra("SCAN_MODE", "ONE_D_MODE");
@@ -283,55 +288,51 @@ public class DashboardActivity extends Activity implements LoaderCallbacks<Strin
 //			throw new ActivityNotFoundException();
 			startActivityForResult(intent, 0);
 			
+		// スキャンアプリが見つからなかった場合にはインストール画面へ遷移する
 		} catch (ActivityNotFoundException e) {
-			FragmentManager manager = getFragmentManager();
-			FragmentTransaction transaction = manager.beginTransaction();
-			
-			Fragment fragment = new FragmentDashboardFailedScan();
-			transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-			transaction.replace(R.id.activity_dashboard_container, fragment);
-			transaction.addToBackStack(null);
-			transaction.commit();
+			super.fragmentReplace(new FragmentDashboardInstallScanApp());
 		}
 	}
 	
-	// mix ������
-	public void moveToMix (View v)
+	// mix画面へ遷移する
+	public void dispatchMixActivity (View v)
 	{
 		
 	}
 	
-	// shop������
-	public void moveToShop (View v)
+	// shop画面へ遷移する
+	public void dispatchShopActivity (View v)
 	{
 		Intent intent = new Intent(this, ShopActivity.class);
 		intent.setAction(Intent.ACTION_VIEW);
 		startActivity(intent);
 	}
 	
-	// collection������
-	public void moveToCollection (View v)
+	// collection画面へ遷移する
+	public void dispatchCollectionActivity (View v)
 	{
 		Intent intent = new Intent(this, CollectionActivity.class);
 		intent.setAction(Intent.ACTION_VIEW);
 		startActivity(intent);
 	}
 	
-	// intent�̃��X�|���X����
+	// intentの結果を処理する
 	@Override
 	public void onActivityResult (int requestCode, int resultCode, Intent intent)
 	{
 		if (resultCode == RESULT_OK) {
-			// scan��̏���
+			// scan結果を処理
 			if (requestCode == 0) {
 				String code = intent.getStringExtra("SCAN_RESULT");
 //				Toast.makeText(this, code, 0).show();
 				
+				// データベースヘルパーの生成
 				DatabaseHelper helper = new DatabaseHelper(DashboardActivity.this);
 				String sql = "SELECT * FROM material ORDER BY RANDOM();";
 				Cursor c = helper.executeSql(sql, new String[]{});
 				
 				if (c.moveToFirst()) {
+					// スキャン結果画面へ遷移させる
 					FragmentManager manager = getFragmentManager();
 					FragmentTransaction transaction = manager.beginTransaction();
 					

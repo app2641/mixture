@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/common_match_parent_layout"
+    android:orientation="vertical"
+    android:gravity="center" >
+
+
+    <ImageView
+        android:src="@drawable/install_scanapp_icon"
+        style="@style/install_scanapp_imageview" />
+    
+    <TextView 
+        android:text="@string/failed_scan_notice"
+        style="@style/install_scanapp_textview" />
+    
+    <Button 
+        android:id="@+id/download_scan_app"
+        android:text="@string/download_scan_app"
+        style="@style/install_scanapp_button"/>
+
+</LinearLayout>

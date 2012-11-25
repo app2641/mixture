@@ -38,11 +38,11 @@ public class ApiGenerateApiKey extends AsyncTaskLoader<String> {
 			
 			String json = EntityUtils.toString(response.getEntity(), "UTF-8");
 			
-			// jsonƒp[ƒX
+			// jsonè§£æ
 			JSONObject root = new JSONObject(json);
 			String success = root.getString("success");
 			
-			// apikeyæ“¾¸”s
+			// apikeyã®ç”Ÿæˆå¤±æ•—
 			if (success == "false") {
 				throw new Exception(root.getString("msg"));
 			}

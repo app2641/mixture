@@ -18,49 +18,56 @@ public final class R {
     }
     public static final class drawable {
         public static final int accent_bottom_border=0x7f020000;
-        public static final int grey_background=0x7f020001;
-        public static final int grey_border_footer=0x7f020002;
-        public static final int grey_border_header=0x7f020003;
-        public static final int ic_action_search=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int item_detail_footer=0x7f020006;
-        public static final int item_detail_header=0x7f020007;
-        public static final int test_icon=0x7f020008;
-        public static final int test_item=0x7f020009;
+        public static final int dashboard_collection_icon=0x7f020001;
+        public static final int dashboard_mix_icon=0x7f020002;
+        public static final int dashboard_scan_icon=0x7f020003;
+        public static final int dashboard_shop_icon=0x7f020004;
+        public static final int grey_background=0x7f020005;
+        public static final int grey_border_footer=0x7f020006;
+        public static final int grey_border_header=0x7f020007;
+        public static final int ic_action_search=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int install_scanapp_icon=0x7f02000a;
+        public static final int item_detail_footer=0x7f02000b;
+        public static final int item_detail_header=0x7f02000c;
+        public static final int test_icon=0x7f02000d;
+        public static final int test_item=0x7f02000e;
     }
     public static final class id {
         public static final int activity_dashboard_container=0x7f080002;
-        public static final int adView=0x7f080003;
-        public static final int close_btn=0x7f080014;
-        public static final int confirm_btn=0x7f080015;
-        public static final int dashboard_scan_icon=0x7f080005;
-        public static final int dashbord_scan_text=0x7f080006;
-        public static final int download_scan_app=0x7f080007;
-        public static final int item_class=0x7f08000b;
-        public static final int item_detail_description=0x7f080011;
-        public static final int item_detail_exp=0x7f08000e;
-        public static final int item_detail_price=0x7f08000d;
-        public static final int item_get_btn=0x7f080012;
-        public static final int item_image=0x7f080009;
-        public static final int item_info_icon_container=0x7f08000c;
-        public static final int item_level_note=0x7f080010;
-        public static final int item_level_up=0x7f08000f;
-        public static final int item_name=0x7f08000a;
-        public static final int item_result_header=0x7f080008;
-        public static final int item_sell_btn=0x7f080013;
-        public static final int menu_about_app=0x7f08001c;
-        public static final int menu_clear=0x7f08001d;
-        public static final int menu_dashboard_help=0x7f080019;
-        public static final int menu_help=0x7f080017;
-        public static final int menu_important=0x7f08001a;
-        public static final int menu_important_help=0x7f08001e;
-        public static final int menu_item_detail_help=0x7f08001f;
-        public static final int menu_rate_nosw=0x7f080018;
-        public static final int menu_settings=0x7f080016;
-        public static final int menu_status=0x7f08001b;
+        public static final int adView=0x7f080015;
+        public static final int close_btn=0x7f080016;
+        public static final int confirm_btn=0x7f080017;
+        public static final int dashboard_collection_icon=0x7f080004;
+        public static final int dashboard_scan_icon=0x7f080006;
+        public static final int dashbord_collection_text=0x7f080005;
+        public static final int dashbord_scan_text=0x7f080007;
+        public static final int download_scan_app=0x7f080008;
+        public static final int item_class=0x7f08000c;
+        public static final int item_detail_description=0x7f080012;
+        public static final int item_detail_exp=0x7f08000f;
+        public static final int item_detail_price=0x7f08000e;
+        public static final int item_get_btn=0x7f080013;
+        public static final int item_image=0x7f08000a;
+        public static final int item_info_icon_container=0x7f08000d;
+        public static final int item_level_note=0x7f080011;
+        public static final int item_level_up=0x7f080010;
+        public static final int item_name=0x7f08000b;
+        public static final int item_result_header=0x7f080009;
+        public static final int item_sell_btn=0x7f080014;
+        public static final int menu_about_app=0x7f08001e;
+        public static final int menu_clear=0x7f08001f;
+        public static final int menu_dashboard_help=0x7f08001b;
+        public static final int menu_help=0x7f080019;
+        public static final int menu_important=0x7f08001c;
+        public static final int menu_important_help=0x7f080020;
+        public static final int menu_item_detail_help=0x7f080021;
+        public static final int menu_rate_nosw=0x7f08001a;
+        public static final int menu_settings=0x7f080018;
+        public static final int menu_status=0x7f08001d;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
-        public static final int shop_activity_pager=0x7f080004;
+        public static final int shop_activity_pager=0x7f080003;
     }
     public static final class layout {
         public static final int activity_collection=0x7f030000;
@@ -70,22 +77,25 @@ public final class R {
         public static final int dashboard_item_mix=0x7f030004;
         public static final int dashboard_item_scan=0x7f030005;
         public static final int dashboard_item_shop=0x7f030006;
-        public static final int fragment_dashboard_table=0x7f030007;
-        public static final int fragment_datashboard_failedscan=0x7f030008;
+        public static final int fragment_dashboard_install_scanapp=0x7f030007;
+        public static final int fragment_dashboard_table=0x7f030008;
         public static final int fragment_important=0x7f030009;
         public static final int fragment_item_result=0x7f03000a;
         public static final int fragment_network_error=0x7f03000b;
-        public static final int fragment_server_maintenance=0x7f03000c;
-        public static final int fragment_shop_offline_list=0x7f03000d;
-        public static final int fragment_shop_online_list=0x7f03000e;
-        public static final int welcome_dialog=0x7f03000f;
+        public static final int fragment_result_scan=0x7f03000c;
+        public static final int fragment_server_maintenance=0x7f03000d;
+        public static final int fragment_shop_offline_list=0x7f03000e;
+        public static final int fragment_shop_online_list=0x7f03000f;
+        public static final int include_admob=0x7f030010;
+        public static final int welcome_dialog=0x7f030011;
     }
     public static final class menu {
         public static final int activity_collection=0x7f070000;
         public static final int activity_shop=0x7f070001;
         public static final int fragment_dashboard=0x7f070002;
-        public static final int fragment_important=0x7f070003;
-        public static final int fragment_item_result=0x7f070004;
+        public static final int fragment_dashboard_install_scan_app=0x7f070003;
+        public static final int fragment_important=0x7f070004;
+        public static final int fragment_item_result=0x7f070005;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
@@ -127,6 +137,7 @@ public final class R {
         public static final int server_maintenance=0x7f050014;
         public static final int title_activity_collection=0x7f050005;
         public static final int title_activity_dashboard=0x7f050004;
+        public static final int title_activity_fragment_dashboard_install_scan_app=0x7f05001f;
         /**  title 
          */
         public static final int title_activity_network_error=0x7f050003;
@@ -138,5 +149,36 @@ public final class R {
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;
+        /**  common styles 
+         */
+        public static final int common_match_parent_layout=0x7f060002;
+        public static final int common_vertical_linear_layout=0x7f060003;
+        /**  common styles 
+         */
+        public static final int common_wrap_content_layout=0x7f060001;
+        /**  dashboard table item imageview 
+         */
+        public static final int dashboard_table_item_imageview=0x7f060006;
+        /**  dashboard table item linearlayout 
+         */
+        public static final int dashboard_table_item_linear_layout=0x7f060005;
+        /**  dashboard table item textview 
+         */
+        public static final int dashboard_table_item_textview=0x7f060007;
+        /**  dashboard table row 
+         */
+        public static final int dashboard_table_row=0x7f060004;
+        /**  install_scanapp_button 
+         */
+        public static final int install_scanapp_button=0x7f06000a;
+        /**  install scanapp imageview 
+         */
+        public static final int install_scanapp_imageview=0x7f060008;
+        /**  install scanapp textview 
+         */
+        public static final int install_scanapp_textview=0x7f060009;
+        /**  item/material detail scroll view 
+         */
+        public static final int item_detail_scroll_view=0x7f06000b;
     }
 }
