@@ -1,4 +1,4 @@
-package com.app2641.mixture;
+package com.app2641.api;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -11,22 +11,22 @@ import org.json.JSONObject;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.util.Log;
 
-public class ApiGenerateApiKey extends AsyncTaskLoader<String> {
+public class Api extends AsyncTaskLoader<String> {
 	
-	private String url = "http://api.mixture2641.com/index/generateApiKey";
+	private InterfaceApiFactory factory;
 
-	public ApiGenerateApiKey(Context context) {
+	public Api (Context context, InterfaceApiFactory factory)
+	{
 		super(context);
+		this.factory = factory;
 	}
 
 	@Override
-	public String loadInBackground()
-	{
+	public String loadInBackground() {
 		try {
 			DefaultHttpClient client = new DefaultHttpClient();
-			HttpPost post = new HttpPost(url);
+			HttpPost post = new HttpPost(this.factory.getUrl());
 			HttpParams param = client.getParams();
 			HttpConnectionParams.setConnectionTimeout(param, 5000);
 			
@@ -53,5 +53,4 @@ public class ApiGenerateApiKey extends AsyncTaskLoader<String> {
 			return "false" + e.getMessage();
 		}
 	}
-
 }

@@ -4,6 +4,20 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.app2641.api.Api;
+import com.app2641.api.GenerateApiKey;
+
+import com.app2641.fragment.FragmentDashboardInstallScanApp;
+import com.app2641.fragment.FragmentDashboardTable;
+import com.app2641.fragment.FragmentImportant;
+import com.app2641.fragment.FragmentItemResult;
+import com.app2641.fragment.FragmentNetworkError;
+import com.app2641.fragment.FragmentServerMaintenance;
+import com.app2641.fragment.MixtureFragment;
+import com.app2641.help.DashboardFactory;
+import com.app2641.help.HelpDialog;
+import com.app2641.help.WelcomeFactory;
+
 import com.google.ads.*;
 
 import android.app.AlertDialog;
@@ -24,7 +38,6 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.app.FragmentManager;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -41,11 +54,11 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 	private int NETWORK_ERROR = 0;
 	private int SERVER_MAINTENANCE = 1;
 	
-	// networkerror Handler
+	// networkerror Handler 
 	private Handler NetWorkErrorHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
-			Fragment fragment = null;
+			MixtureFragment fragment = null;
 			
 			if (msg.what == NETWORK_ERROR) {
 				fragment = new FragmentNetworkError();
@@ -78,7 +91,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		initDatabse();
 		
 		// fragment初期化処理(Dashboardを表示する)
-		initFragment();
+		super.fragmentReplace(new FragmentDashboardTable());
 		
 		// AdMob広告初期化
 		initAdMob();
@@ -110,7 +123,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		prog.show();
 		
 		// apiキーを生成する
-		ApiGenerateApiKey api = new ApiGenerateApiKey(DashboardActivity.this);
+		Api api = new Api(DashboardActivity.this, new GenerateApiKey());
 		api.forceLoad();
 		return api;
 	}
@@ -160,16 +173,8 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 			
 			
 			// welcomeウィンドウの生成、表示
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setIcon(android.R.drawable.ic_menu_info_details);
-			builder.setTitle(getResources().getString(R.string.welcome_dialog_title));
-			builder.setMessage(getResources().getString(R.string.welcome_dialog_message));
-			builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
-				public void onClick (DialogInterface dialog, int id) {
-					dialog.cancel();
-				}
-			});
-			builder.show();
+			HelpDialog dialog = new HelpDialog(this, new WelcomeFactory());
+			dialog.show();
 		}
 	}
 	
@@ -210,21 +215,6 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 	}
 	
 	
-	// fragmentの初期化(Dashboardを表示する)
-	public void initFragment ()
-	{
-		FragmentManager manager = getFragmentManager();
-		FragmentTransaction transaction = manager.beginTransaction();
-		Fragment frag = manager.findFragmentByTag("fragment_dashboard_table");
-		
-		if (frag == null) {
-			frag = new FragmentDashboardTable();
-			transaction.add(R.id.activity_dashboard_container, frag, "fragment_dashboard_table");
-		}
-		transaction.commit();
-	}
-	
-
 	// Admob広告の初期化処理
 	public void initAdMob ()
 	{
@@ -236,14 +226,17 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 	@Override
 	public boolean onOptionsItemSelected (MenuItem item)
 	{
-		DashboardOptionsMenuEvents events = new DashboardOptionsMenuEvents(DashboardActivity.this, item);
+		HelpDialog dialog;
 		
 		switch (item.getItemId()) {
 			case R.id.menu_dashboard_help:
-				events.dashboardHelp();
+				dialog = new HelpDialog(this, new DashboardFactory());
+				dialog.show();
 				break;
 			
 			case R.id.menu_status:
+				dialog = new HelpDialog(this, new WelcomeFactory());
+				dialog.show();
 				break;
 		
 			case R.id.menu_about_app:
@@ -255,22 +248,17 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 				break;
 			
 			case R.id.menu_item_detail_help:
-				events.detailHelp();
+				dialog = new HelpDialog(this, new WelcomeFactory());
+				dialog.show();
 				break;
 				
 			case R.id.menu_important_help:
-				events.importantHelp();
+				dialog = new HelpDialog(this, new WelcomeFactory());
+				dialog.show();
 				break;
 			
 			case R.id.menu_important:
-				FragmentManager manager = getFragmentManager();
-				FragmentTransaction transaction = manager.beginTransaction();
-				Fragment fragment = new FragmentImportant();
-				
-				transaction.replace(R.id.activity_dashboard_container, fragment);
-				transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-				transaction.addToBackStack(null);
-				transaction.commit();
+				super.fragmentReplace(new FragmentImportant());
 				break;
 			
 		}
@@ -324,7 +312,6 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 			// scan結果を処理
 			if (requestCode == 0) {
 				String code = intent.getStringExtra("SCAN_RESULT");
-//				Toast.makeText(this, code, 0).show();
 				
 				// データベースヘルパーの生成
 				DatabaseHelper helper = new DatabaseHelper(DashboardActivity.this);
@@ -333,19 +320,13 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 				
 				if (c.moveToFirst()) {
 					// スキャン結果画面へ遷移させる
-					FragmentManager manager = getFragmentManager();
-					FragmentTransaction transaction = manager.beginTransaction();
-					
 					Bundle bundle = new Bundle();
 					bundle.putInt("id", c.getInt(c.getColumnIndex("_id")));
 					
 					Fragment fragment = new FragmentItemResult();
 					fragment.setArguments(bundle);
-					transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-					transaction.replace(R.id.activity_dashboard_container, fragment);
-					transaction.addToBackStack(null);
 					
-					transaction.commit();
+					super.fragmentReplace(new FragmentDashboardTable());
 				}
 				
 				c.close();

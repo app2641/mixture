@@ -1,9 +1,10 @@
-package com.app2641.mixture;
+package com.app2641.fragment;
 
+import com.app2641.mixture.DatabaseHelper;
+import com.app2641.mixture.R;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 
-import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class FragmentItemResult extends Fragment
+public class FragmentItemResult extends MixtureFragment
 {
+	public int container_id = R.id.activity_dashboard_container;
+	
+	public int getContainerId ()
+	{
+		return this.container_id;
+	}
+	
+	
 
 	@Override
 	public void onCreate (Bundle savedInstanceState)
@@ -41,10 +50,10 @@ public class FragmentItemResult extends Fragment
 			cls.setText("class " + c.getString(c.getColumnIndex("class")));
 			
 			TextView price = (TextView) view.findViewById(R.id.item_detail_price);
-			price.setText("‘Šê‰¿Ši: " + String.valueOf(c.getInt(c.getColumnIndex("price"))) + "price");
+			price.setText("ï¿½ï¿½ï¿½ê‰¿ï¿½i: " + String.valueOf(c.getInt(c.getColumnIndex("price"))) + "price");
 			
 			TextView exp = (TextView) view.findViewById(R.id.item_detail_exp);
-			exp.setText("ŒoŒ±’l: " + String.valueOf(c.getInt(c.getColumnIndex("exp"))) + "exp");
+			exp.setText("ï¿½oï¿½ï¿½ï¿½l: " + String.valueOf(c.getInt(c.getColumnIndex("exp"))) + "exp");
 			
 			TextView description = (TextView) view.findViewById(R.id.item_detail_description);
 			description.setText(c.getString(c.getColumnIndex("description")));
@@ -77,7 +86,7 @@ public class FragmentItemResult extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
 		
-		// L‚Ì‰Šú‰»
+		// ï¿½Lï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
 		AdView adView = (AdView) getActivity().findViewById(R.id.adView);
 		adView.loadAd(new AdRequest());
 	}

@@ -167,7 +167,7 @@
         	android:layout_height="wrap_content"
         	ads:adSize="BANNER"
         	ads:adUnitId="a15039a852b5ecf"
-        	ads:testDevices="TEST_EMULATOR, 956777F5A66AE217DDBCC27C5CD74A6E" />
+        	ads:testDevices="TEST_EMULATOR, A0652EE3482F7287F0959069EADCEB70" />
     </LinearLayout>
     
 </LinearLayout>

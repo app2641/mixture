@@ -1,21 +1,24 @@
-package com.app2641.mixture;
+package com.app2641.fragment;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.content.SharedPreferences;
+import com.app2641.mixture.R;
+
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-public class FragmentDashboardTable extends Fragment {
+public class FragmentDashboardTable extends MixtureFragment {
+	
+	public int container_id = R.id.activity_dashboard_container;
+	
+	public int getContainerId ()
+	{
+		return container_id;
+	}
+	
+	
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState)

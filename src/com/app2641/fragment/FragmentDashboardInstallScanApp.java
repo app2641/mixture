@@ -1,6 +1,8 @@
-package com.app2641.mixture;
+package com.app2641.fragment;
 
-import com.app2641.fragment.MixtureFragment;
+import com.app2641.mixture.R;
+import com.app2641.mixture.R.id;
+import com.app2641.mixture.R.layout;
 
 import android.net.Uri;
 import android.os.Bundle;

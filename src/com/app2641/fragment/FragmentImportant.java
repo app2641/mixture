@@ -1,6 +1,7 @@
-package com.app2641.mixture;
+package com.app2641.fragment;
 
-import android.app.Fragment;
+import com.app2641.mixture.R;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -8,7 +9,16 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class FragmentImportant extends Fragment {
+public class FragmentImportant extends MixtureFragment {
+	
+	public int container_id = R.id.activity_dashboard_container;
+	
+	public int getContainerId ()
+	{
+		return this.container_id;
+	}
+	
+	
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState)
