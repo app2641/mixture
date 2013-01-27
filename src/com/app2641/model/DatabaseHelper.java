@@ -1,4 +1,4 @@
-package com.app2641.mixture;
+package com.app2641.model;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -34,28 +34,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	
 	/**
-	 * assetに格納したデータベースをコピーするため、空DBを生成する初期化処理
+	 * asset
 	 */
 	public void init () throws IOException
 	{
 		boolean exists = isExistsDatabase();
 		
 		if (exists == false) {
-			// 空のDBを生成するスーパークラスメソッド
+			// DB
 			this.getReadableDatabase();
 			
-			// assetのデータをDBにコピーする
+			// asset繝輔か繝ｫ繝縺ｮ繝�繝ｼ繧ｿ繝輔ぃ繧､繝ｫ縺九ｉDB縺ｫ謚募�･
 			copyDatabseFromAsset();
 		}
 	}
 	
 	/**
-	 * 既にDBが作成されているかを判断する
 	 * @return boolean
 	 */
 	public boolean isExistsDatabase ()
 	{
-		// db有無のフラグ
+		// db繝輔Λ繧ｰ
 		boolean flag = true;
 		
 		try {
@@ -70,16 +69,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	
-	/**
-	 * assetデータをDBにコピーする
-	 */
 	public void copyDatabseFromAsset ()
 	{
 		try {
 			InputStream mInput = mContext.getAssets().open(ASSET_DB);
 			OutputStream mOutput = new FileOutputStream(DB_PATH + DB_NAME);
 			
-			// コピー処理
 			byte[] buffer = new byte[1024];
 			int size;
 			
@@ -87,7 +82,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				mOutput.write(buffer, 0, size);
 			}
 			
-			// streamを破棄
 			mOutput.flush();
 			mOutput.close();
 			mInput.close();
@@ -102,35 +96,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	 * sql list
 	 *********************/
 	
-	// materialをidで取得
 	public Cursor fetchByMaterialId (String id)
 	{
 		String sql = "SELECt * FROM material WHERE _id = ?";
 		return this.executeSql(sql, new String[]{id});
 	}
 	
-	// materialをclassで取得
 	public Cursor fetchByMaterialClass (String cls)
 	{
 		String sql = "SELECT * FROM material WHERE class = ?";
 		return this.executeSql(sql, new String[]{cls});
 	}
 	
-	// itemをidで取得
 	public Cursor fetchByItemId (String id)
 	{
 		String sql = "SELECt * FROM item WHERE _id = ?";
 		return this.executeSql(sql, new String[]{id});
 	}
 	
-	// itemをclassで取得
 	public Cursor fetchByItemClass (String cls)
 	{
 		String sql = "SELECT * FROM item WHERE class = ?";
 		return this.executeSql(sql, new String[]{cls});
 	}
 	
-	// sql実行
 	public Cursor executeSql (String sql, String[] bind)
 	{
 		SQLiteDatabase db = this.getReadableDatabase();

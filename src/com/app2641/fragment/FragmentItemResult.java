@@ -1,7 +1,7 @@
 package com.app2641.fragment;
 
-import com.app2641.mixture.DatabaseHelper;
 import com.app2641.mixture.R;
+import com.app2641.model.DatabaseHelper;
 import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 

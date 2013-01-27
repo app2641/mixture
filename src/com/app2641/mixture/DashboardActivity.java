@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 import com.app2641.api.Api;
 import com.app2641.api.GenerateApiKey;
 
+import com.app2641.dialog.DashboardHelp;
+import com.app2641.dialog.WelcomeDialog;
 import com.app2641.fragment.FragmentDashboardInstallScanApp;
 import com.app2641.fragment.FragmentDashboardTable;
 import com.app2641.fragment.FragmentImportant;
@@ -14,12 +16,11 @@ import com.app2641.fragment.FragmentItemResult;
 import com.app2641.fragment.FragmentNetworkError;
 import com.app2641.fragment.FragmentServerMaintenance;
 import com.app2641.fragment.MixtureFragment;
-import com.app2641.help.DashboardFactory;
-import com.app2641.help.HelpDialog;
-import com.app2641.help.WelcomeFactory;
+import com.app2641.model.DatabaseHelper;
 
 import com.google.ads.*;
 
+import com.app2641.mixture.R;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -54,7 +55,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 	private int NETWORK_ERROR = 0;
 	private int SERVER_MAINTENANCE = 1;
 	
-	// networkerror Handler 
+	// networkerror Handler
 	private Handler NetWorkErrorHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -173,8 +174,9 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 			
 			
 			// welcomeウィンドウの生成、表示
-			HelpDialog dialog = new HelpDialog(this, new WelcomeFactory());
-			dialog.show();
+			WelcomeDialog dialog = new WelcomeDialog();
+			FragmentManager manager = getFragmentManager();
+			dialog.show(manager, "welcome");
 		}
 	}
 	
@@ -226,17 +228,17 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 	@Override
 	public boolean onOptionsItemSelected (MenuItem item)
 	{
-		HelpDialog dialog;
-		
 		switch (item.getItemId()) {
 			case R.id.menu_dashboard_help:
-				dialog = new HelpDialog(this, new DashboardFactory());
-				dialog.show();
+				// ヘルプダイアログを表示する
+				DashboardHelp dialog = new DashboardHelp();
+				FragmentManager manager = getFragmentManager();
+				dialog.show(manager, "dashboard_help");
 				break;
 			
 			case R.id.menu_status:
-				dialog = new HelpDialog(this, new WelcomeFactory());
-				dialog.show();
+//				dialog = new HelpDialog(this, new WelcomeFactory());
+//				dialog.show();
 				break;
 		
 			case R.id.menu_about_app:
@@ -248,19 +250,18 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 				break;
 			
 			case R.id.menu_item_detail_help:
-				dialog = new HelpDialog(this, new WelcomeFactory());
-				dialog.show();
+//				dialog = new HelpDialog(this, new WelcomeFactory());
+//				dialog.show();
 				break;
 				
 			case R.id.menu_important_help:
-				dialog = new HelpDialog(this, new WelcomeFactory());
-				dialog.show();
+//				dialog = new HelpDialog(this, new WelcomeFactory());
+//				dialog.show();
 				break;
 			
 			case R.id.menu_important:
 				super.fragmentReplace(new FragmentImportant());
 				break;
-			
 		}
 		return true;
 	}
@@ -282,11 +283,13 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		}
 	}
 	
+	
 	// mix画面へ遷移する
 	public void dispatchMixActivity (View v)
 	{
 		
 	}
+	
 	
 	// shop画面へ遷移する
 	public void dispatchShopActivity (View v)
@@ -296,6 +299,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		startActivity(intent);
 	}
 	
+	
 	// collection画面へ遷移する
 	public void dispatchCollectionActivity (View v)
 	{
@@ -303,6 +307,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		intent.setAction(Intent.ACTION_VIEW);
 		startActivity(intent);
 	}
+	
 	
 	// intentの結果を処理する
 	@Override

@@ -77,17 +77,18 @@ public final class R {
         public static final int dashboard_item_mix=0x7f030004;
         public static final int dashboard_item_scan=0x7f030005;
         public static final int dashboard_item_shop=0x7f030006;
-        public static final int fragment_dashboard_install_scanapp=0x7f030007;
-        public static final int fragment_dashboard_table=0x7f030008;
-        public static final int fragment_important=0x7f030009;
-        public static final int fragment_item_result=0x7f03000a;
-        public static final int fragment_network_error=0x7f03000b;
-        public static final int fragment_result_scan=0x7f03000c;
-        public static final int fragment_server_maintenance=0x7f03000d;
-        public static final int fragment_shop_offline_list=0x7f03000e;
-        public static final int fragment_shop_online_list=0x7f03000f;
-        public static final int include_admob=0x7f030010;
-        public static final int welcome_dialog=0x7f030011;
+        public static final int dialog_help_dashboard=0x7f030007;
+        public static final int dialog_welcome=0x7f030008;
+        public static final int fragment_dashboard_install_scanapp=0x7f030009;
+        public static final int fragment_dashboard_table=0x7f03000a;
+        public static final int fragment_important=0x7f03000b;
+        public static final int fragment_item_result=0x7f03000c;
+        public static final int fragment_network_error=0x7f03000d;
+        public static final int fragment_result_scan=0x7f03000e;
+        public static final int fragment_server_maintenance=0x7f03000f;
+        public static final int fragment_shop_offline_list=0x7f030010;
+        public static final int fragment_shop_online_list=0x7f030011;
+        public static final int include_admob=0x7f030012;
     }
     public static final class menu {
         public static final int activity_collection=0x7f070000;
@@ -102,13 +103,24 @@ public final class R {
         public static final int close=0x7f050013;
         public static final int confirm_server_status=0x7f050015;
         public static final int dashboard_collection=0x7f05000a;
-        public static final int dashboard_dialog_message=0x7f050021;
-        public static final int dashboard_dialog_title=0x7f050020;
         public static final int dashboard_mix=0x7f050008;
         /**  dashboard item 
          */
         public static final int dashboard_scan=0x7f050007;
         public static final int dashboard_shop=0x7f050009;
+        public static final int dialog_help_dashboard_collection=0x7f050026;
+        public static final int dialog_help_dashboard_collection_description=0x7f050027;
+        public static final int dialog_help_dashboard_mixin=0x7f050022;
+        public static final int dialog_help_dashboard_mixin_description=0x7f050023;
+        public static final int dialog_help_dashboard_scan=0x7f050020;
+        public static final int dialog_help_dashboard_scan_description=0x7f050021;
+        public static final int dialog_help_dashboard_shop=0x7f050024;
+        public static final int dialog_help_dashboard_shop_description=0x7f050025;
+        public static final int dialog_help_dashboard_title=0x7f05001f;
+        public static final int dialog_welcome_message=0x7f05001e;
+        /**  Dialog Message 
+         */
+        public static final int dialog_welcome_title=0x7f05001d;
         public static final int download_scan_app=0x7f05000d;
         public static final int failed_scan_notice=0x7f05000c;
         public static final int get_material=0x7f05000e;
@@ -139,23 +151,16 @@ public final class R {
         public static final int server_maintenance=0x7f050014;
         public static final int title_activity_collection=0x7f050005;
         public static final int title_activity_dashboard=0x7f050004;
-        public static final int title_activity_fragment_dashboard_install_scan_app=0x7f05001f;
         /**  title 
          */
         public static final int title_activity_network_error=0x7f050003;
         public static final int title_activity_shop=0x7f050006;
-        public static final int welcome_dialog_message=0x7f05001e;
-        /**  Dialog 
-         */
-        public static final int welcome_dialog_title=0x7f05001d;
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;
         /**  admob 
          */
         public static final int admob=0x7f060004;
-        /**  common styles 
-         */
         public static final int common_match_parent_layout=0x7f060002;
         public static final int common_vertical_linear_layout=0x7f060003;
         /**  common styles 
@@ -163,27 +168,32 @@ public final class R {
         public static final int common_wrap_content_layout=0x7f060001;
         /**  dashboard table item imageview 
          */
-        public static final int dashboard_table_item_imageview=0x7f060007;
+        public static final int dashboard_table_item_imageview=0x7f06000a;
         /**  dashboard table item linearlayout 
          */
-        public static final int dashboard_table_item_linear_layout=0x7f060006;
+        public static final int dashboard_table_item_linear_layout=0x7f060009;
         /**  dashboard table item textview 
          */
-        public static final int dashboard_table_item_textview=0x7f060008;
+        public static final int dashboard_table_item_textview=0x7f06000b;
         /**  dashboard table row 
          */
-        public static final int dashboard_table_row=0x7f060005;
+        public static final int dashboard_table_row=0x7f060008;
+        /**  dialog 
+         */
+        public static final int dialog_linear_layout=0x7f060005;
+        public static final int dialog_text=0x7f060006;
+        public static final int dialog_text_bold=0x7f060007;
         /**  install_scanapp_button 
          */
-        public static final int install_scanapp_button=0x7f06000b;
+        public static final int install_scanapp_button=0x7f06000e;
         /**  install scanapp imageview 
          */
-        public static final int install_scanapp_imageview=0x7f060009;
+        public static final int install_scanapp_imageview=0x7f06000c;
         /**  install scanapp textview 
          */
-        public static final int install_scanapp_textview=0x7f06000a;
+        public static final int install_scanapp_textview=0x7f06000d;
         /**  item/material detail scroll view 
          */
-        public static final int item_detail_scroll_view=0x7f06000c;
+        public static final int item_detail_scroll_view=0x7f06000f;
     }
 }

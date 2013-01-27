@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dialog_linear_layout" >
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:text="@string/dialog_help_dashboard_scan"
+    />
+    <TextView
+        style="@style/dialog_text"
+        android:text="@string/dialog_help_dashboard_scan_description"
+    />
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:layout_marginTop="15dp"
+        android:text="@string/dialog_help_dashboard_mixin"
+    />
+    <TextView
+        style="@style/dialog_text"
+        android:text="@string/dialog_help_dashboard_mixin_description"
+    />
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:layout_marginTop="15dp"
+        android:text="@string/dialog_help_dashboard_shop"
+    />
+    <TextView
+        style="@style/dialog_text"
+        android:text="@string/dialog_help_dashboard_shop_description"
+    />
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:layout_marginTop="15dp"
+        android:text="@string/dialog_help_dashboard_collection"
+    />
+    <TextView
+        style="@style/dialog_text"
+        android:text="@string/dialog_help_dashboard_collection_description"
+    />
+
+</LinearLayout>

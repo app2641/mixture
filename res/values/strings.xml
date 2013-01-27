@@ -5,18 +5,24 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
 
+    
+    
     <!-- title -->
     <string name="title_activity_network_error">ネットワークエラー</string>
     <string name="title_activity_dashboard">mixture</string>
     <string name="title_activity_collection">CollectionActivity</string>
     <string name="title_activity_shop">ショップ</string>
 
+    
+    
     <!-- dashboard item -->
     <string name="dashboard_scan">Scan</string>
     <string name="dashboard_mix">Mix</string>
     <string name="dashboard_shop">Shop</string>
     <string name="dashboard_collection">Collection</string>
 
+    
+    
     <!-- Dashoard Activity -->
     <string name="init">初期化中....</string>
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
@@ -24,10 +30,14 @@
     <string name="get_material">素材を取得</string>
     <string name="sell_shop">ショップへ売却</string>
 
+    
+    
     <!-- Shop Acitivity -->
     <string name="offline">オフライン</string>
     <string name="online">オンライン</string>
 
+    
+    
     <!-- NetworkError -->
     <string name="network_error">アプリケーションサーバーに接続することが出来ませんでした。\nネット環境をお確かめになってから再度接続を試みてください。</string>
     <string name="close">閉じる</string>
@@ -41,16 +51,26 @@
     <string name="menu_about_app">mixtureについて</string>
     <string name="menu_rate_now">現在のレート</string>
 
+    
+    
     <!-- item detail -->
     <string name="item_detail_header">NOTE</string>
     <string name="item_detail_header2">DESCRIPTION</string>
 
-    <!-- Dialog -->
-    <string name="welcome_dialog_title">ようこそ、mixtureへ！</string>
-    <string name="welcome_dialog_message">mixtureは商品バーコードをスキャンして素材を集め、素材同士を調合して新たなアイテムを生成していくアプリです。\nまずはスキャンを選択して身近にあるバーコードから素材を取得してみましょう！\n\n画面の使い方が分からない時はアクションバーにあるヘルプボタンから解説を読むことが出来ます。\n\nそれでは、mixtureの世界をぜひ楽しんでいってください！</string>
-    <string name="title_activity_fragment_dashboard_install_scan_app">FragmentDashboardInstallScanApp</string>
     
-    <string name="dashboard_dialog_title">ダッシュボードについて</string>
-    <string name="dashboard_dialog_message">スキャン\n商品バーコードをスキャンして素材を取得するアクションです。素材はミックスするために必要になります。\n\nミックス\n素材をふたつ選択して合成を行います。組み合わせによって様々なアイテムを作り出すことが出来ます。\n\nショップ\n素材の売買を行うことが出来ます。現実通貨や仮想通貨での購入や、オンラインを利用した購入をすることも出来ます。\n\nコレクション\n今までに集めた素材や作り出したアイテムを確認することが出来ます。ぜひとも全コンプリートを目指してください。 </string>
+    
+    <!-- Dialog Message -->
+    <string name="dialog_welcome_title">ようこそ、mixtureへ！</string>
+    <string name="dialog_welcome_message">mixtureは商品バーコードをスキャンして素材を集め、素材同士を調合して新たなアイテムを生成していくアプリです。まずはスキャンを選択して身近にあるバーコードから素材を取得してみましょう！\n\n画面の使い方が分からない時はアクションバーにあるヘルプボタンから解説を読むことが出来ます。\n\nそれでは、mixtureの世界をぜひ楽しんでいってください！</string>
+    
+    <string name="dialog_help_dashboard_title">ダッシュボードについて</string>
+    <string name="dialog_help_dashboard_scan">スキャン</string>
+    <string name="dialog_help_dashboard_scan_description">商品バーコードをスキャンして素材を取得するアクションです。素材はミックスインするために必要になります。</string>
+    <string name="dialog_help_dashboard_mixin">ミックスイン</string>
+    <string name="dialog_help_dashboard_mixin_description">素材をふたつ選択して合成を行います。組み合わせによって様々なアイテムを作り出すことが出来ます。</string>
+    <string name="dialog_help_dashboard_shop">ショップ</string>
+    <string name="dialog_help_dashboard_shop_description">素材の売買を行うことが出来ます。現実通貨や仮想通貨での購入や、オンラインを利用した購入をすることも出来ます。</string>
+    <string name="dialog_help_dashboard_collection">コレクション</string>
+    <string name="dialog_help_dashboard_collection_description">今までに集めた素材や作り出したアイテムを確認することが出来ます。ぜひとも全コンプリートを目指してください。</string>
 
 </resources>
