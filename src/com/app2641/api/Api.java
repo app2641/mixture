@@ -23,7 +23,8 @@ public class Api extends AsyncTaskLoader<String> {
 	}
 
 	@Override
-	public String loadInBackground() {
+	public String loadInBackground ()
+	{
 		try {
 			DefaultHttpClient client = new DefaultHttpClient();
 			HttpPost post = new HttpPost(this.factory.getUrl());

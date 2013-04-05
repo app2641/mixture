@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">mixture</string>
-    <string name="hello_world">Hello world!</string>
+    <!-- common -->
+    <string name="app_name">Mixture</string>
     <string name="menu_settings">Settings</string>
 
+    
+    <!-- Main menu -->
+    <string name="main_menu_scan">Scan</string>
+    <string name="main_menu_mixin">Mixin</string>
+    <string name="main_menu_shop">Shop</string>
+    <string name="main_menu_collection">Collection</string>
+    <string name="main_menu_status">Status</string>
+    
+    
+    
+    <!-- package Activity -->
+    <string name="activity_status_title">ステータス</string>
+    
     
     
     <!-- title -->

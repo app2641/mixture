@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/common_vertical_linear_layout" >
+    
+    <TextView
+        style="@style/main_menu_item"
+        android:text="@string/main_menu_scan"
+        android:drawableLeft="@drawable/dashboard_scan_icon"
+    />
+
+</LinearLayout>

@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static String DB_NAME = "mixture";
 	
 	// asset db data
-	private static String ASSET_DB = "mixture.db";
+	private static String ASSET_DB = "mixture_app.sqlite";
 	
 	// context
 	private final Context mContext;

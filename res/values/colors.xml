@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+    <!-- android-menudrawer -->
+    <color name="md__defaultBackground">#FF555555</color>
+    
+    
+    
     <color name="main_color">#33B5E5</color>
     <color name="weight_color">#0099CC</color>
     <color name="impact_color">#CC0000</color>
