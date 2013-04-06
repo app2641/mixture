@@ -4,7 +4,7 @@
     style="@style/dashboard_table_item_linear_layout" >
     
     <ImageView 
-        android:src="@drawable/dashboard_mix_icon"
+        android:src="@drawable/dashboard_mixin_icon"
         android:contentDescription="@string/dashboard_mix"
         android:id="@+id/dashboard_scan_icon"
         style="@style/dashboard_table_item_imageview" />

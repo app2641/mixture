@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.app2641.activity.ShopActivity;
 import com.app2641.api.Api;
 import com.app2641.api.GenerateApiKey;
 
