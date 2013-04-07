@@ -88,8 +88,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int menuDrawerStyle=0x7f010000;
     }
     public static final class color {
+        public static final int black=0x7f040005;
         public static final int impact_color=0x7f040003;
+        /**  common color 
+         */
         public static final int main_color=0x7f040001;
+        /**  MainMenu 
+         */
+        public static final int main_menu_background=0x7f040006;
+        public static final int main_menu_text=0x7f040007;
         /**  android-menudrawer 
          */
         public static final int md__defaultBackground=0x7f040000;
@@ -119,41 +126,38 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int grey_border_header=0x7f020009;
         public static final int ic_action_search=0x7f02000a;
         public static final int ic_launcher=0x7f02000b;
-        public static final int install_scanapp_icon=0x7f02000c;
-        public static final int item_detail_footer=0x7f02000d;
-        public static final int item_detail_header=0x7f02000e;
-        public static final int test_icon=0x7f02000f;
-        public static final int test_item=0x7f020010;
+        public static final int item_detail_footer=0x7f02000c;
+        public static final int item_detail_header=0x7f02000d;
+        public static final int main_menu_background_selector=0x7f02000e;
+        public static final int not_found_scan_app_icon=0x7f02000f;
+        public static final int test_icon=0x7f020010;
+        public static final int test_item=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f06002e;
+        public static final int action_settings=0x7f06002a;
         public static final int activity_dashboard_container=0x7f060008;
         public static final int adView=0x7f060009;
-        public static final int close_btn=0x7f06001c;
-        public static final int confirm_btn=0x7f06001d;
-        public static final int dashboard_collection_icon=0x7f06000b;
-        public static final int dashboard_scan_icon=0x7f06000d;
-        public static final int dashbord_collection_text=0x7f06000c;
-        public static final int dashbord_scan_text=0x7f06000e;
-        public static final int download_scan_app=0x7f06000f;
-        public static final int item_class=0x7f060013;
-        public static final int item_detail_description=0x7f060019;
-        public static final int item_detail_exp=0x7f060016;
-        public static final int item_detail_price=0x7f060015;
-        public static final int item_get_btn=0x7f06001a;
-        public static final int item_image=0x7f060011;
-        public static final int item_info_icon_container=0x7f060014;
-        public static final int item_level_note=0x7f060018;
-        public static final int item_level_up=0x7f060017;
-        public static final int item_name=0x7f060012;
-        public static final int item_result_header=0x7f060010;
-        public static final int item_sell_btn=0x7f06001b;
-        public static final int leftBtn=0x7f06000a;
-        public static final int main_menu_collection_item=0x7f060022;
-        public static final int main_menu_mixin_item=0x7f060020;
-        public static final int main_menu_scan_item=0x7f06001f;
-        public static final int main_menu_shop_item=0x7f060021;
-        public static final int main_menu_status_item=0x7f060023;
+        public static final int close_btn=0x7f060018;
+        public static final int confirm_btn=0x7f060019;
+        public static final int download_scan_app_button=0x7f06000a;
+        public static final int item_class=0x7f06000f;
+        public static final int item_detail_description=0x7f060015;
+        public static final int item_detail_exp=0x7f060012;
+        public static final int item_detail_price=0x7f060011;
+        public static final int item_get_btn=0x7f060016;
+        public static final int item_image=0x7f06000d;
+        public static final int item_info_icon_container=0x7f060010;
+        public static final int item_level_note=0x7f060014;
+        public static final int item_level_up=0x7f060013;
+        public static final int item_name=0x7f06000e;
+        public static final int item_result_header=0x7f06000c;
+        public static final int item_sell_btn=0x7f060017;
+        public static final int leftBtn=0x7f06000b;
+        public static final int main_menu_collection_item=0x7f06001e;
+        public static final int main_menu_mixin_item=0x7f06001c;
+        public static final int main_menu_scan_item=0x7f06001b;
+        public static final int main_menu_shop_item=0x7f06001d;
+        public static final int main_menu_status_item=0x7f06001f;
         /**  Used with View#setTag(int) to specify a position for the active view. 
          */
         public static final int mdActiveViewPosition=0x7f060005;
@@ -172,43 +176,38 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  The ID of the menu container. 
          */
         public static final int md__menu=0x7f060003;
-        public static final int menu_about_app=0x7f06002a;
-        public static final int menu_clear=0x7f06002b;
-        public static final int menu_dashboard_help=0x7f060027;
-        public static final int menu_help=0x7f060025;
-        public static final int menu_important=0x7f060028;
-        public static final int menu_important_help=0x7f06002c;
-        public static final int menu_item_detail_help=0x7f06002d;
-        public static final int menu_rate_nosw=0x7f060026;
-        public static final int menu_settings=0x7f060024;
-        public static final int menu_status=0x7f060029;
+        public static final int menu_about_app=0x7f060026;
+        public static final int menu_clear=0x7f060027;
+        public static final int menu_dashboard_help=0x7f060023;
+        public static final int menu_help=0x7f060021;
+        public static final int menu_important=0x7f060024;
+        public static final int menu_important_help=0x7f060028;
+        public static final int menu_item_detail_help=0x7f060029;
+        public static final int menu_rate_nosw=0x7f060022;
+        public static final int menu_settings=0x7f060020;
+        public static final int menu_status=0x7f060025;
         public static final int pager=0x7f060006;
         public static final int pager_title_strip=0x7f060007;
-        public static final int section_label=0x7f06001e;
+        public static final int section_label=0x7f06001a;
     }
     public static final class layout {
         public static final int activity_collection=0x7f030000;
         public static final int activity_dashboard=0x7f030001;
-        public static final int activity_shop=0x7f030002;
-        public static final int activity_status=0x7f030003;
-        public static final int dashboard_item_collection=0x7f030004;
-        public static final int dashboard_item_mix=0x7f030005;
-        public static final int dashboard_item_scan=0x7f030006;
-        public static final int dashboard_item_shop=0x7f030007;
-        public static final int dialog_help_dashboard=0x7f030008;
-        public static final int dialog_welcome=0x7f030009;
-        public static final int fragment_dashboard_install_scanapp=0x7f03000a;
-        public static final int fragment_dashboard_table=0x7f03000b;
-        public static final int fragment_important=0x7f03000c;
-        public static final int fragment_item_result=0x7f03000d;
-        public static final int fragment_network_error=0x7f03000e;
-        public static final int fragment_result_scan=0x7f03000f;
-        public static final int fragment_server_maintenance=0x7f030010;
-        public static final int fragment_shop_dummy=0x7f030011;
-        public static final int fragment_shop_offline_list=0x7f030012;
-        public static final int fragment_shop_online_list=0x7f030013;
-        public static final int include_admob=0x7f030014;
-        public static final int main_menu=0x7f030015;
+        public static final int activity_not_found_scan_app=0x7f030002;
+        public static final int activity_shop=0x7f030003;
+        public static final int activity_status=0x7f030004;
+        public static final int dialog_help_dashboard=0x7f030005;
+        public static final int dialog_welcome=0x7f030006;
+        public static final int fragment_important=0x7f030007;
+        public static final int fragment_item_result=0x7f030008;
+        public static final int fragment_network_error=0x7f030009;
+        public static final int fragment_result_scan=0x7f03000a;
+        public static final int fragment_server_maintenance=0x7f03000b;
+        public static final int fragment_shop_dummy=0x7f03000c;
+        public static final int fragment_shop_offline_list=0x7f03000d;
+        public static final int fragment_shop_online_list=0x7f03000e;
+        public static final int include_admob=0x7f03000f;
+        public static final int main_menu=0x7f030010;
     }
     public static final class menu {
         public static final int activity_collection=0x7f090000;
@@ -220,10 +219,16 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int shop=0x7f090006;
     }
     public static final class string {
-        public static final int action_settings=0x7f07002e;
+        public static final int action_settings=0x7f070030;
+        /**  Collection 
+         */
+        public static final int activity_collection_title=0x7f07000c;
+        /**  NotFoundScanApp 
+         */
+        public static final int activity_not_found_scan_app_title=0x7f070008;
         /**  Shop 
          */
-        public static final int activity_shop_title=0x7f070008;
+        public static final int activity_shop_title=0x7f07000b;
         /**  package Activity 
  Status 
          */
@@ -231,37 +236,37 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  common 
          */
         public static final int app_name=0x7f070000;
-        public static final int close=0x7f070019;
-        public static final int confirm_server_status=0x7f07001b;
-        public static final int dashboard_collection=0x7f070010;
-        public static final int dashboard_mix=0x7f07000e;
+        public static final int close=0x7f07001b;
+        public static final int confirm_server_status=0x7f07001d;
+        public static final int dashboard_collection=0x7f070014;
+        public static final int dashboard_mix=0x7f070012;
         /**  dashboard item 
          */
-        public static final int dashboard_scan=0x7f07000d;
-        public static final int dashboard_shop=0x7f07000f;
-        public static final int dialog_help_dashboard_collection=0x7f07002c;
-        public static final int dialog_help_dashboard_collection_description=0x7f07002d;
-        public static final int dialog_help_dashboard_mixin=0x7f070028;
-        public static final int dialog_help_dashboard_mixin_description=0x7f070029;
-        public static final int dialog_help_dashboard_scan=0x7f070026;
-        public static final int dialog_help_dashboard_scan_description=0x7f070027;
-        public static final int dialog_help_dashboard_shop=0x7f07002a;
-        public static final int dialog_help_dashboard_shop_description=0x7f07002b;
-        public static final int dialog_help_dashboard_title=0x7f070025;
-        public static final int dialog_welcome_message=0x7f070024;
+        public static final int dashboard_scan=0x7f070011;
+        public static final int dashboard_shop=0x7f070013;
+        public static final int dialog_help_dashboard_collection=0x7f07002e;
+        public static final int dialog_help_dashboard_collection_description=0x7f07002f;
+        public static final int dialog_help_dashboard_mixin=0x7f07002a;
+        public static final int dialog_help_dashboard_mixin_description=0x7f07002b;
+        public static final int dialog_help_dashboard_scan=0x7f070028;
+        public static final int dialog_help_dashboard_scan_description=0x7f070029;
+        public static final int dialog_help_dashboard_shop=0x7f07002c;
+        public static final int dialog_help_dashboard_shop_description=0x7f07002d;
+        public static final int dialog_help_dashboard_title=0x7f070027;
+        public static final int dialog_welcome_message=0x7f070026;
         /**  Dialog Message 
          */
-        public static final int dialog_welcome_title=0x7f070023;
-        public static final int download_scan_app=0x7f070013;
-        public static final int failed_scan_notice=0x7f070012;
-        public static final int get_material=0x7f070014;
+        public static final int dialog_welcome_title=0x7f070025;
+        public static final int download_scan_app=0x7f07000a;
+        public static final int failed_scan_notice=0x7f070009;
+        public static final int get_material=0x7f070016;
         /**  Dashoard Activity 
          */
-        public static final int init=0x7f070011;
+        public static final int init=0x7f070015;
         /**  item detail 
          */
-        public static final int item_detail_header=0x7f070021;
-        public static final int item_detail_header2=0x7f070022;
+        public static final int item_detail_header=0x7f070023;
+        public static final int item_detail_header2=0x7f070024;
         public static final int main_menu_collection=0x7f070005;
         public static final int main_menu_mixin=0x7f070003;
         /**  Main menu 
@@ -269,35 +274,35 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int main_menu_scan=0x7f070002;
         public static final int main_menu_shop=0x7f070004;
         public static final int main_menu_status=0x7f070006;
-        public static final int menu_about_app=0x7f07001f;
-        public static final int menu_help=0x7f07001e;
-        public static final int menu_important=0x7f07001d;
-        public static final int menu_rate_now=0x7f070020;
+        public static final int menu_about_app=0x7f070021;
+        public static final int menu_help=0x7f070020;
+        public static final int menu_important=0x7f07001f;
+        public static final int menu_rate_now=0x7f070022;
         public static final int menu_settings=0x7f070001;
         /**  Menu 
          */
-        public static final int menu_status=0x7f07001c;
+        public static final int menu_status=0x7f07001e;
         /**  NetworkError 
          */
-        public static final int network_error=0x7f070018;
+        public static final int network_error=0x7f07001a;
         /**  Shop Acitivity 
          */
-        public static final int offline=0x7f070016;
-        public static final int online=0x7f070017;
-        public static final int sell_shop=0x7f070015;
-        public static final int server_maintenance=0x7f07001a;
-        public static final int title_activity_collection=0x7f07000b;
-        public static final int title_activity_dashboard=0x7f07000a;
+        public static final int offline=0x7f070018;
+        public static final int online=0x7f070019;
+        public static final int sell_shop=0x7f070017;
+        public static final int server_maintenance=0x7f07001c;
+        public static final int title_activity_collection=0x7f07000f;
+        public static final int title_activity_dashboard=0x7f07000e;
         /**  title 
          */
-        public static final int title_activity_network_error=0x7f070009;
-        public static final int title_activity_shop=0x7f07000c;
-        public static final int title_section1=0x7f07002f;
-        public static final int title_section2=0x7f070030;
-        public static final int title_section3=0x7f070031;
+        public static final int title_activity_network_error=0x7f07000d;
+        public static final int title_activity_shop=0x7f070010;
+        public static final int title_section1=0x7f070031;
+        public static final int title_section2=0x7f070032;
+        public static final int title_section3=0x7f070033;
     }
     public static final class style {
-        public static final int AppTheme=0x7f080014;
+        public static final int AppTheme=0x7f08000f;
         public static final int MixtureActionBarStyle=0x7f080001;
         /**  MixtureTheme 
          */
@@ -316,38 +321,21 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /**  common styles 
          */
         public static final int common_wrap_content_layout=0x7f080005;
-        /**  dashboard table item imageview 
-         */
-        public static final int dashboard_table_item_imageview=0x7f08000e;
-        /**  dashboard table item linearlayout 
-         */
-        public static final int dashboard_table_item_linear_layout=0x7f08000d;
-        /**  dashboard table item textview 
-         */
-        public static final int dashboard_table_item_textview=0x7f08000f;
-        /**  dashboard table row 
-         */
-        public static final int dashboard_table_row=0x7f08000c;
         /**  dialog 
          */
         public static final int dialog_linear_layout=0x7f080009;
         public static final int dialog_text=0x7f08000a;
         public static final int dialog_text_bold=0x7f08000b;
-        /**  install_scanapp_button 
-         */
-        public static final int install_scanapp_button=0x7f080012;
-        /**  install scanapp imageview 
-         */
-        public static final int install_scanapp_imageview=0x7f080010;
-        /**  install scanapp textview 
-         */
-        public static final int install_scanapp_textview=0x7f080011;
         /**  item/material detail scroll view 
          */
-        public static final int item_detail_scroll_view=0x7f080013;
+        public static final int item_detail_scroll_view=0x7f08000e;
         /**  Main menu 
          */
         public static final int main_menu_item=0x7f080004;
+        public static final int not_found_scan_app_button=0x7f08000d;
+        /**  NotFoundScanAppActivity 
+         */
+        public static final int not_found_scan_app_text=0x7f08000c;
     }
     public static final class styleable {
         /**  Styleables used for styling the menu drawer. 

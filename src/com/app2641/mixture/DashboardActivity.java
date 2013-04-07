@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.app2641.activity.CollectionActivity;
 import com.app2641.activity.ShopActivity;
 import com.app2641.api.Api;
 import com.app2641.api.GenerateApiKey;
@@ -11,7 +12,6 @@ import com.app2641.api.GenerateApiKey;
 import com.app2641.dialog.DashboardHelp;
 import com.app2641.dialog.WelcomeDialog;
 import com.app2641.fragment.FragmentDashboardInstallScanApp;
-import com.app2641.fragment.FragmentDashboardTable;
 import com.app2641.fragment.FragmentImportant;
 import com.app2641.fragment.FragmentItemResult;
 import com.app2641.fragment.FragmentNetworkError;
@@ -93,7 +93,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		initDatabse();
 		
 		// fragment初期化処理(Dashboardを表示する)
-		super.fragmentReplace(new FragmentDashboardTable());
+//		super.fragmentReplace(new FragmentDashboardTable());
 		
 		// AdMob広告初期化
 		initAdMob();
@@ -197,9 +197,9 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 		// 現在のバージョンと比較
 		if (Ver > VERSION) {
 			// バージョン初期化処理を行う
-			InitVersion initVer = new InitVersion(Ver);
-			VERSION = initVer.execute();
-			sp.edit().putInt("VERSION", VERSION).commit();
+//			InitVersion initVer = new InitVersion(Ver);
+//			VERSION = initVer.execute();
+//			sp.edit().putInt("VERSION", VERSION).commit();
 		}
 	}
 	
@@ -332,7 +332,7 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 					Fragment fragment = new FragmentItemResult();
 					fragment.setArguments(bundle);
 					
-					super.fragmentReplace(new FragmentDashboardTable());
+//					super.fragmentReplace(new FragmentDashboardTable());
 				}
 				
 				c.close();

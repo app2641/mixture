@@ -26,11 +26,12 @@
     <style name="main_menu_item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">15dp</item>
+        <item name="android:padding">10dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawablePadding">10dp</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/main_color</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/main_menu_text</item>
+        <item name="android:background">@drawable/main_menu_background_selector</item>
     </style>
     
     
@@ -50,6 +51,7 @@
     <style name="common_vertical_linear_layout" parent="common_match_parent_layout">
         <item name="android:orientation">vertical</item>
     </style>
+    
     
     
     
@@ -83,50 +85,17 @@
     
     
     
-    <!-- dashboard table row -->
-    <style name="dashboard_table_row">
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">0dip</item>
-    </style>
     
-    <!-- dashboard table item linearlayout -->
-    <style name="dashboard_table_item_linear_layout">
-        <item name="android:orientation">vertical</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:focusable">true</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-    
-    <!-- dashboard table item imageview -->
-    <style name="dashboard_table_item_imageview" parent="common_wrap_content_layout">
-        <item name="android:layout_gravity">center</item>
-    </style>
-    
-    <!-- dashboard table item textview -->
-    <style name="dashboard_table_item_textview">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">center</item>
-    </style>
-
-    
-
-    <!-- install scanapp imageview -->
-    <style name="install_scanapp_imageview" parent="common_wrap_content_layout">
-        <item name="android:layout_gravity">center</item>
-      z  <item name="android:layout_margin">10dp</item>
-    </style>
-
-    <!-- install scanapp textview -->
-    <style name="install_scanapp_textview" parent="common_wrap_content_layout">
+    <!-- NotFoundScanAppActivity -->
+    <style name="not_found_scan_app_text" parent="common_wrap_content_layout">
         <item name="android:gravity">center</item>
         <item name="android:padding">20dp</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:drawableTop">@drawable/not_found_scan_app_icon</item>
+        <item name="android:drawablePadding">15dp</item>
     </style>
 
-    <!-- install_scanapp_button -->
-    <style name="install_scanapp_button" parent="common_wrap_content_layout">
+    <style name="not_found_scan_app_button" parent="common_wrap_content_layout">
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginTop">15dp</item>
     </style>

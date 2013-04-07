@@ -1,29 +1,18 @@
 package com.app2641.activity;
 
-import java.io.IOException;
+import com.app2641.mixture.R;
 
 import net.simonvt.menudrawer.MenuDrawer;
-
-import com.app2641.dialog.WelcomeDialog;
-import com.app2641.mixture.R;
-import com.app2641.model.DatabaseHelper;
-import com.app2641.utility.VersionManager;
-
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MixtureActivity extends Activity implements OnClickListener {
+public class MixtureFragmentActivity extends FragmentActivity implements OnClickListener {
 
 	public String mActivityName;
 	
@@ -34,19 +23,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	private TextView mShopMenu;
 	private TextView mCollectionMenu;
 	private TextView mStatusMenu;
-	
-
-	@Override
-	public void onCreate (Bundle savedInstanceState)
-	{
-		super.onCreate(savedInstanceState);
-		
-		// アプリケーション初期化処理
-		initApplication();
-		
-		// バージョンによる初期化処理
-		initVersion();
-	}
 	
 	
 	
@@ -86,86 +62,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 
         return super.onOptionsItemSelected(item);
     }
-	
-	
-	
-	/**
-	 * データベース初期化処理
-	 */
-	public void initDatabase ()
-	{
-		DatabaseHelper db = new DatabaseHelper(this);
-		
-		try {
-			db.init();
-			
-		} catch (IOException e) {
-			throw new Error("Unable to create database");
-		}
-	}
-	
-	
-	
-	/**
-	 * バージョンによる初期化処理
-	 */
-	public void initVersion ()
-	{
-		// 定数のバージョン数を取得
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		int ver = sp.getInt("VERSION", 1);
-						
-		// 現在のバージョンと比較
-		if (VersionManager.VERSION > ver) {
-			// バージョン初期化処理を行う
-			VersionManager manager = new VersionManager();
-			ver = manager.applyVersions(ver);
-					
-			// バージョンを更新する
-			sp.edit().putInt("VERSION", ver).commit();
-		}
-	}
-	
-	
-	
-	/**
-	 * アプリケーション初期化処理
-	 */
-	public void initApplication ()
-	{
-		// 初期化フラグの定数を取得する
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean init = sp.getBoolean("INIT_APPLICATION", false);
-				
-		if (init == false) {
-			// データベースの初期化
-			initDatabase();
-					
-			// 定数の初期化
-			Editor editor = sp.edit();
-			editor.putBoolean("INIT_APPLICATION", true);
-			editor.putInt("LEVEL", 1);	// level
-			editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
-			editor.putBoolean("MASTER", false);	// 調合師の極意所持
-			editor.putBoolean("VIP", false);	// 特別待遇カードの所持
-			editor.putInt("MONEY", 0);	// 所持金
-			editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
-			editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
-			editor.putBoolean("FIRST_MIX", false);	// はじめてのミックス
-			editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
-			editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
-			editor.commit();
-					
-					
-			// Welcomeウィンドウの表示
-			Toast.makeText(this, "init!", Toast.LENGTH_SHORT).show();
-			WelcomeDialog dialog = new WelcomeDialog();
-			FragmentManager manager = this.getFragmentManager();
-			dialog.show(manager, "welcome");
-			
-			mMenuDrawer.openMenu();
-		}
-	}
 	
 	
 	
@@ -250,22 +146,16 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	 */
 	public void dispatchScanAtivity (View view)
 	{
-		if (this.getActivityName() == "scan") {
-			// MainMenuを閉じる
-			mMenuDrawer.closeMenu();
-		} else {
-			try {
-				throw new ActivityNotFoundException("foo");
-//				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-//				intent.putExtra("SCAN_MODE", "ONE_D_MODE");
-//				startActivityForResult(intent, 0);
+		try {
+			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+			intent.putExtra("SCAN_MODE", "ONE_D_MODE");
+			startActivityForResult(intent, 0);
 			
-			} catch (ActivityNotFoundException e) {
-				// スキャンアプリが見つからない場合はインストール画面へ遷移する
-				Intent intent = new Intent(this, NotFoundScanAppActivity.class);
-				intent.setAction(Intent.ACTION_VIEW);
-				startActivity(intent);
-			}
+		} catch (ActivityNotFoundException e) {
+			// スキャンアプリが見つからない場合はインストール画面へ遷移する
+			Intent intent = new Intent(this, ShopActivity.class);
+			intent.setAction(Intent.ACTION_VIEW);
+			startActivity(intent);
 		}
 	}
 	

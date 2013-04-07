@@ -1,4 +1,13 @@
-package com.app2641.mixture;
+package com.app2641.activity;
+
+import net.simonvt.menudrawer.MenuDrawer;
+
+import com.app2641.mixture.DashboardActivity;
+import com.app2641.mixture.R;
+import com.app2641.mixture.R.id;
+import com.app2641.mixture.R.layout;
+import com.app2641.mixture.R.menu;
+import com.app2641.mixture.R.string;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -19,7 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class CollectionActivity extends FragmentActivity {
+public class CollectionActivity extends MixtureFragmentActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide fragments for each of the
@@ -33,11 +42,33 @@ public class CollectionActivity extends FragmentActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    
+    
+    
+    public MenuDrawer mMenuDrawer;
+    
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_collection);
+        
+        mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
+		mMenuDrawer.setContentView(R.layout.activity_collection);
+		mMenuDrawer.setMenuView(R.layout.main_menu);
+		super.mMenuDrawer = mMenuDrawer;
+		super.mActivityName = "collection";
+		
+		// StatusMainMenuの背景色を変更する
+		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_collection_item);
+		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
+		
+		// MainMenuのOnClickListenerを初期化する
+		initMainMenuOnClickListeners();
+        
+		// Homeアイコンを設定する
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        
         // Create the adapter that will return a fragment for each of the three primary sections
         // of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -63,19 +94,19 @@ public class CollectionActivity extends FragmentActivity {
         return true;
     }
     
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-    	switch (item.getItemId()) {
-		case android.R.id.home:
-			Intent intent = new Intent(this, DashboardActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
-			break;
-		}
-    	
-    	return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item)
+//    {
+//    	switch (item.getItemId()) {
+//		case android.R.id.home:
+//			Intent intent = new Intent(this, DashboardActivity.class);
+//			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//			startActivity(intent);
+//			break;
+//		}
+//    	
+//    	return true;
+//    }
 
     
 

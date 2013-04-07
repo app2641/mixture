@@ -5,9 +5,18 @@
     <color name="md__defaultBackground">#FF555555</color>
     
     
-    
+    <!-- common color -->
     <color name="main_color">#33B5E5</color>
-    <color name="weight_color">#0099CC</color>
+    <color name="weight_color">#006699</color>
     <color name="impact_color">#CC0000</color>
     <color name="opacity_color">#555555</color>
+    <color name="black">#000000</color>
+    
+    
+    
+    <!-- MainMenu -->
+    <color name="main_menu_background">#222222</color>
+    <color name="main_menu_text">#cccccc</color>
+    
+    
 </resources>

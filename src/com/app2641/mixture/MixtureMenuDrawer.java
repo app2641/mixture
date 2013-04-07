@@ -6,17 +6,16 @@ import android.app.FragmentManager;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import com.app2641.activity.MixtureActivity;
 import com.app2641.dialog.WelcomeDialog;
 import com.app2641.model.DatabaseHelper;
+import com.app2641.utility.VersionManager;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
 public class MixtureMenuDrawer extends MenuDrawer {
-	
-	// application version
-	private int Ver = 1;
 	
 	private MixtureActivity mActivity;
 
@@ -43,35 +42,7 @@ public class MixtureMenuDrawer extends MenuDrawer {
 	 */
 	public void initApplication ()
 	{
-		// 初期化フラグの定数を取得する
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-		boolean init = sp.getBoolean("INIT_APPLICATION", false);
 		
-		if (init == false) {
-			// データベースの初期化
-			initDatabase();
-			
-			// 定数の初期化
-			Editor editor = sp.edit();
-			editor.putBoolean("INIT_APPLICATION", true);
-			editor.putInt("LEVEL", 1);	// level
-			editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
-			editor.putBoolean("MASTER", false);	// 調合師の極意所持
-			editor.putBoolean("VIP", false);	// 特別待遇カードの所持
-			editor.putInt("MONEY", 0);	// 所持金
-			editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
-			editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
-			editor.putBoolean("FIRST_MIX", false);	// はじめてのミックス
-			editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
-			editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
-			editor.commit();
-			
-			
-			// Welcomeウィンドウの表示
-			WelcomeDialog dialog = new WelcomeDialog();
-			FragmentManager manager = mActivity.getFragmentManager();
-			dialog.show(manager, "welcome");
-		}
 	}
 	
 	
@@ -82,17 +53,7 @@ public class MixtureMenuDrawer extends MenuDrawer {
 	 */
 	public void initVersion ()
 	{
-		// 定数のバージョン数を取得
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mActivity);
-		int VERSION = sp.getInt("VERSION", 0);
-				
-		// 現在のバージョンと比較
-		if (Ver > VERSION) {
-			// バージョン初期化処理を行う
-			InitVersion initVer = new InitVersion(Ver);
-			VERSION = initVer.execute();
-			sp.edit().putInt("VERSION", VERSION).commit();
-		}
+		
 	}
 	
 	
@@ -103,14 +64,7 @@ public class MixtureMenuDrawer extends MenuDrawer {
 	 */
 	public void initDatabase ()
 	{
-		DatabaseHelper db = new DatabaseHelper(mActivity);
 		
-		try {
-			db.init();
-			
-		} catch (IOException e) {
-			throw new Error("Unable to create database");
-		}
 	}
 	
 	

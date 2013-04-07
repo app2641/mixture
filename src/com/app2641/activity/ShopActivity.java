@@ -2,6 +2,8 @@ package com.app2641.activity;
 
 import java.util.Locale;
 
+import net.simonvt.menudrawer.MenuDrawer;
+
 import com.app2641.mixture.R;
 import com.app2641.mixture.R.id;
 import com.app2641.mixture.R.layout;
@@ -25,7 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class ShopActivity extends FragmentActivity implements
+public class ShopActivity extends MixtureFragmentActivity implements
 		ActionBar.TabListener {
 
 	/**
@@ -42,15 +44,37 @@ public class ShopActivity extends FragmentActivity implements
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	
+	
+	public MenuDrawer mMenuDrawer;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_shop);
+		
+		
+		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
+		mMenuDrawer.setContentView(R.layout.activity_shop);
+		mMenuDrawer.setMenuView(R.layout.main_menu);
+		super.mMenuDrawer = mMenuDrawer;
+		super.mActivityName = "shop";
+		
+		// StatusMainMenuの背景色を変更する
+		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_shop_item);
+		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
+		
+		// MainMenuのOnClickListenerを初期化する
+		initMainMenuOnClickListeners();
+		
 
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		// Homeアイコンを設定する
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.

@@ -27,7 +27,7 @@ public class FragmentDashboardInstallScanApp extends MixtureFragment {
 	@Override
 	public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		return inflater.inflate(R.layout.fragment_dashboard_install_scanapp, container, false);
+		return inflater.inflate(R.layout.activity_not_found_scan_app, container, false);
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class FragmentDashboardInstallScanApp extends MixtureFragment {
 	{
 		super.onStart();
 		
-		Button btn = (Button) getActivity().findViewById(R.id.download_scan_app);
+		Button btn = (Button) getActivity().findViewById(R.id.download_scan_app_button);
 		
 		btn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {

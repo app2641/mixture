@@ -16,9 +16,26 @@
     <!-- package Activity -->
     <!-- Status -->
     <string name="activity_status_title">ステータス</string>
+    
+    
+    
+    <!-- NotFoundScanApp -->
+    <string name="activity_not_found_scan_app_title">Mixture</string>
+    <string name="failed_scan_notice">スキャンをするにはバーコードリーダーアプリが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
+    <string name="download_scan_app">GooglePlayからダウンロード</string>
 
+    
+    
     <!-- Shop -->
     <string name="activity_shop_title">ショップ</string>
+    
+    
+    
+    <!-- Collection -->
+    <string name="activity_collection_title">コレクション</string>
+    
+    
+    
     
     
     
@@ -38,8 +55,7 @@
 
     <!-- Dashoard Activity -->
     <string name="init">初期化中....</string>
-    <string name="failed_scan_notice">スキャンをするにはバーコードリーダーが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
-    <string name="download_scan_app">GooglePlayからダウンロード</string>
+    
     <string name="get_material">素材を取得</string>
     <string name="sell_shop">ショップへ売却</string>
 

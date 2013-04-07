@@ -7,6 +7,7 @@ import java.io.OutputStream;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -61,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			SQLiteDatabase db = SQLiteDatabase.openDatabase(DB_PATH + DB_NAME, null, SQLiteDatabase.OPEN_READONLY);
 			db.close();
 			
-		} catch (SQLiteException e) {
+		} catch (SQLiteCantOpenDatabaseException e) {
 			flag = false;
 		}
 		
