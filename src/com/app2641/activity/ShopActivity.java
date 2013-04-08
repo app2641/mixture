@@ -57,6 +57,7 @@ public class ShopActivity extends MixtureFragmentActivity implements
 		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
 		mMenuDrawer.setContentView(R.layout.activity_shop);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
+		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		super.mMenuDrawer = mMenuDrawer;
 		super.mActivityName = "shop";
 		
@@ -93,6 +94,11 @@ public class ShopActivity extends MixtureFragmentActivity implements
 					@Override
 					public void onPageSelected(int position) {
 						actionBar.setSelectedNavigationItem(position);
+						
+						// MenuDrawerを表示するかしないか
+						mMenuDrawer.setTouchMode(position == 0
+                                ? MenuDrawer.TOUCH_MODE_FULLSCREEN
+                                : MenuDrawer.TOUCH_MODE_NONE);
 					}
 				});
 

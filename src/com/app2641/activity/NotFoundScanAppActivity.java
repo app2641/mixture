@@ -25,6 +25,7 @@ public class NotFoundScanAppActivity extends MixtureActivity {
 		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
 		mMenuDrawer.setContentView(R.layout.activity_not_found_scan_app);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
+		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		super.mMenuDrawer = mMenuDrawer;
 		super.mActivityName = "scan";
 		

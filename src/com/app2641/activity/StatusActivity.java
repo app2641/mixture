@@ -24,6 +24,7 @@ public class StatusActivity extends MixtureActivity {
 		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
 		mMenuDrawer.setContentView(R.layout.activity_status);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
+		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		super.mMenuDrawer = mMenuDrawer;
 		super.mActivityName = "status";
 		
