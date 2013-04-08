@@ -29,7 +29,7 @@ public class NotFoundScanAppActivity extends MixtureActivity {
 		super.mActivityName = "scan";
 		
 		// StatusMainMenuの背景色を変更する
-		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_status_item);
+		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_scan_item);
 		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
 		
 		// Homeアイコンを有効化
