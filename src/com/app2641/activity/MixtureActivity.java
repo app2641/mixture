@@ -255,10 +255,9 @@ public class MixtureActivity extends Activity implements OnClickListener {
 			mMenuDrawer.closeMenu();
 		} else {
 			try {
-				throw new ActivityNotFoundException("foo");
-//				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-//				intent.putExtra("SCAN_MODE", "ONE_D_MODE");
-//				startActivityForResult(intent, 0);
+				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+				intent.putExtra("SCAN_MODE", "ONE_D_MODE");
+				startActivityForResult(intent, 0);
 			
 			} catch (ActivityNotFoundException e) {
 				// スキャンアプリが見つからない場合はインストール画面へ遷移する
@@ -281,6 +280,7 @@ public class MixtureActivity extends Activity implements OnClickListener {
 			switch (requestCode) {
 				// Scan処理
 				case 0:
+					String code = intent.getStringExtra("SCAN_RESULT");
 					break;
 			}
 		}
