@@ -26,6 +26,17 @@ public class ScanManager {
 	
 	
 	/**
+	 * 指定したバーコードに対応する素材IDを返す
+	 */
+	public int getMaterialId (String code)
+	{
+		
+		return 1;
+	}
+	
+	
+	
+	/**
 	 * 現在のレベルに応じた素材IDを持ったカーソルを返す
 	 */
 	public Cursor generateMaterialId ()

@@ -7,6 +7,7 @@ import net.simonvt.menudrawer.MenuDrawer;
 import com.app2641.dialog.WelcomeDialog;
 import com.app2641.mixture.R;
 import com.app2641.model.DatabaseHelper;
+import com.app2641.utility.ScanManager;
 import com.app2641.utility.VersionManager;
 
 import android.app.Activity;
@@ -281,6 +282,9 @@ public class MixtureActivity extends Activity implements OnClickListener {
 				// Scan処理
 				case 0:
 					String code = intent.getStringExtra("SCAN_RESULT");
+					ScanManager scan = new ScanManager(getApplicationContext());
+					
+					int material_id = scan.getMaterialId(code);
 					break;
 			}
 		}
