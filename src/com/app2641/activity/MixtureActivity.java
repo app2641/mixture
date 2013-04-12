@@ -13,6 +13,7 @@ import com.app2641.utility.VersionManager;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -284,7 +285,14 @@ public class MixtureActivity extends Activity implements OnClickListener {
 					String code = intent.getStringExtra("SCAN_RESULT");
 					ScanManager scan = new ScanManager(getApplicationContext());
 					
-					int material_id = scan.getMaterialId(code);
+					// コードに紐づく素材idがあるか取得する
+					int material_id = scan.fetchMaterialIdByCode(code);
+					
+					if (material_id == 0) {
+						// 取得したことのないコードの場合
+					} else {
+						// 既に取得したことのあるコードの場合
+					}
 					break;
 			}
 		}

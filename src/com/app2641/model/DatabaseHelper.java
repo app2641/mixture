@@ -91,42 +91,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			throw new Error("Error copying database");
 		}
 	}
-	
-	
-	/*********************
-	 * sql list
-	 *********************/
-	
-	public Cursor fetchByMaterialId (String id)
-	{
-		String sql = "SELECt * FROM material WHERE _id = ?";
-		return this.executeSql(sql, new String[]{id});
-	}
-	
-	public Cursor fetchByMaterialClass (String cls)
-	{
-		String sql = "SELECT * FROM material WHERE class = ?";
-		return this.executeSql(sql, new String[]{cls});
-	}
-	
-	public Cursor fetchByItemId (String id)
-	{
-		String sql = "SELECt * FROM item WHERE _id = ?";
-		return this.executeSql(sql, new String[]{id});
-	}
-	
-	public Cursor fetchByItemClass (String cls)
-	{
-		String sql = "SELECT * FROM item WHERE class = ?";
-		return this.executeSql(sql, new String[]{cls});
-	}
-	
-	public Cursor executeSql (String sql, String[] bind)
-	{
-		SQLiteDatabase db = this.getReadableDatabase();
-		Cursor c = db.rawQuery(sql, bind);
-		return c;
-	}
+
 	
 	
 
