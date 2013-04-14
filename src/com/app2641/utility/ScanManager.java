@@ -229,6 +229,251 @@ public class ScanManager {
 						break;
 				}
 				break;
+				
+			case 4:
+				prob = new Integer[]{5, 5, 10, 10, 15, 20, 25, 10};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 1;
+						break;
+						
+					case 1:
+						cls = "D";
+						rarity = 2;
+						break;
+						
+					case 2:
+						cls = "D";
+						rarity = 3;
+						break;
+						
+					case 3:
+						cls = "D";
+						rarity = 4;
+						break;
+						
+					case 4:
+						cls = "C";
+						rarity = 1;
+						break;
+						
+					case 5:
+						cls = "C";
+						rarity = 2;
+						break;
+						
+					case 6:
+						cls = "C";
+						rarity = 3;
+						break;
+						
+					case 7:
+						cls = "C";
+						rarity = 4;
+						break;
+				}
+				break;
+				
+			case 5:
+				prob = new Integer[]{10, 10, 10, 15, 20, 20, 15};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 0;
+						break;
+					
+					case 1:
+						cls = "C";
+						rarity = 1;
+						break;
+						
+					case 2:
+						cls = "C";
+						rarity = 2;
+						break;
+						
+					case 3:
+						cls = "C";
+						rarity = 3;
+						break;
+						
+					case 4:
+						cls = "C";
+						rarity = 4;
+						break;
+						
+					case 5:
+						cls = "B";
+						rarity = 1;
+						break;
+						
+					case 6:
+						cls = "B";
+						rarity = 2;
+						break;
+				}
+				break;
+				
+			case 6:
+				prob = new Integer[]{7, 7, 8, 9, 11, 13, 15, 20, 10};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 0;
+						break;
+						
+					case 1:
+						cls = "C";
+						rarity = 1;
+						break;
+						
+					case 2:
+						cls = "C";
+						rarity = 2;
+						break;
+						
+					case 3:
+						cls = "C";
+						rarity = 3;
+						break;
+						
+					case 4:
+						cls = "C";
+						rarity = 4;
+						break;
+						
+					case 5:
+						cls = "B";
+						rarity = 1;
+						break;
+						
+					case 6:
+						cls = "B";
+						rarity = 2;
+						break;
+						
+					case 7:
+						cls = "B";
+						rarity = 3;
+						break;
+						
+					case 8:
+						cls = "B";
+						rarity = 4;
+						break;
+				}
+				break;
+				
+			case 7:
+				prob = new Integer[]{5, 7, 9, 9, 15, 20, 20, 15};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 0;
+						break;
+						
+					case 1:
+						cls = "C";
+						rarity = 0;
+						break;
+					
+					case 2:
+						cls = "B";
+						rarity = 1;
+						break;
+						
+					case 3:
+						cls = "B";
+						rarity = 2;
+						break;
+						
+					case 4:
+						cls = "B";
+						rarity = 3;
+						break;
+						
+					case 5:
+						cls = "B";
+						rarity = 4;
+						break;
+						
+					case 6:
+						cls = "A";
+						rarity = 1;
+						break;
+						
+					case 7:
+						cls = "A";
+						rarity = 2;
+						break;
+				}
+				break;
+				
+			case 8:
+				prob = new Integer[]{3, 5, 7, 7, 9, 10, 12, 15, 20, 15};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 0;
+						break;
+						
+					case 1:
+						cls = "C";
+						rarity = 0;
+						break;
+						
+					case 2:
+						cls = "B";
+						rarity = 1;
+						break;
+						
+					case 3:
+						cls = "B";
+						rarity = 2;
+						break;
+						
+					case 4:
+						cls = "B";
+						rarity = 3;
+						break;
+						
+					case 5:
+						cls = "B";
+						rarity = 4;
+						break;
+						
+					case 6:
+						cls = "A";
+						rarity = 1;
+						break;
+						
+					case 7:
+						cls = "A";
+						rarity = 2;
+						break;
+						
+					case 8:
+						cls = "A";
+						rarity = 3;
+						break;
+						
+					case 9:
+						cls = "A";
+						rarity = 4;
+						break;
+				}
+				break;
 		}
 		
 		return 1;
