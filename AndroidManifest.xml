@@ -38,6 +38,14 @@
         
         
         
+        <!-- ScanResultActivity -->
+        <activity
+            android:name="com.app2641.activity.ScanResultActivity"
+            android:label="@string/activity_scan_result_title"
+        ></activity>
+        
+        
+        
         <!-- ShopActivity -->
         <activity 
         	android:name="com.app2641.activity.ShopActivity"

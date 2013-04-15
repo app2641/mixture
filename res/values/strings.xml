@@ -23,6 +23,14 @@
     <string name="activity_not_found_scan_app_title">Mixture</string>
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーアプリが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
     <string name="download_scan_app">GooglePlayからダウンロード</string>
+    
+    
+    <!-- ScanResult -->
+    <string name="activity_scan_result_title">スキャンに成功しました！</string>
+    <string name="scan_result_header_information">Information</string>
+    <string name="scan_result_header_description">Description</string>
+    <string name="scan_result_button_get_material">素材を取得</string>
+    <string name="scan_result_button_sale_shop">ショップへ売却</string>
 
     
     

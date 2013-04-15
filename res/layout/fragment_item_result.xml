@@ -161,13 +161,13 @@
                 android:text="@string/sell_shop" />
         </LinearLayout>
         
-        <com.google.ads.AdView
+        <!-- <com.google.ads.AdView
         	android:id="@+id/adView"
         	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	ads:adSize="BANNER"
         	ads:adUnitId="a15039a852b5ecf"
-        	ads:testDevices="TEST_EMULATOR, A0652EE3482F7287F0959069EADCEB70" />
+        	ads:testDevices="TEST_EMULATOR, A0652EE3482F7287F0959069EADCEB70" /> -->
     </LinearLayout>
     
 </LinearLayout>

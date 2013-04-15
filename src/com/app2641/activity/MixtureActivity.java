@@ -286,13 +286,16 @@ public class MixtureActivity extends Activity implements OnClickListener {
 					ScanManager scan = new ScanManager(getApplicationContext());
 					
 					// コードに紐づく素材idがあるか取得する
-					int material_id = scan.fetchMaterialIdByCode(code);
+					ContentValues values = scan.fetchMaterialIdByCode(code);
 					
-					if (material_id == 0) {
-						// 取得したことのないコードの場合
-					} else {
-						// 既に取得したことのあるコードの場合
-					}
+					intent = new Intent(getApplicationContext(), ScanResultActivity.class);
+					intent.setAction(Intent.ACTION_VIEW);
+					intent.putExtra("name", ((String) values.get("name")));
+					intent.putExtra("description", ((String) values.get("descritption")));
+					intent.putExtra("price", ((Integer) values.getAsInteger("price")));
+					intent.putExtra("experience", ((Boolean) values.getAsBoolean("experience")));
+					intent.putExtra("rare", ((Boolean) values.get("rare")));
+					startActivity(intent);
 					break;
 			}
 		}

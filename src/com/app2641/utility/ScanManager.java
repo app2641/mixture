@@ -56,10 +56,12 @@ public class ScanManager {
 	/**
 	 * 指定したバーコードに対応する素材IDを返す
 	 */
-	public int fetchMaterialIdByCode (String code)
+	public ContentValues fetchMaterialIdByCode (String code)
 	{
 		DatabaseHelper helper = new DatabaseHelper(mContext);
 		SQLiteDatabase db = helper.getWritableDatabase();
+		
+		ContentValues values = null;
 		
 		try {
 			db.beginTransaction();
@@ -82,7 +84,7 @@ public class ScanManager {
 						
 						// コードとrare_idを紐付ける
 						String sql = "update code set rare_id = ? " +
-							"where _id = ?";
+							"where _id = ?;";
 						String[] bind = new String[]{String.valueOf(id), String.valueOf(code_id)};
 						
 						db.execSQL(sql, bind);
@@ -98,8 +100,8 @@ public class ScanManager {
 						int code_id = code_cursor.getInt(code_cursor.getColumnIndex("_id"));
 						
 						// コードとmaterial_idを紐付ける
-						String sql = "update code set rare_id = ? " +
-							"where _id = ?";
+						String sql = "update code set material_id = ? " +
+							"where _id = ?;";
 						String[] bind = new String[]{String.valueOf(id), String.valueOf(code_id)};
 						
 						db.execSQL(sql, bind);
@@ -109,14 +111,50 @@ public class ScanManager {
 					}
 				}
 			} else {
+				String sql;
+				String[] bind;
+				
 				if (rare_flag == true) {
 					// レアスキャンが成功した場合
+					id = this._generateRareId(db);
+					sql = "insert into code (code, level, rare_id) " +
+						"values (?, ?, ?);";
+					bind = new String[]{code, String.valueOf(level), String.valueOf(id)};
+					
 				} else {
 					// 通常スキャンの場合
+					id = this._generateMaterialId(db);
+					sql = "insert into code (code, level, material_id) " +
+						"values (?, ?, ?);";
+					bind = new String[]{code, String.valueOf(level), String.valueOf(id)};
+				}
+				
+				db.execSQL(sql, bind);
+			}
+			code_cursor.close();
+			
+			
+			// 取得したidから素材レコードを取得する
+			MaterialModel material_model = new MaterialModel();
+			Cursor cursor = material_model.fetchById(db, id);
+			
+			if (cursor.moveToFirst()) {
+				values = new ContentValues();
+				values.put("name", cursor.getString(cursor.getColumnIndex("name")));
+				values.put("description", cursor.getString(cursor.getColumnIndex("description")));
+				values.put("price", cursor.getInt(cursor.getColumnIndex("price")));
+				values.put("experience", cursor.getInt(cursor.getColumnIndex("experience")));
+				values.put("rare", rare_flag);
+				
+				
+				// 一度も取得経験のない素材であった場合experienceを更新する
+				if (cursor.getInt(cursor.getColumnIndex("experience")) == 0) {
+					String sql = "update material set experience = ? " +
+						"where id = ?";
+					db.execSQL(sql, new String[]{"1", String.valueOf(id)});
 				}
 			}
-			
-			code_cursor.close();
+			cursor.close();
 			
 			db.setTransactionSuccessful();
 			
@@ -124,14 +162,9 @@ public class ScanManager {
 			db.endTransaction();
 		}
 		
-		
-		Cursor cursor = model.getMaterialId(db, code, level);
-		
-		int id = (cursor.moveToFirst()) ? cursor.getInt(cursor.getColumnIndex("_id")): 0;
-		cursor.close();
 		db.close();
 		
-		return id;
+		return values;
 	}
 	
 	
@@ -474,9 +507,128 @@ public class ScanManager {
 						break;
 				}
 				break;
+				
+			case 9:
+				prob = new Integer[]{3, 5, 7, 9, 10, 13, 18, 20, 15};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 0;
+						break;
+						
+					case 1:
+						cls = "C";
+						rarity = 0;
+						break;
+						
+					case 2:
+						cls = "B";
+						rarity = 0;
+						break;
+						
+					case 3:
+						cls = "A";
+						rarity = 1;
+						break;
+						
+					case 4:
+						cls = "A";
+						rarity = 2;
+						break;
+						
+					case 5:
+						cls = "A";
+						rarity = 3;
+						break;
+						
+					case 6:
+						cls = "A";
+						rarity = 4;
+						break;
+						
+					case 7:
+						cls = "S";
+						rarity = 1;
+						break;
+						
+					case 8:
+						cls = "S";
+						rarity = 2;
+						break;
+				}
+				break;
+				
+			case 10:
+				prob = new Integer[]{3, 3, 5, 5, 7, 8, 11, 14, 17, 20, 7};
+				key = this._getProbKey(prob, rand);
+				
+				switch (key) {
+					case 0:
+						cls = "D";
+						rarity = 0;
+						break;
+						
+					case 1:
+						cls = "C";
+						rarity = 0;
+						break;
+						
+					case 2:
+						cls = "B";
+						rarity = 0;
+						break;
+						
+					case 3:
+						cls = "A";
+						rarity = 1;
+						break;
+						
+					case 4:
+						cls = "A";
+						rarity = 2;
+						break;
+						
+					case 5:
+						cls = "A";
+						rarity = 3;
+						break;
+						
+					case 6:
+						cls = "A";
+						rarity = 4;
+						break;
+						
+					case 7:
+						cls = "S";
+						rarity = 1;
+						break;
+						
+					case 8:
+						cls = "S";
+						rarity = 2;
+						break;
+						
+					case 9:
+						cls = "S";
+						rarity = 3;
+						break;
+						
+					case 10:
+						cls = "S";
+						rarity = 4;
+						break;
+				}
+				break;
 		}
 		
-		return 1;
+		MaterialModel model = new MaterialModel();
+		Cursor cursor = model.getRarityMaterial(db, cls, rarity);
+		int id = cursor.getInt(cursor.getColumnIndex("_id"));
+		cursor.close();
+		
+		return id;
 	}
 	
 	

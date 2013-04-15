@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+    style="@style/common_match_parent_layout"
+    android:orientation="vertical">
+
+    <ScrollView
+        style="@style/common_match_parent_layout"
+        android:layout_weight="1">
+        
+        <LinearLayout
+            style="@style/common_width_parent_height_content_layout"
+            android:orientation="vertical">
+            
+        	<RelativeLayout
+        		android:id="@+id/item_result_header"
+        		style="@style/scan_result_relative_layout"
+        		android:background="@drawable/item_detail_header">
+        	        	
+            	<!-- 素材のアイコンイメージ -->
+            	<ImageView
+    	    		android:id="@+id/scan_result_material_icon"
+    	    		style="@style/scan_result_material_icon"
+    	    		android:layout_alignParentLeft="true"
+    	    		android:layout_alignParentTop="true"
+    	    		android:src="@drawable/test_item" />
+            
+            	<LinearLayout
+            	    style="@style/scan_result_material_linear_layout"
+            		android:layout_toRightOf="@id/scan_result_material_icon"
+            		android:layout_alignBottom="@id/scan_result_material_icon" >
+            		<!-- 素材の名称 -->
+            		<TextView
+                		android:id="@+id/scan_result_material_name"
+                		style="@style/common_wrap_content_layout" />
+            	
+            		<!-- 素材のクラス -->
+            		<TextView
+                		android:id="@+id/scan_result_material_class"
+                		style="@style/common_wrap_content_layout" />
+        		</LinearLayout>
+    		</RelativeLayout>
+    		
+        	<LinearLayout
+        	    style="@style/common_width_parent_height_content_layout"
+        	    android:orientation="vertical"
+        	    android:paddingLeft="20dp"
+        	    android:paddingRight="20dp">
+            	
+        	    <!-- 素材のInformationヘッダー -->
+        		<TextView 
+        		    style="@style/scan_result_material_header"
+        		    android:text="@string/scan_result_header_information" />
+            	
+        		<!-- New または Rareバッチを置くコンテナ -->
+        		<LinearLayout
+        	    	style="@style/common_width_parent_height_content_layout"
+        	    	android:orientation="horizontal"
+        	    	android:paddingTop="5dp"
+        	    	android:paddingBottom="5dp">
+        		</LinearLayout>
+        		
+        		<!-- 相場価格テキストビュー -->
+        		<TextView
+        		    android:id="@+id/scan_result_material_price"
+        		    style="@style/common_width_parent_height_content_layout"
+        		    android:textIsSelectable="false"
+        		    android:padding="5dp" />
+        		
+        		
+        		<!-- 素材のDescriptionヘッダー -->
+        		<TextView
+        		    style="@style/scan_result_material_header"
+        		    android:text="@string/scan_result_header_description" />
+        		
+        		<!-- 素材の説明テキストビュー -->
+        		<TextView
+        		    android:id="@+id/scan_result_material_description"
+        		    style="@style/common_width_parent_height_content_layout"
+        		    android:textIsSelectable="false"
+        		    android:padding="5dp" />
+        	
+        	</LinearLayout>
+        </LinearLayout>
+        
+    </ScrollView>
+    
+    
+    <!-- フッター -->
+    <LinearLayout
+        style="@style/common_width_parent_height_content_layout"
+        android:orientation="vertical"
+        android:background="@drawable/item_detail_footer" >
+        <LinearLayout
+            style="@style/common_width_parent_height_content_layout"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+            
+            <!-- 素材取得ボタン -->
+            <Button
+                android:id="@+id/scan_result_get_material_button"
+                style="@style/scan_result_action_button"
+                android:text="@string/scan_result_button_get_material" />
+            
+            <!-- 素材売却ボタン -->
+            <Button
+                android:id="@+id/scan_result_sale_material_button"
+                style="@style/scan_result_action_button"
+                android:text="@string/scan_result_button_sale_shop" />
+        </LinearLayout>
+        
+        <!-- <com.google.ads.AdView
+        	android:id="@+id/adView"
+        	style="@style/common_width_parent_height_content_layout"
+        	ads:adSize="BANNER"
+        	ads:adUnitId="a15039a852b5ecf"
+        	ads:testDevices="TEST_EMULATOR, A0652EE3482F7287F0959069EADCEB70" /> -->
+    </LinearLayout>
+    
+</LinearLayout>

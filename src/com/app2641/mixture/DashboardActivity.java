@@ -322,20 +322,20 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 				// データベースヘルパーの生成
 				DatabaseHelper helper = new DatabaseHelper(DashboardActivity.this);
 				String sql = "SELECT * FROM material ORDER BY RANDOM();";
-				Cursor c = helper.executeSql(sql, new String[]{});
+//				Cursor c = helper.executeSql(sql, new String[]{});
 				
-				if (c.moveToFirst()) {
+//				if (c.moveToFirst()) {
 					// スキャン結果画面へ遷移させる
 					Bundle bundle = new Bundle();
-					bundle.putInt("id", c.getInt(c.getColumnIndex("_id")));
+//					bundle.putInt("id", c.getInt(c.getColumnIndex("_id")));
 					
 					Fragment fragment = new FragmentItemResult();
 					fragment.setArguments(bundle);
 					
 //					super.fragmentReplace(new FragmentDashboardTable());
-				}
+//				}
 				
-				c.close();
+//				c.close();
 			}
 		}
 	}
