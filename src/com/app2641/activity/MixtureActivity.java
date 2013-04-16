@@ -290,11 +290,14 @@ public class MixtureActivity extends Activity implements OnClickListener {
 					
 					intent = new Intent(getApplicationContext(), ScanResultActivity.class);
 					intent.setAction(Intent.ACTION_VIEW);
+					intent.putExtra("id", ((Integer) values.get("id")));
 					intent.putExtra("name", ((String) values.get("name")));
 					intent.putExtra("description", ((String) values.get("descritption")));
-					intent.putExtra("price", ((Integer) values.getAsInteger("price")));
-					intent.putExtra("experience", ((Boolean) values.getAsBoolean("experience")));
+					intent.putExtra("class", ((String) values.get("class")));
+					intent.putExtra("price", ((Integer) values.get("price")));
+					intent.putExtra("experience", ((Integer) values.get("experience")));
 					intent.putExtra("rare", ((Boolean) values.get("rare")));
+					intent.putExtra("qty", ((Integer) values.get("qty")));
 					startActivity(intent);
 					break;
 			}

@@ -1,9 +1,11 @@
 package com.app2641.activity;
 
 import com.app2641.mixture.R;
+import com.app2641.utility.ScanManager;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
@@ -146,16 +148,21 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 	 */
 	public void dispatchScanAtivity (View view)
 	{
-		try {
-			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-			intent.putExtra("SCAN_MODE", "ONE_D_MODE");
-			startActivityForResult(intent, 0);
+		if (this.getActivityName() == "scan") {
+			// MainMenuを閉じる
+			mMenuDrawer.closeMenu();
+		} else {
+			try {
+				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+				intent.putExtra("SCAN_MODE", "ONE_D_MODE");
+				startActivityForResult(intent, 0);
 			
-		} catch (ActivityNotFoundException e) {
-			// スキャンアプリが見つからない場合はインストール画面へ遷移する
-			Intent intent = new Intent(this, ShopActivity.class);
-			intent.setAction(Intent.ACTION_VIEW);
-			startActivity(intent);
+			} catch (ActivityNotFoundException e) {
+				// スキャンアプリが見つからない場合はインストール画面へ遷移する
+				Intent intent = new Intent(this, NotFoundScanAppActivity.class);
+				intent.setAction(Intent.ACTION_VIEW);
+				startActivity(intent);
+			}
 		}
 	}
 	
@@ -171,6 +178,23 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 			switch (requestCode) {
 				// Scan処理
 				case 0:
+					String code = intent.getStringExtra("SCAN_RESULT");
+					ScanManager scan = new ScanManager(getApplicationContext());
+					
+					// コードに紐づく素材idがあるか取得する
+					ContentValues values = scan.fetchMaterialIdByCode(code);
+					
+					intent = new Intent(getApplicationContext(), ScanResultActivity.class);
+					intent.setAction(Intent.ACTION_VIEW);
+					intent.putExtra("id", ((Integer) values.get("id")));
+					intent.putExtra("name", ((String) values.get("name")));
+					intent.putExtra("description", ((String) values.get("descritption")));
+					intent.putExtra("class", ((String) values.get("class")));
+					intent.putExtra("price", ((Integer) values.get("price")));
+					intent.putExtra("experience", ((Integer) values.get("experience")));
+					intent.putExtra("rare", ((Boolean) values.get("rare")));
+					intent.putExtra("qty", ((Integer) values.get("qty")));
+					startActivity(intent);
 					break;
 			}
 		}

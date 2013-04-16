@@ -54,6 +54,7 @@
             	
         		<!-- New または Rareバッチを置くコンテナ -->
         		<LinearLayout
+        		    android:id="@+id/scan_result_icon_container"
         	    	style="@style/common_width_parent_height_content_layout"
         	    	android:orientation="horizontal"
         	    	android:paddingTop="5dp"

@@ -7,35 +7,35 @@
         android:id="@+id/main_menu_scan_item"
         style="@style/main_menu_item"
         android:text="@string/main_menu_scan"
-        android:drawableLeft="@drawable/dashboard_scan_icon"
+        android:drawableLeft="@drawable/main_menu_scan_icon"
     />
     
     <TextView
         android:id="@+id/main_menu_mixin_item"
         style="@style/main_menu_item"
         android:text="@string/main_menu_mixin"
-        android:drawableLeft="@drawable/dashboard_mixin_icon"
+        android:drawableLeft="@drawable/main_menu_mixin_icon"
     />
     
     <TextView
         android:id="@+id/main_menu_shop_item"
         style="@style/main_menu_item"
         android:text="@string/main_menu_shop"
-        android:drawableLeft="@drawable/dashboard_shop_icon"
+        android:drawableLeft="@drawable/main_menu_shop_icon"
     />
     
     <TextView
         android:id="@+id/main_menu_collection_item"
         style="@style/main_menu_item"
         android:text="@string/main_menu_collection"
-        android:drawableLeft="@drawable/dashboard_collection_icon"
+        android:drawableLeft="@drawable/main_menu_collection_icon"
     />
     
     <TextView
         android:id="@+id/main_menu_status_item"
         style="@style/main_menu_item"
         android:text="@string/main_menu_status"
-        android:drawableLeft="@drawable/dashboard_status_icon"
+        android:drawableLeft="@drawable/main_menu_status_icon"
     />
 
 </LinearLayout>

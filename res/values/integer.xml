@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- 素材の最大所持数 -->
+    <integer name="max_material_qty">9</integer>
+    
+    <!-- アイテムの最大所持数 -->
+    <integer name="max_item_qty">9</integer>
+    
+    
+</resources>

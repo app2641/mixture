@@ -140,10 +140,13 @@ public class ScanManager {
 			
 			if (cursor.moveToFirst()) {
 				values = new ContentValues();
+				values.put("id", cursor.getInt(cursor.getColumnIndex("_id")));
 				values.put("name", cursor.getString(cursor.getColumnIndex("name")));
 				values.put("description", cursor.getString(cursor.getColumnIndex("description")));
+				values.put("class", cursor.getString(cursor.getColumnIndex("class")));
 				values.put("price", cursor.getInt(cursor.getColumnIndex("price")));
 				values.put("experience", cursor.getInt(cursor.getColumnIndex("experience")));
+				values.put("qty", cursor.getInt(cursor.getColumnIndex("qty")));
 				values.put("rare", rare_flag);
 				
 				

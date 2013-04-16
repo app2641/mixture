@@ -1,12 +1,25 @@
 package com.app2641.activity;
 
 import com.app2641.mixture.R;
+import com.app2641.model.DatabaseHelper;
+import com.app2641.model.MaterialModel;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class ScanResultActivity extends MixtureActivity {
+public class ScanResultActivity extends MixtureActivity implements OnClickListener {
+	
+	// 素材処理を行ったかどうかのフラグ
+	public boolean do_flag = false;
 	
 	public MenuDrawer mMenuDrawer;
 
@@ -25,7 +38,70 @@ public class ScanResultActivity extends MixtureActivity {
 		
 		
 		// 素材データをViewにセットする
-		setMaterialData();
+		setMaterialView();
+		
+		// 素材取得ボタンのイベントリスナーを設定する
+		Button get_btn = (Button) findViewById(R.id.scan_result_get_material_button);
+		get_btn.setOnClickListener(this);
+		
+		// この素材の取得数が9だった場合は取得ボタンをdisable
+		int qty = getIntent().getIntExtra("qty", 0);
+		if (qty == getResources().getInteger(R.integer.max_material_qty)) {
+			get_btn.setEnabled(false);
+		}
+		
+		// 素材売却ボタンのイベントリスナーを登録する
+		Button sale_btn = (Button) findViewById(R.id.scan_result_sale_material_button);
+		sale_btn.setOnClickListener(this);
+	}
+	
+	
+	
+	/**
+	 * ボタンのクリックイベントリスナー
+	 */
+	@Override
+	public void onClick (View view)
+	{
+		switch (view.getId()) {
+			case R.id.scan_result_get_material_button:
+				// 素材取得処理
+				dispatchGetMaterialAction();
+				break;
+				
+			case R.id.scan_result_sale_material_button:
+				// 素材売却処理
+				dispatchSaleMaterialAction();
+				break;
+		}
+	}
+	
+	
+	
+	/*
+	 * 戻るボタンの処理
+	 * 素材を処理するフラグdo_flagがfalseの場合は素材取得処理を行う
+	 */
+	@Override
+	public void onBackPressed ()
+	{
+		// 素材処理を行ったかどうか
+		if (do_flag == false) {
+			int qty = getIntent().getIntExtra("qty", 0);
+			
+			if (qty == getResources().getInteger(R.integer.max_material_qty)) {
+				// 素材所持数が限度数に達していた場合は素材売却処理
+				dispatchSaleMaterialAction();
+				
+			} else {
+				// 素材取得処理
+				dispatchGetMaterialAction();
+			}
+			return;
+			
+		} else {
+			super.onBackPressed();
+		}
 	}
 	
 	
@@ -33,9 +109,75 @@ public class ScanResultActivity extends MixtureActivity {
 	/**
 	 * 素材データをViewにセットする
 	 */
-	public void setMaterialData ()
+	public void setMaterialView ()
 	{
 		Intent intent = getIntent();
+		
+		// 素材名の設定
+		String name = intent.getStringExtra("name");
+		TextView name_view = (TextView) findViewById(R.id.scan_result_material_name);
+		name_view.setText(name);
+		
+		// 素材クラスの設定
+		String cls = intent.getStringExtra("class");
+		TextView cls_view = (TextView) findViewById(R.id.scan_result_material_class);
+		cls_view.setText(cls);
+		
+		// New!バッチ
+		LinearLayout container = (LinearLayout) findViewById(R.id.scan_result_icon_container);
+		LayoutInflater inflater;
+		Integer experience = intent.getIntExtra("experience", 1);
+		if (experience == 0) {
+			// icon_containerにImageViewを追加する
+			inflater = getLayoutInflater();
+			inflater.inflate(R.layout.view_scan_result_new_batch, container);
+		}
+		
+		// Rare!バッチ
+		Boolean rare = intent.getBooleanExtra("rare", false);
+		if (rare == true) {
+			// icon_containerにImageViewを追加する
+			inflater = getLayoutInflater();
+			inflater.inflate(R.layout.view_scan_result_rare_batch, container);
+		}
+		
+		// 素材売却値段の設定
+		Integer price = intent.getIntExtra("price", 0);
+		TextView price_view = (TextView) findViewById(R.id.scan_result_material_price);
+		price_view.setText(String.valueOf(price));
+		
+		// 素材説明の設定
+		String description = intent.getStringExtra("description");
+		TextView description_view = (TextView) findViewById(R.id.scan_result_material_description);
+		description_view.setText(description);
+	}
+	
+	
+	
+	/**
+	 * 素材を取得するアクション
+	 */
+	public void dispatchGetMaterialAction ()
+	{
+		DatabaseHelper helper = new DatabaseHelper(getApplicationContext());
+		SQLiteDatabase db = helper.getWritableDatabase();
+		
+		Intent intent = getIntent();
+		int qty = intent.getIntExtra("qty", 0);
+		int id  = intent.getIntExtra("id", 0);
+		
+		MaterialModel model = new MaterialModel();
+		model.updateQty(db, qty, id);
+	}
+	
+	
+	
+	/**
+	 * 素材を売却するアクション
+	 */
+	public void dispatchSaleMaterialAction ()
+	{
+		
 	}
 	
 }

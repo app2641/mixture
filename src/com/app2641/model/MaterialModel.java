@@ -47,5 +47,17 @@ public class MaterialModel extends AbstractModel {
 		
 		return cursor;
 	}
+
+
+
+	/**
+	 * 指定素材のQtyを更新する
+	 */
+	public void updateQty (SQLiteDatabase db, int qty, int id) {
+		String sql = "update material set qty = ? " +
+			"where id = ?";
+		
+		this.executeSQL(db, sql, new String[]{String.valueOf(qty), String.valueOf(id)});
+	}
 	
 }
