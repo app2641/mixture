@@ -55,6 +55,17 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		// 素材売却ボタンのイベントリスナーを登録する
 		Button sale_btn = (Button) findViewById(R.id.scan_result_sale_material_button);
 		sale_btn.setOnClickListener(this);
+		
+		
+		// StatusMainMenuの背景色を変更する
+		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_scan_item);
+		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
+				
+		// Homeアイコンを設定する
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+				
+		// MainMenuのOnClickListenerを初期化する
+		initMainMenuOnClickListeners();
 	}
 	
 	
@@ -69,11 +80,18 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 			case R.id.scan_result_get_material_button:
 				// 素材取得処理
 				dispatchGetMaterialAction();
+				finish();
 				break;
 				
 			case R.id.scan_result_sale_material_button:
 				// 素材売却処理
 				dispatchSaleMaterialAction();
+				break;
+				
+			default:
+				// 素材処理を行ったか判断してからMainMenuで移動させる
+				checkMaterialAction();
+				super.onClick(view);
 				break;
 		}
 	}
@@ -88,21 +106,8 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	public void onBackPressed ()
 	{
 		// 素材処理を行ったかどうか
-		if (do_flag == false) {
-			int qty = getIntent().getIntExtra("qty", 0);
-			
-			if (qty == getResources().getInteger(R.integer.max_material_qty)) {
-				// 素材所持数が限度数に達していた場合は素材売却処理
-				dispatchSaleMaterialAction();
-				
-			} else {
-				// 素材取得処理
-				dispatchGetMaterialAction();
-			}
-			
-		} else {
-			super.onBackPressed();
-		}
+		checkMaterialAction();
+		super.onBackPressed();
 	}
 	
 	
@@ -156,6 +161,28 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	
 	
 	/**
+	 * 素材処理を行ったかチェックして処理を分岐させる
+	 */
+	public void checkMaterialAction ()
+	{
+		if (do_flag == false) {
+			int qty = getIntent().getIntExtra("qty", 0);
+			
+			if (qty == getResources().getInteger(R.integer.max_material_qty)) {
+				// 素材所持数が限度数に達していた場合は素材売却処理
+				dispatchSaleMaterialAction();
+				return;
+				
+			} else {
+				// 素材取得処理
+				dispatchGetMaterialAction();
+			}
+		}
+	}
+	
+	
+	
+	/**
 	 * 素材を取得するアクション
 	 */
 	public void dispatchGetMaterialAction ()
@@ -171,8 +198,9 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		MaterialModel model = new MaterialModel();
 		model.updateQty(db, (qty + 1), id);
 		
+		do_flag = true;
+		
 		Toast.makeText(this, name+"を取得しました", Toast.LENGTH_SHORT).show();
-		finish();
 	}
 	
 	
@@ -182,7 +210,7 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	 */
 	public void dispatchSaleMaterialAction ()
 	{
-		
+		// do_flag = true;
 	}
 	
 }
