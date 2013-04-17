@@ -8,6 +8,7 @@ import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ScanResultActivity extends MixtureActivity implements OnClickListener {
 	
@@ -29,7 +31,7 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	{
 		super.onCreate(savedInstanceState);
 		
-		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.TOUCH_MODE_FULLSCREEN);
+		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
 		mMenuDrawer.setContentView(R.layout.activity_scan_result);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
 		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
@@ -97,7 +99,6 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 				// 素材取得処理
 				dispatchGetMaterialAction();
 			}
-			return;
 			
 		} else {
 			super.onBackPressed();
@@ -121,7 +122,7 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		// 素材クラスの設定
 		String cls = intent.getStringExtra("class");
 		TextView cls_view = (TextView) findViewById(R.id.scan_result_material_class);
-		cls_view.setText(cls);
+		cls_view.setText("class "+cls);
 		
 		// New!バッチ
 		LinearLayout container = (LinearLayout) findViewById(R.id.scan_result_icon_container);
@@ -144,7 +145,7 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		// 素材売却値段の設定
 		Integer price = intent.getIntExtra("price", 0);
 		TextView price_view = (TextView) findViewById(R.id.scan_result_material_price);
-		price_view.setText(String.valueOf(price));
+		price_view.setText("価格 "+String.valueOf(price)+"pr");
 		
 		// 素材説明の設定
 		String description = intent.getStringExtra("description");
@@ -165,9 +166,13 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		Intent intent = getIntent();
 		int qty = intent.getIntExtra("qty", 0);
 		int id  = intent.getIntExtra("id", 0);
+		String name = intent.getStringExtra("name");
 		
 		MaterialModel model = new MaterialModel();
-		model.updateQty(db, qty, id);
+		model.updateQty(db, (qty + 1), id);
+		
+		Toast.makeText(this, name+"を取得しました", Toast.LENGTH_SHORT).show();
+		finish();
 	}
 	
 	

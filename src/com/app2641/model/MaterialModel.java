@@ -12,7 +12,7 @@ public class MaterialModel extends AbstractModel {
 	 */
 	public Cursor fetchById (SQLiteDatabase db, int id)
 	{
-		String sql = "select * from material where id = ?";
+		String sql = "select * from material where _id = ?";
 		Cursor cursor = this.executeSQL(db, sql, new String[]{String.valueOf(id)});
 		
 		return cursor;
@@ -27,7 +27,7 @@ public class MaterialModel extends AbstractModel {
 	 */
 	public Cursor getRarityMaterial (SQLiteDatabase db, String cls, int rarity)
 	{
-		String sql = "select material.id from material " +
+		String sql = "select material._id from material " +
 			"where material.class = ? ";
 		String[] bind = new String[]{cls};
 		
@@ -55,7 +55,7 @@ public class MaterialModel extends AbstractModel {
 	 */
 	public void updateQty (SQLiteDatabase db, int qty, int id) {
 		String sql = "update material set qty = ? " +
-			"where id = ?";
+			"where _id = ?";
 		
 		this.executeSQL(db, sql, new String[]{String.valueOf(qty), String.valueOf(id)});
 	}

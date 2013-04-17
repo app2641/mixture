@@ -13,7 +13,6 @@ import com.app2641.dialog.DashboardHelp;
 import com.app2641.dialog.WelcomeDialog;
 import com.app2641.fragment.FragmentDashboardInstallScanApp;
 import com.app2641.fragment.FragmentImportant;
-import com.app2641.fragment.FragmentItemResult;
 import com.app2641.fragment.FragmentNetworkError;
 import com.app2641.fragment.FragmentServerMaintenance;
 import com.app2641.fragment.MixtureFragment;
@@ -329,8 +328,8 @@ public class DashboardActivity extends MixtureActivity implements LoaderCallback
 					Bundle bundle = new Bundle();
 //					bundle.putInt("id", c.getInt(c.getColumnIndex("_id")));
 					
-					Fragment fragment = new FragmentItemResult();
-					fragment.setArguments(bundle);
+//					Fragment fragment = new FragmentItemResult();
+//					fragment.setArguments(bundle);
 					
 //					super.fragmentReplace(new FragmentDashboardTable());
 //				}

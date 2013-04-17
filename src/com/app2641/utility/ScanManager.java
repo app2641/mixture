@@ -153,7 +153,7 @@ public class ScanManager {
 				// 一度も取得経験のない素材であった場合experienceを更新する
 				if (cursor.getInt(cursor.getColumnIndex("experience")) == 0) {
 					String sql = "update material set experience = ? " +
-						"where id = ?";
+						"where _id = ?";
 					db.execSQL(sql, new String[]{"1", String.valueOf(id)});
 				}
 			}

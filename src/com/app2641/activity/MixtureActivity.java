@@ -164,8 +164,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 			WelcomeDialog dialog = new WelcomeDialog();
 			FragmentManager manager = this.getFragmentManager();
 			dialog.show(manager, "welcome");
-			
-			mMenuDrawer.openMenu();
 		}
 	}
 	
@@ -292,7 +290,7 @@ public class MixtureActivity extends Activity implements OnClickListener {
 					intent.setAction(Intent.ACTION_VIEW);
 					intent.putExtra("id", ((Integer) values.get("id")));
 					intent.putExtra("name", ((String) values.get("name")));
-					intent.putExtra("description", ((String) values.get("descritption")));
+					intent.putExtra("description", ((String) values.get("description")));
 					intent.putExtra("class", ((String) values.get("class")));
 					intent.putExtra("price", ((Integer) values.get("price")));
 					intent.putExtra("experience", ((Integer) values.get("experience")));
