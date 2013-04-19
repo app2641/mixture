@@ -26,6 +26,37 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 	private TextView mCollectionMenu;
 	private TextView mStatusMenu;
 	
+	// scan後かどうかのフラグ
+	public boolean scan_flag = false;
+	// scan情報を格納する
+	public ContentValues mValues;
+	
+	
+	
+	@Override
+	public void onResume ()
+	{
+		// Scan後の場合は素材取得アクティビティへ遷移する
+		if (scan_flag == true) {
+			Intent intent = new Intent(getApplicationContext(), ScanResultActivity.class);
+			intent.setAction(Intent.ACTION_VIEW);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+			intent.putExtra("id", ((Integer) mValues.get("id")));
+			intent.putExtra("name", ((String) mValues.get("name")));
+			intent.putExtra("description", ((String) mValues.get("description")));
+			intent.putExtra("class", ((String) mValues.get("class")));
+			intent.putExtra("price", ((Integer) mValues.get("price")));
+			intent.putExtra("experience", ((Integer) mValues.get("experience")));
+			intent.putExtra("rare", ((Boolean) mValues.get("rare")));
+			intent.putExtra("qty", ((Integer) mValues.get("qty")));
+			startActivity(intent);
+			
+			scan_flag = false;
+		}
+		
+		super.onResume();
+	}
+	
 	
 	
 	@Override
@@ -181,20 +212,9 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 					String code = intent.getStringExtra("SCAN_RESULT");
 					ScanManager scan = new ScanManager(getApplicationContext());
 					
-					// コードに紐づく素材idがあるか取得する
-					ContentValues values = scan.fetchMaterialIdByCode(code);
-					
-					intent = new Intent(getApplicationContext(), ScanResultActivity.class);
-					intent.setAction(Intent.ACTION_VIEW);
-					intent.putExtra("id", ((Integer) values.get("id")));
-					intent.putExtra("name", ((String) values.get("name")));
-					intent.putExtra("description", ((String) values.get("descritption")));
-					intent.putExtra("class", ((String) values.get("class")));
-					intent.putExtra("price", ((Integer) values.get("price")));
-					intent.putExtra("experience", ((Integer) values.get("experience")));
-					intent.putExtra("rare", ((Boolean) values.get("rare")));
-					intent.putExtra("qty", ((Integer) values.get("qty")));
-					startActivity(intent);
+					// コードに紐づく素材レコードを取得する
+					mValues = scan.fetchMaterialIdByCode(code);
+					scan_flag = true;
 					break;
 			}
 		}

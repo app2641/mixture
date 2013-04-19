@@ -167,7 +167,7 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	public void initApplication ()
 	{
 		// 初期化フラグの定数を取得する
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		boolean init = sp.getBoolean("INIT_APPLICATION", false);
 				
 		if (init == false) {

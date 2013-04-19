@@ -36,6 +36,10 @@
     
     <!-- Shop -->
     <string name="activity_shop_title">ショップ</string>
+    <string name="dialog_offline_shop_buy_title">購入数を指定してください</string>
+    <string name="dialog_shop_buy_qty">個数：</string>
+    <string name="dialog_shop_buy_submit_button">購入</string>
+    <string name="dialog_shop_buy_cancel_button">キャンセル</string>
     
     
     

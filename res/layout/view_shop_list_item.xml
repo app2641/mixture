@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+    <TextView
+        android:id="@+id/shop_list_item_name"
+        style="@style/shop_list_item_name" />
+    
+    
+    <LinearLayout
+        style="@style/common_width_content_height_parent_layout"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+        
+        <!-- クラス名の表記 -->
+        <TextView
+            android:id="@+id/shop_list_item_class"
+            style="@style/common_wrap_content_layout"
+            android:textIsSelectable="false" />
+        
+        <!-- 価格の表記 -->
+        <TextView
+            android:id="@+id/shop_list_item_price"
+            style="@style/common_wrap_content_layout"
+            android:textIsSelectable="false" />
+    </LinearLayout>
+    
+
+</LinearLayout>

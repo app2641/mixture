@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical" >
+    
+    <!-- 素材名 -->
+    <TextView
+        android:id="@+id/dialog_offline_shop_buy_name"
+        android:text="仙人掌の針"
+        style="@style/dialog_shop_buy_name"
+        android:textIsSelectable="false" />
+    
+    <LinearLayout
+        style="@style/dialog_shop_buy_horizon_lenear_layout">
+        
+        <!-- 個数テキスト -->
+        <TextView
+            android:text="@string/dialog_shop_buy_qty"
+            style="@style/dialog_shop_buy_qty" />
+        
+        <!-- 個数選択スピナー -->
+        <Spinner
+            android:id="@+id/dialog_offline_shop_buy_qty_spinner"
+            style="@style/common_wrap_content_layout" />
+        
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        style="@style/dialog_shop_buy_horizon_lenear_layout">
+        
+        <!-- 所持金 - (素材単価 * 個数) テキスト -->
+        <TextView
+            android:id="@+id/dialog_shop_buy_calculation_text"
+            android:text="200 - (100 * 2) = "
+            style="@style/dialog_shop_buy_calculate" />
+        
+        <!-- 残高テキスト -->
+        <TextView
+            android:id="@+id/dialog_shop_buy_balance_text"
+            android:text="200pr"
+            style="@style/dialog_shop_buy_balance"/>
+        
+    </LinearLayout>
+    
+
+</LinearLayout>
