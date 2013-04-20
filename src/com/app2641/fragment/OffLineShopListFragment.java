@@ -77,6 +77,7 @@ public class OffLineShopListFragment extends ListFragment implements LoaderManag
 					Bundle bundle = new Bundle();
 					bundle.putInt("_id", cursor.getInt(cursor.getColumnIndex("_id")));
 					bundle.putString("name", cursor.getString(cursor.getColumnIndex("name")));
+					bundle.putInt("price", cursor.getInt(cursor.getColumnIndex("price")));
 					bundle.putInt("money", money);
 					
 					// 商品購入ダイアログの表示					
