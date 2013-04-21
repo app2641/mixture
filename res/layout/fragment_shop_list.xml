@@ -6,7 +6,7 @@
     
     
     <ListView
-        android:id="@+id/shop_list"
+        android:id="@id/android:list"
         style="@style/common_match_parent_layout"
         android:padding="10dp"
     />
@@ -15,7 +15,10 @@
     <TextView
         android:id="@id/android:empty"
         style="@style/common_match_parent_layout"
-        android:layout_gravity="center"
+        android:padding="20dp"
+        android:gravity="center"
+        android:text="@string/fragment_shop_disable_error"
+        android:textSize="17sp"
         android:textIsSelectable="false" />
     
 

@@ -4,6 +4,7 @@
     <!-- common -->
     <string name="app_name">Mixture</string>
     <string name="menu_settings">Settings</string>
+    <string name="init_application">アプリを初期化中です</string>
 
     <!-- Main menu -->
     <string name="main_menu_scan">スキャン</string>
@@ -36,10 +37,16 @@
     
     <!-- Shop -->
     <string name="activity_shop_title">ショップ</string>
+    <string name="activity_shop_title_offline">オフライン</string>
+    <string name="activity_shop_title_online">オンライン</string>
+    <string name="fragment_shop_disable_error">現在ショップを利用することはできません。ショップの利用には調合師レベル2以上が必要です。</string>
+    <string name="fragment_shop_none_list_error">本日販売できる素材は見つかりませんでした。\nまた明日ご利用ください。</string>
     <string name="dialog_offline_shop_buy_title">購入数を指定してください</string>
     <string name="dialog_shop_buy_qty">個数：</string>
     <string name="dialog_shop_buy_submit_button">購入</string>
     <string name="dialog_shop_buy_cancel_button">キャンセル</string>
+    <string name="dialog_shop_max_qty_error_title">Caution!</string>
+    <string name="dialog_shop_max_qty_error_message">選択した素材は既に限度数所持をしているため購入することはできません。\n別の素材を選択してください。</string>
     
     
     

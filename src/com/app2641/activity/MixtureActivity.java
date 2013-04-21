@@ -5,6 +5,7 @@ import java.io.IOException;
 import net.simonvt.menudrawer.MenuDrawer;
 
 import com.app2641.dialog.WelcomeDialog;
+import com.app2641.loader.InitApplicationLoader;
 import com.app2641.mixture.R;
 import com.app2641.model.DatabaseHelper;
 import com.app2641.utility.ScanManager;
@@ -12,24 +13,31 @@ import com.app2641.utility.VersionManager;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.Loader;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.LoaderManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MixtureActivity extends Activity implements OnClickListener {
+public class MixtureActivity extends Activity implements OnClickListener, LoaderCallbacks<String> {
 
 	public String mActivityName;
 	
 	public MenuDrawer mMenuDrawer;
+	
+	// アプリ初期化中に表示するプログレスバー
+	private ProgressDialog mProgress;
 	
 	private TextView mScanMenu;
 	private TextView mMixinMenu;
@@ -123,23 +131,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	
 	
 	/**
-	 * データベース初期化処理
-	 */
-	public void initDatabase ()
-	{
-		DatabaseHelper db = new DatabaseHelper(this);
-		
-		try {
-			db.init();
-			
-		} catch (IOException e) {
-			throw new Error("Unable to create database");
-		}
-	}
-	
-	
-	
-	/**
 	 * バージョンによる初期化処理
 	 */
 	public void initVersion ()
@@ -171,30 +162,8 @@ public class MixtureActivity extends Activity implements OnClickListener {
 		boolean init = sp.getBoolean("INIT_APPLICATION", false);
 				
 		if (init == false) {
-			// データベースの初期化
-			initDatabase();
-					
-			// 定数の初期化
-			Editor editor = sp.edit();
-			editor.putBoolean("INIT_APPLICATION", true);
-			editor.putInt("LEVEL", 1);	// level
-			editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
-			editor.putBoolean("MASTER", false);	// 調合師の極意所持
-			editor.putBoolean("VIP", false);	// 特別待遇カードの所持
-			editor.putInt("MONEY", 0);	// 所持金
-			editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
-			editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
-			editor.putBoolean("FIRST_MIX", false);	// はじめてのミックス
-			editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
-			editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
-			editor.commit();
-					
-					
-			// Welcomeウィンドウの表示
-			Toast.makeText(this, "init!", Toast.LENGTH_SHORT).show();
-			WelcomeDialog dialog = new WelcomeDialog();
-			FragmentManager manager = this.getFragmentManager();
-			dialog.show(manager, "welcome");
+			// InitApplicationLoaderの初期化
+			getLoaderManager().initLoader(0, null, this);
 		}
 	}
 	
@@ -334,7 +303,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 			// MainMenuを閉じる
 			mMenuDrawer.closeMenu();
 		} else {
-			Toast.makeText(this, "shop", Toast.LENGTH_SHORT).show();
 			Intent intent = new Intent(this, ShopActivity.class);
 			intent.setAction(Intent.ACTION_VIEW);
 			startActivity(intent);
@@ -384,5 +352,62 @@ public class MixtureActivity extends Activity implements OnClickListener {
 			intent.setAction(Intent.ACTION_VIEW);
 			startActivity(intent);
 		}
+	}
+
+
+
+	/**
+	 * InitApplicationLoaderの生成
+	 */
+	@Override
+	public Loader<String> onCreateLoader(int id, Bundle bundle) {
+		// プログレスダイアログの生成
+		mProgress = new ProgressDialog(getApplication());
+		mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		mProgress.setMessage(getResources().getString(R.string.init_application));
+		mProgress.show();
+		
+		InitApplicationLoader loader = new InitApplicationLoader(MixtureActivity.this);
+		return loader;
+	}
+
+
+
+	/**
+	 * InitApplicationLoaderのコールバック処理
+	 */
+	@Override
+	public void onLoadFinished(Loader<String> loader, String result) {
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		
+		// 定数の初期化
+		Editor editor = sp.edit();
+		editor.putBoolean("INIT_APPLICATION", true);
+		editor.putInt("LEVEL", 1);	// level
+		editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
+		editor.putBoolean("MASTER", false);	// 調合師の極意所持
+		editor.putBoolean("VIP", false);	// 特別待遇カードの所持
+		editor.putInt("MONEY", 0);	// 所持金
+		editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
+		editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
+		editor.putBoolean("FIRST_MIX", false);	// はじめてのミックスイン
+		editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
+		editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
+		editor.commit();
+		
+		// プログレスダイアログの消去
+		mProgress.dismiss();
+							
+		// Welcomeウィンドウの表示
+		WelcomeDialog dialog = new WelcomeDialog();
+		FragmentManager manager = this.getFragmentManager();
+		dialog.show(manager, "welcome");
+	}
+
+
+
+	@Override
+	public void onLoaderReset(Loader<String> arg0) {
+		// TODO Auto-generated method stub
 	}
 }

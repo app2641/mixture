@@ -57,8 +57,6 @@ public class OffLineShopBuyDialog extends DialogFragment {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				// 個数を選択した時
 				selectedSpinnerItem(parent, view, position, id);
-				Spinner spinner = (Spinner) parent;
-				String selected = (String) spinner.getSelectedItem();
 			}
 
 			@Override
@@ -75,8 +73,12 @@ public class OffLineShopBuyDialog extends DialogFragment {
 		String calculate = buildCalculateText(money, price, 1);
 		calculate_view.setText(calculate);
 		
+		// 残高テキストビューの残高を表示する
+		TextView balance_view = (TextView) view.findViewById(R.id.dialog_shop_buy_balance_text);
+		updateBalanceTextView(balance_view, money, price, 1);
 		
 		
+		// ダイアログの生成
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle(R.string.dialog_offline_shop_buy_title);
 		builder.setView(view);
@@ -114,23 +116,7 @@ public class OffLineShopBuyDialog extends DialogFragment {
 		
 		// 残高テキストビューの更新
 		TextView balance_view = (TextView) view.findViewById(R.id.dialog_shop_buy_balance_text);
-		int balance = money - (price * Integer.parseInt(selected));
-		String balance_text = String.valueOf(balance);
-		balance_view.setText(balance_text);
-		
-		// 残高がマイナスの場合はTextColorを変更する
-		boolean enable_flag = true;
-		if (balance < 0) {
-			balance_view.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
-			enable_flag = false;
-			
-		} else {
-			balance_view.setTextColor(getActivity().getResources().getColor(android.R.color.black));
-		}
-		
-		// ポジティブボタンのenable/disableをコールバック
-		mCallbacks = (DialogCallback) getTargetFragment();
-		mCallbacks.setPositiveButtonEnabled(enable_flag);
+		updateBalanceTextView(balance_view, money, price, Integer.parseInt(selected));
 	}
 	
 	
@@ -149,11 +135,27 @@ public class OffLineShopBuyDialog extends DialogFragment {
 	
 	
 	/**
-	 * 素材購入後の残高を生成する
+	 * 素材購入の残高ビューを更新する
 	 */
-	public int buildBalanceInteger (TextView view, int money, int price, int qty)
+	public void updateBalanceTextView (TextView balance_view, int money, int price, int qty)
 	{
-		return 0;
+		int balance = money - (price * qty);
+		String balance_text = String.valueOf(balance);
+		balance_view.setText(balance_text);
+		
+		// 残高がマイナスの場合はTextColorを変更する
+		boolean enable_flag = true;
+		if (balance < 0) {
+			balance_view.setTextColor(getActivity().getResources().getColor(android.R.color.holo_red_light));
+			enable_flag = false;
+			
+		} else {
+			balance_view.setTextColor(getActivity().getResources().getColor(android.R.color.black));
+		}
+		
+		// ポジティブボタンのenable/disableをコールバック
+		mCallbacks = (DialogCallback) getTargetFragment();
+		mCallbacks.setPositiveButtonEnabled(enable_flag);
 	}
 	
 	

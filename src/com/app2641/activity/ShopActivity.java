@@ -1,30 +1,19 @@
 package com.app2641.activity;
 
-import java.util.Locale;
-
 import net.simonvt.menudrawer.MenuDrawer;
 
+import com.app2641.fragment.OffLineShopListFragment;
+import com.app2641.fragment.OnLineShopListFragment;
 import com.app2641.mixture.R;
-import com.app2641.mixture.R.id;
-import com.app2641.mixture.R.layout;
-import com.app2641.mixture.R.menu;
-import com.app2641.mixture.R.string;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class ShopActivity extends MixtureFragmentActivity implements ActionBar.TabListener {
@@ -159,10 +148,21 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
-			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			fragment.setArguments(args);
+			
+			Fragment fragment = null;
+			
+			switch (position) {
+			case 0:
+				// オフラインショップリスト
+				fragment = new OffLineShopListFragment();
+				break;
+				
+			case 1:
+				// オンラインショップリスト
+				fragment = new OnLineShopListFragment();
+				break;
+			}
+			
 			return fragment;
 		}
 		
@@ -173,8 +173,8 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 		 */
 		@Override
 		public int getCount() {
-			// Show 3 total pages.
-			return 3;
+			// Show 2 total pages.
+			return 2;
 		}
 
 		
@@ -183,46 +183,14 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 		 */
 		@Override
 		public CharSequence getPageTitle(int position) {
-			Locale l = Locale.getDefault();
 			switch (position) {
 			case 0:
-				return getString(R.string.title_section1).toUpperCase(l);
+				return getString(R.string.activity_shop_title_offline);
 			case 1:
-				return getString(R.string.title_section2).toUpperCase(l);
-			case 2:
-				return getString(R.string.title_section3).toUpperCase(l);
+				return getString(R.string.activity_shop_title_online);
 			}
+			
 			return null;
 		}
 	}
-
-	
-	
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-
-		public DummySectionFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_shop_dummy,
-					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
-			return rootView;
-		}
-	}
-
 }

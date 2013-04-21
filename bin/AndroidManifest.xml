@@ -21,7 +21,8 @@
         <!-- StatusActivity -->
         <activity
             android:name="com.app2641.activity.StatusActivity"
-            android:label="@string/activity_status_title" >
+            android:label="@string/activity_status_title"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -34,6 +35,7 @@
         <activity
             android:name="com.app2641.activity.NotFoundScanAppActivity"
             android:label="@string/activity_not_found_scan_app_title"
+            android:screenOrientation="portrait"
         ></activity>
         
         
@@ -42,6 +44,7 @@
         <activity
             android:name="com.app2641.activity.ScanResultActivity"
             android:label="@string/activity_scan_result_title"
+            android:screenOrientation="portrait"
         ></activity>
         
         
@@ -49,7 +52,8 @@
         <!-- ShopActivity -->
         <activity 
         	android:name="com.app2641.activity.ShopActivity"
-        	android:label="@string/activity_status_title">
+        	android:label="@string/activity_status_title"
+        	android:screenOrientation="portrait">
             
         </activity>
         
@@ -58,7 +62,8 @@
         <!-- CollectionActivity -->
         <activity 
         	android:name="com.app2641.activity.CollectionActivity"
-        	android:label="@string/activity_collection_title">
+        	android:label="@string/activity_collection_title"
+        	android:screenOrientation="portrait">
             
         </activity>
         

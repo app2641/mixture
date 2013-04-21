@@ -1,44 +1,39 @@
 package com.app2641.fragment;
 
-import com.app2641.adapter.OffLineShopListAdapter;
-import com.app2641.dialog.OffLineShopBuyDialog;
-import com.app2641.loader.OffLineShopListLoader;
+import com.app2641.adapter.OnLineShopListAdapter;
+import com.app2641.loader.OnLineShopListLoader;
 import com.app2641.mixture.R;
 
-import android.support.v4.app.ListFragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ListFragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class OffLineShopListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>,
-	OffLineShopBuyDialog.DialogCallback {
+public class OnLineShopListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-	private OffLineShopListAdapter mAdapter;
+	private OnLineShopListAdapter mAdapter;
 	
-	private OffLineShopBuyDialog mDialog;
+	private OnLineShopListLoader mLoader;
+	
 	
 	
 	/**
 	 * コンストラクタ
 	 */
-	public OffLineShopListFragment ()
+	public OnLineShopListFragment ()
 	{
 		
 	}
+	
 	
 	
 	@Override
@@ -56,7 +51,7 @@ public class OffLineShopListFragment extends ListFragment implements LoaderManag
 		super.onActivityCreated(savedInstanceState);
 		
 		// Adapterにレイアウト情報をセット
-		mAdapter = new OffLineShopListAdapter(getActivity().getApplicationContext(), null);
+		mAdapter = new OnLineShopListAdapter(getActivity().getApplicationContext(), null);
 		
 		// Loaderの初期化
 		getLoaderManager().initLoader(0, null, this);
@@ -85,22 +80,40 @@ public class OffLineShopListFragment extends ListFragment implements LoaderManag
 					
 				} else {
 					// 現在の所持金を取得
-					SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-					int money = sp.getInt("MONEY", 0);
-					
-					Bundle bundle = new Bundle();
-					bundle.putInt("_id", cursor.getInt(cursor.getColumnIndex("_id")));
-					bundle.putString("name", cursor.getString(cursor.getColumnIndex("name")));
-					bundle.putInt("price", cursor.getInt(cursor.getColumnIndex("price")));
-					bundle.putInt("money", money);
-					
-					// 商品購入ダイアログの表示					
-					mDialog = new OffLineShopBuyDialog();
-					mDialog.setArguments(bundle);
-					mDialog.show(getFragmentManager(), "offline_shop_buy");
+//					SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+//					int money = sp.getInt("MONEY", 0);
+//					
+//					Bundle bundle = new Bundle();
+//					bundle.putInt("_id", cursor.getInt(cursor.getColumnIndex("_id")));
+//					bundle.putString("name", cursor.getString(cursor.getColumnIndex("name")));
+//					bundle.putInt("price", cursor.getInt(cursor.getColumnIndex("price")));
+//					bundle.putInt("money", money);
+//					
+//					// 商品購入ダイアログの表示					
+//					mDialog = new OffLineShopBuyDialog();
+//					mDialog.setArguments(bundle);
+//					mDialog.show(getFragmentManager(), "offline_shop_buy");
 				}
 			}
 		});
+	}
+	
+	
+	
+	@Override
+	public void setEmptyText (CharSequence text) {
+		TextView empty_view = (TextView) getListView().getEmptyView();
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+		int level = sp.getInt("LEVEL", 1);
+		
+		// ショップリストのEmptyText設定
+		if (level == 1) {
+			// ショップ利用レベルに達していない場合
+			empty_view.setText(R.string.fragment_shop_disable_error);
+		} else {
+			// ショップで購入できる素材がない場合
+			empty_view.setText(R.string.fragment_shop_none_list_error);
+		}
 	}
 	
 	
@@ -119,7 +132,7 @@ public class OffLineShopListFragment extends ListFragment implements LoaderManag
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
 		// CursorLoaderの生成
-		return new OffLineShopListLoader(getActivity().getApplicationContext());
+		return new OnLineShopListLoader(getActivity().getApplicationContext());
 	}
 
 	@Override
@@ -131,34 +144,5 @@ public class OffLineShopListFragment extends ListFragment implements LoaderManag
 	@Override
 	public void onLoaderReset(Loader<Cursor> arg0) {
 		mAdapter.swapCursor(null);
-	}
-
-
-
-	/**
-	 * 購入ダイアログで購入ボタンを押した処理
-	 */
-	@Override
-	public void onClickPositiveButton(Bundle bundle) {
-		Dialog dialog = mDialog.getDialog();
-		
-		if (dialog.isShowing()) {
-			
-		}
-	}
-
-
-
-	/**
-	 * 購入ダイアログにて個数スピナーで個数選択後に残高を計算。購入できるかどうか
-	 */
-	@Override
-	public void setPositiveButtonEnabled(boolean flag) {
-		AlertDialog dialog = (AlertDialog) mDialog.getDialog();
-		
-		if (dialog.isShowing()) {
-			Button button = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
-			button.setEnabled(flag);
-		}
 	}
 }
