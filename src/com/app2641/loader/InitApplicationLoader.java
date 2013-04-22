@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.app2641.model.DatabaseHelper;
 
+import android.content.AsyncTaskLoader;
 import android.content.Context;
-import android.support.v4.content.AsyncTaskLoader;
 
 public class InitApplicationLoader extends AsyncTaskLoader<String> {
 	

@@ -2,31 +2,40 @@ package com.app2641.activity;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
+import com.app2641.dialog.WelcomeDialog;
+import com.app2641.loader.InitApplicationLoader;
 import com.app2641.mixture.R;
 import com.app2641.model.DatabaseHelper;
 import com.app2641.model.ItemModel;
 import com.app2641.model.MaterialModel;
 
+import android.app.ProgressDialog;
+import android.app.LoaderManager.LoaderCallbacks;
+import android.content.Loader;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.TextView;
 
 
-public class StatusActivity extends MixtureActivity {
+public class StatusActivity extends MixtureActivity implements LoaderCallbacks<String> {
 
 	protected String mActivityName = "status";
 	
 	public MenuDrawer mMenuDrawer;
+	
+	// アプリ初期化中に表示するプログレスバー
+	private ProgressDialog mProgress;
 	
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
 		
 		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
 		mMenuDrawer.setContentView(R.layout.activity_status);
@@ -45,8 +54,33 @@ public class StatusActivity extends MixtureActivity {
 		// MainMenuのOnClickListenerを初期化する
 		initMainMenuOnClickListeners();
 		
-		// Viewの構築
-		initViews();
+		
+		// アプリケーション初期化処理
+		initApplication();
+	}
+	
+	
+	
+	/**
+	 * アプリケーション初期化処理
+	 */
+	public void initApplication ()
+	{
+		// 初期化フラグの定数を取得する
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		boolean init = sp.getBoolean("INIT_APPLICATION", false);
+						
+		if (init == false) {
+			// InitApplicationLoaderの初期化
+			getLoaderManager().initLoader(0, null, this);
+			
+			// Welcomeウィンドウの表示
+			WelcomeDialog dialog = new WelcomeDialog();
+			dialog.show(getFragmentManager(), "welcome");
+			
+		} else {
+			initViews();
+		}
 	}
 	
 	
@@ -142,5 +176,71 @@ public class StatusActivity extends MixtureActivity {
 		TextView item_experience_view = (TextView) findViewById(R.id.status_total_get_item);
 		String item_text = String.valueOf(total_experience_item) + "/" + String.valueOf(total_item);
 		item_experience_view.setText(item_text);
+	}
+
+
+	
+	/**
+	 * InitApplicationLoaderの生成
+	 */
+	@Override
+	public Loader<String> onCreateLoader (int id, Bundle bundle)
+	{
+		// プログレスダイアログの生成
+		mProgress = new ProgressDialog(this);
+		mProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+		mProgress.setMessage(getResources().getString(R.string.init_application));
+		mProgress.show();
+				
+		InitApplicationLoader loader = new InitApplicationLoader(getApplicationContext());
+		loader.forceLoad();
+		return loader;
+	}
+	
+	
+
+	@Override
+	public void onLoadFinished(Loader<String> loader, String result)
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		
+		// 定数の初期化
+		Editor editor = sp.edit();
+		editor.putBoolean("INIT_APPLICATION", true);
+		
+		// 基本情報
+		editor.putInt("LEVEL", 1);	// level
+		editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
+		editor.putBoolean("MASTER", false);	// 調合師の極意所持
+		editor.putBoolean("VIP", false);	// 特別待遇カードの所持
+		editor.putInt("MONEY", 0);	// 所持金
+		
+		// イベントフラグ
+		editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
+		editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
+		editor.putBoolean("FIRST_MIX", false);	// はじめてのミックスイン
+		editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
+		editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
+		
+		// 成績
+		editor.putInt("TOTAL_SCAN", 0); // 総スキャン回数
+		editor.putInt("TOTAL_RARE", 0); // 総レアスキャン回数
+		editor.putInt("TOTAL_MIXIN", 0); // 総ミックスイン回数
+		editor.putInt("TOTAL_EXP", 0);  // 獲得総経験値
+		editor.putInt("TOTAL_MONEY", 0); // 獲得総金額
+		editor.commit();
+		
+		initViews();
+		
+		// プログレスダイアログの消去
+		if (mProgress.isShowing()) {
+			mProgress.dismiss();
+		}
+	}
+
+
+
+	@Override
+	public void onLoaderReset(Loader<String> loader) {
 	}
 }

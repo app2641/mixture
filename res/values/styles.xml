@@ -108,8 +108,9 @@
     <!-- ステータス画面 値テキストビュー -->
     <style name="status_player_value_text" parent="common_width_parent_height_content_layout">
         <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:paddingRight">7dp</item>
         <item name="android:gravity">right</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textIsSelectable">false</item>
     </style>
     
