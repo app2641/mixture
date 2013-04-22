@@ -367,8 +367,7 @@ public class MixtureActivity extends Activity implements OnClickListener, Loader
 		mProgress.setMessage(getResources().getString(R.string.init_application));
 		mProgress.show();
 		
-		InitApplicationLoader loader = new InitApplicationLoader(MixtureActivity.this);
-		return loader;
+		return new InitApplicationLoader(getApplicationContext());
 	}
 
 
@@ -383,20 +382,33 @@ public class MixtureActivity extends Activity implements OnClickListener, Loader
 		// 定数の初期化
 		Editor editor = sp.edit();
 		editor.putBoolean("INIT_APPLICATION", true);
+		
+		// 基本情報
 		editor.putInt("LEVEL", 1);	// level
 		editor.putInt("EXP", 200); // 次のレベルアップまでの残りexp
 		editor.putBoolean("MASTER", false);	// 調合師の極意所持
 		editor.putBoolean("VIP", false);	// 特別待遇カードの所持
 		editor.putInt("MONEY", 0);	// 所持金
+		
+		// イベントフラグ
 		editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
 		editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
 		editor.putBoolean("FIRST_MIX", false);	// はじめてのミックスイン
 		editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
 		editor.putBoolean("FIRST_SHOP", false);	// ショップ営業開始
+		
+		// 成績
+		editor.putInt("TOTAL_SCAN", 0); // 総スキャン回数
+		editor.putInt("TOTAL_RARE", 0); // 総レアスキャン回数
+		editor.putInt("TOTAL_MIXIN", 0); // 総ミックスイン回数
+		editor.putInt("TOTAL_EXP", 0);  // 獲得総経験値
+		editor.putInt("TOTAL_MONEY", 0); // 獲得総金額
 		editor.commit();
 		
 		// プログレスダイアログの消去
-		mProgress.dismiss();
+		if (mProgress.isShowing()) {
+			mProgress.dismiss();
+		}
 							
 		// Welcomeウィンドウの表示
 		WelcomeDialog dialog = new WelcomeDialog();
@@ -408,6 +420,5 @@ public class MixtureActivity extends Activity implements OnClickListener, Loader
 
 	@Override
 	public void onLoaderReset(Loader<String> arg0) {
-		// TODO Auto-generated method stub
 	}
 }

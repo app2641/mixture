@@ -9,13 +9,9 @@ import android.support.v4.content.AsyncTaskLoader;
 
 public class InitApplicationLoader extends AsyncTaskLoader<String> {
 	
-	private Context mContext;
-	
-	
 
 	public InitApplicationLoader(Context context) {
 		super(context);
-		mContext = context;
 	}
 
 
@@ -35,7 +31,7 @@ public class InitApplicationLoader extends AsyncTaskLoader<String> {
 	 */
 	public void initDatabase ()
 	{
-		DatabaseHelper db = new DatabaseHelper(mContext);
+		DatabaseHelper db = new DatabaseHelper(getContext());
 		
 		try {
 			db.init();

@@ -96,6 +96,25 @@
     
     
     
+    <!-- StatusActivity -->
+    <!-- ステータス画面ヘッダーテキストビュー -->
+    <style name="status_accent_header_text" parent="common_width_parent_height_content_layout">
+        <item name="android:background">@drawable/accent_bottom_border</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:textColor">@color/main_color</item>
+    </style>
+    
+    <!-- ステータス画面 値テキストビュー -->
+    <style name="status_player_value_text" parent="common_width_parent_height_content_layout">
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:gravity">right</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textIsSelectable">false</item>
+    </style>
+    
+    
+    
     <!-- NotFoundScanAppActivity -->
     <style name="not_found_scan_app_text" parent="common_wrap_content_layout">
         <item name="android:gravity">center</item>

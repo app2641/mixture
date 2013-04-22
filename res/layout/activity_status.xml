@@ -1,15 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
     
-
-    <Button
-        android:id="@+id/leftBtn"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Left Menu" />
-</LinearLayout>
+	<LinearLayout
+	    style="@style/common_match_parent_layout"
+	    android:orientation="vertical"
+	    android:padding="20dp">
+	    
+	    <!-- 現在の調合師役職 -->
+	    <TextView
+	        style="@style/common_width_parent_height_content_layout"
+	        android:id="@+id/status_preparation_post_text"
+	        android:layout_marginBottom="20dp"
+	        android:gravity="center_horizontal"
+	        android:textSize="20sp"
+	        android:textColor="@color/green_color"
+	        android:text="初心者調合師"
+	        android:textIsSelectable="false" />
+	    
+	    
+	    <!-- 現在のレベル -->
+	    <TextView 
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_preparation_level"/>
+	    <TextView 
+	        android:id="@+id/status_preparation_level"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- 次のレベルまでに必要な経験値 -->
+	    <TextView 
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_next_level_exp"/>
+	    <TextView
+	        android:id="@+id/status_next_level_exp"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- 総獲得経験値 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_exp"/>
+	    <TextView 
+	        android:id="@+id/status_total_exp"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- 総獲得金額 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_money"/>
+	    <TextView
+	        android:id="@+id/status_total_money"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- スキャン回数 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_scan"/>
+	    <TextView
+	        android:id="@+id/status_total_scan"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- レアスキャン回数 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_rare_scan"/>
+	    <TextView
+	        android:id="@+id/status_total_rare_scan"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- ミックスイン回数 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_mixin"/>
+	    <TextView
+	        android:id="@+id/status_total_mixin"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- 今までに取得した素材数 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_get_material"/>
+	    <TextView
+	        android:id="@+id/status_total_get_material"
+	        style="@style/status_player_value_text" />
+	    
+	    <!-- 今までに生成したアイテム数 -->
+	    <TextView
+	        style="@style/status_accent_header_text"
+	        android:text="@string/status_total_get_item"/>
+	    <TextView
+	        android:id="@+id/status_total_get_item"
+	        style="@style/status_player_value_text" />
+	    
+	    
+	</LinearLayout>
+    
+</ScrollView>

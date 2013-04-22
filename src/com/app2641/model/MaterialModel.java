@@ -60,4 +60,30 @@ public class MaterialModel extends AbstractModel {
 		this.executeSQL(db, sql, new String[]{String.valueOf(qty), String.valueOf(id)});
 	}
 	
+	
+	
+	/**
+	 * 存在する素材idを全取得する
+	 */
+	public Cursor countMaterials (SQLiteDatabase db)
+	{
+		String sql = "select material._id from material";
+		Cursor cursor = this.executeSQL(db, sql, new String[]{});
+		
+		return cursor;
+	}
+	
+	
+	
+	/**
+	 * 取得経験のある素材idを全取得する
+	 */
+	public Cursor countExperienceMaterial (SQLiteDatabase db)
+	{
+		String sql = "select material._id from material " +
+			"where material.experience = ?";
+		Cursor cursor = this.executeSQL(db, sql, new String[]{"1"});
+		
+		return cursor;
+	}
 }

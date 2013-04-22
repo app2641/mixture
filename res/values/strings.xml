@@ -17,6 +17,15 @@
     <!-- package Activity -->
     <!-- Status -->
     <string name="activity_status_title">ステータス</string>
+    <string name="status_preparation_level">現在の調合師レベル</string>
+    <string name="status_next_level_exp">次の調合師レベルまでに必要な経験値</string>
+    <string name="status_total_exp">今までに獲得した総経験値</string>
+    <string name="status_total_money">今までに獲得した総額</string>
+    <string name="status_total_scan">今までの総スキャン回数</string>
+    <string name="status_total_rare_scan">今までの総レアスキャン回数</string>
+    <string name="status_total_mixin">今までの総ミックスイン回数</string>
+    <string name="status_total_get_material">今までに取得した素材数</string>
+    <string name="status_total_get_item">今までに生成したアイテム数</string>
     
     
     
