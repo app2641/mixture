@@ -13,7 +13,6 @@
     <string name="main_menu_collection">コレクション</string>
     <string name="main_menu_status">ステータス</string>
 
-    
     <!-- package Activity -->
     <!-- Status -->
     <string name="activity_status_title">ステータス</string>
@@ -26,15 +25,12 @@
     <string name="status_total_mixin">今までの総ミックスイン回数</string>
     <string name="status_total_get_material">今までに取得した素材数</string>
     <string name="status_total_get_item">今までに生成したアイテム数</string>
-    
-    
-    
+
     <!-- NotFoundScanApp -->
     <string name="activity_not_found_scan_app_title">Mixture</string>
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーアプリが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
     <string name="download_scan_app">GooglePlayからダウンロード</string>
-    
-    
+
     <!-- ScanResult -->
     <string name="activity_scan_result_title">スキャンに成功しました！</string>
     <string name="scan_result_header_information">Information</string>
@@ -42,8 +38,6 @@
     <string name="scan_result_button_get_material">素材を取得</string>
     <string name="scan_result_button_sale_shop">ショップへ売却</string>
 
-    
-    
     <!-- Shop -->
     <string name="activity_shop_title">ショップ</string>
     <string name="activity_shop_title_offline">オフライン</string>
@@ -56,19 +50,10 @@
     <string name="dialog_shop_buy_cancel_button">キャンセル</string>
     <string name="dialog_shop_max_qty_error_title">Caution!</string>
     <string name="dialog_shop_max_qty_error_message">選択した素材は既に限度数所持をしているため購入することはできません。\n別の素材を選択してください。</string>
-    
-    
-    
+
     <!-- Collection -->
     <string name="activity_collection_title">コレクション</string>
-    
-    
-    
-    
-    
-    
-    
-    
+
     <!-- title -->
     <string name="title_activity_network_error">ネットワークエラー</string>
     <string name="title_activity_dashboard">mixture</string>
@@ -83,7 +68,6 @@
 
     <!-- Dashoard Activity -->
     <string name="init">初期化中....</string>
-    
     <string name="get_material">素材を取得</string>
     <string name="sell_shop">ショップへ売却</string>
 
@@ -124,5 +108,6 @@
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
+    <string name="title_activity_mix_in">MixInActivity</string>
 
 </resources>

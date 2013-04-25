@@ -63,7 +63,7 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 	public void onRestart ()
 	{
 		final int drawerState = mMenuDrawer.getDrawerState();
-        if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
+        if (drawerState != MenuDrawer.STATE_OPEN && drawerState != MenuDrawer.STATE_OPENING) {
             mMenuDrawer.closeMenu();
         }
         
@@ -247,7 +247,13 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 	 */
 	public void dispatchMixinActivity (View view)
 	{
-		
+		if (this.getActivityName() == "mixin") {
+			mMenuDrawer.closeMenu();
+		} else {
+			Intent intent = new Intent(this, MixInActivity.class);
+			intent.setAction(Intent.ACTION_VIEW);
+			startActivity(intent);
+		}
 	}
 	
 	
