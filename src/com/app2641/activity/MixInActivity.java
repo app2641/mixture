@@ -1,5 +1,7 @@
 package com.app2641.activity;
 
+import net.simonvt.menudrawer.MenuDrawer;
+
 import com.app2641.mixture.R;
 
 import android.app.ActionBar;
@@ -14,36 +16,66 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class MixInActivity extends FragmentActivity implements
-		ActionBar.OnNavigationListener {
+public class MixInActivity extends MixtureFragmentActivity implements ActionBar.OnNavigationListener {
 
+	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * current dropdown position.
 	 */
 	private static final String STATE_SELECTED_NAVIGATION_ITEM = "selected_navigation_item";
 
+	
+	
+	public MenuDrawer mMenuDrawer;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_mix_in);
+		
+		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
+		mMenuDrawer.setContentView(R.layout.activity_mixin);
+		mMenuDrawer.setMenuView(R.layout.main_menu);
+		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
+		super.mMenuDrawer = mMenuDrawer;
+		super.mActivityName = "mixin";
+		
+		// StatusMainMenuの背景色を変更する
+		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_mixin_item);
+		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
+		
+		// MainMenuのOnClickListenerを初期化する
+		initMainMenuOnClickListeners();
+		
 
 		// Set up the action bar to show a dropdown list.
 		final ActionBar actionBar = getActionBar();
 		actionBar.setDisplayShowTitleEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		
+		// Homeアイコンを表示する
+		actionBar.setDisplayHomeAsUpEnabled(true);
 
 		// Set up the dropdown list navigation in the action bar.
 		actionBar.setListNavigationCallbacks(
-		// Specify a SpinnerAdapter to populate the dropdown list.
+				// Specify a SpinnerAdapter to populate the dropdown list.
+				// アクションバーリストに表示するテキストをAdapterに追加する
 				new ArrayAdapter<String>(actionBar.getThemedContext(),
 						android.R.layout.simple_list_item_1,
 						android.R.id.text1, new String[] {
-								getString(R.string.title_section1),
-								getString(R.string.title_section2),
-								getString(R.string.title_section3), }), this);
+								getString(R.string.menu_material_s),
+								getString(R.string.menu_material_a),
+								getString(R.string.menu_material_b),
+								getString(R.string.menu_material_c),
+								getString(R.string.menu_material_d)}), this);
 	}
 
+	
+	
+	/**
+	 * アクティビティが再初期化される前に呼び出される
+	 */
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		// Restore the previously serialized current dropdown position.
@@ -67,6 +99,11 @@ public class MixInActivity extends FragmentActivity implements
 		return true;
 	}
 
+	
+	
+	/**
+	 * アクションバーリストを選択した時の処理
+	 */
 	@Override
 	public boolean onNavigationItemSelected(int position, long id) {
 		// When the given dropdown item is selected, show its contents in the

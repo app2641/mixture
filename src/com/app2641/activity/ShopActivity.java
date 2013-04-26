@@ -18,9 +18,9 @@ import android.widget.TextView;
 
 public class ShopActivity extends MixtureFragmentActivity implements ActionBar.TabListener {
 
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	public SectionsPagerAdapter mSectionsPagerAdapter;
 
-	ViewPager mViewPager;
+	public ViewPager mViewPager;
 	
 	public MenuDrawer mMenuDrawer;
 	

@@ -37,7 +37,6 @@ public class OffLineShopListFragment extends ListFragment implements LoaderManag
 	 */
 	public OffLineShopListFragment ()
 	{
-		
 	}
 	
 	

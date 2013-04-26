@@ -93,7 +93,7 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	@Override
 	public void onBackPressed() {
         final int drawerState = mMenuDrawer.getDrawerState();
-        if (drawerState != MenuDrawer.STATE_OPEN && drawerState != MenuDrawer.STATE_OPENING) {
+        if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
             mMenuDrawer.closeMenu();
             return;
         }

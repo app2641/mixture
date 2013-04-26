@@ -12,6 +12,19 @@
     <string name="main_menu_shop">ショップ</string>
     <string name="main_menu_collection">コレクション</string>
     <string name="main_menu_status">ステータス</string>
+    
+    <!-- Menu -->
+    <string name="menu_item_s">アイテム クラスS</string>
+    <string name="menu_item_a">アイテム クラスA</string>
+    <string name="menu_item_b">アイテム クラスB</string>
+    <string name="menu_item_c">アイテム クラスC</string>
+    <string name="menu_item_d">アイテム クラスD</string>
+    <string name="menu_material_s">素材 クラスS</string>
+    <string name="menu_material_a">素材 クラスA</string>
+    <string name="menu_material_b">素材 クラスB</string>
+    <string name="menu_material_c">素材 クラスC</string>
+    <string name="menu_material_d">素材 クラスD</string>
+    
 
     <!-- package Activity -->
     <!-- Status -->
@@ -37,6 +50,9 @@
     <string name="scan_result_header_description">Description</string>
     <string name="scan_result_button_get_material">素材を取得</string>
     <string name="scan_result_button_sale_shop">ショップへ売却</string>
+    
+    <!-- Mixin -->
+    <string name="activity_mixin_title">ミックスイン</string>
 
     <!-- Shop -->
     <string name="activity_shop_title">ショップ</string>
@@ -53,6 +69,12 @@
 
     <!-- Collection -->
     <string name="activity_collection_title">コレクション</string>
+    
+    
+    
+    
+    
+    
 
     <!-- title -->
     <string name="title_activity_network_error">ネットワークエラー</string>

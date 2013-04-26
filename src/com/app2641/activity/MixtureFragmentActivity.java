@@ -63,7 +63,7 @@ public class MixtureFragmentActivity extends FragmentActivity implements OnClick
 	public void onRestart ()
 	{
 		final int drawerState = mMenuDrawer.getDrawerState();
-        if (drawerState != MenuDrawer.STATE_OPEN && drawerState != MenuDrawer.STATE_OPENING) {
+        if (drawerState == MenuDrawer.STATE_OPEN || drawerState == MenuDrawer.STATE_OPENING) {
             mMenuDrawer.closeMenu();
         }
         
