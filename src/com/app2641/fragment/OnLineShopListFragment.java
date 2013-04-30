@@ -1,6 +1,7 @@
 package com.app2641.fragment;
 
 import com.app2641.adapter.OnLineShopListAdapter;
+import com.app2641.dialog.ShopMaxQtyErrorDialog;
 import com.app2641.loader.OnLineShopListLoader;
 import com.app2641.mixture.R;
 
@@ -75,7 +76,8 @@ public class OnLineShopListFragment extends ListFragment implements LoaderManage
 
 				if (qty == max) {
 					// 既に限度数所持をしている場合は買えないよダイアログ
-					
+					ShopMaxQtyErrorDialog dialog = new ShopMaxQtyErrorDialog();
+					dialog.show(getFragmentManager(), "max_qty");
 					
 				} else {
 					// 現在の所持金を取得

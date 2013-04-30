@@ -95,7 +95,7 @@ public class MixInActivity extends MixtureFragmentActivity implements ActionBar.
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.mix_in, menu);
+		getMenuInflater().inflate(R.menu.acitvity_mixin, menu);
 		return true;
 	}
 

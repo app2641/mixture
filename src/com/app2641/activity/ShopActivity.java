@@ -2,6 +2,7 @@ package com.app2641.activity;
 
 import net.simonvt.menudrawer.MenuDrawer;
 
+import com.app2641.dialog.ShopHelpDialog;
 import com.app2641.fragment.OffLineShopListFragment;
 import com.app2641.fragment.OnLineShopListFragment;
 import com.app2641.mixture.R;
@@ -14,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class ShopActivity extends MixtureFragmentActivity implements ActionBar.TabListener {
@@ -38,7 +40,7 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 		super.mMenuDrawer = mMenuDrawer;
 		super.mActivityName = "shop";
 		
-		// StatusMainMenuの背景色を変更する
+		// ShopMainMenuの背景色を変更する
 		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_shop_item);
 		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
 		
@@ -94,7 +96,24 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.shop, menu);
+		getMenuInflater().inflate(R.menu.activity_shop, menu);
+		return true;
+	}
+	
+	
+	/**
+	 * オプションメニュー押下時
+	 */
+	@Override
+	public boolean onOptionsItemSelected (MenuItem item)
+	{
+		switch (item.getItemId()) {
+		case R.id.menu_shop_help:
+			// ヘルプダイアログを表示する
+			ShopHelpDialog dialog = new ShopHelpDialog();
+			dialog.show(getSupportFragmentManager(), "help_show");
+			break;
+		}
 		return true;
 	}
 	

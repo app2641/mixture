@@ -37,5 +37,13 @@
         android:text="@string/main_menu_status"
         android:drawableLeft="@drawable/main_menu_status_icon"
     />
+    
+    
+    <TextView
+        android:id="@+id/main_menu_help"
+        style="@style/main_menu_item"
+        android:layout_gravity="bottom"
+        android:text="@string/main_menu_help"
+        android:drawableLeft="@android:drawable/ic_menu_help"/>
 
 </LinearLayout>

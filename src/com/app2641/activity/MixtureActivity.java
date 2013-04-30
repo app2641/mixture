@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MixtureActivity extends Activity implements OnClickListener {
 
@@ -227,6 +228,8 @@ public class MixtureActivity extends Activity implements OnClickListener {
 				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 				intent.putExtra("SCAN_MODE", "ONE_D_MODE");
 				startActivityForResult(intent, 0);
+				
+				Toast.makeText(getApplicationContext(), R.string.toast_scan_barcode, Toast.LENGTH_SHORT).show();
 			
 			} catch (ActivityNotFoundException e) {
 				// スキャンアプリが見つからない場合はインストール画面へ遷移する

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/common_match_parent_layout">
+
+<LinearLayout 
+    style="@style/dialog_linear_layout" >
+    
+    <TextView
+        style="@style/dialog_text"
+        android:layout_marginBottom="30dp"
+        android:text="@string/dialog_help_shop_about"/>
+    
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:layout_marginBottom="5dp"
+        android:text="@string/dialog_help_shop_offline" />
+    
+    <TextView
+        style="@style/dialog_text"
+        android:layout_marginBottom="20dp"
+        android:text="@string/dialog_help_shop_about_offline"/>
+    
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:layout_marginBottom="5dp"
+        android:text="@string/dialog_help_shop_online"/>
+    
+    <TextView
+        style="@style/dialog_text"
+        android:text="@string/dialog_help_shop_about_online"/>
+    
+</LinearLayout>
+
+</ScrollView>

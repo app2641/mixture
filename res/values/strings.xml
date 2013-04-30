@@ -5,15 +5,19 @@
     <string name="app_name">Mixture</string>
     <string name="menu_settings">Settings</string>
     <string name="init_application">アプリを初期化中です</string>
-
+    
+    
     <!-- Main menu -->
     <string name="main_menu_scan">スキャン</string>
     <string name="main_menu_mixin">ミックスイン</string>
     <string name="main_menu_shop">ショップ</string>
     <string name="main_menu_collection">コレクション</string>
     <string name="main_menu_status">ステータス</string>
+    <string name="main_menu_help">メインメニューについて</string>
+    
     
     <!-- Menu -->
+    <string name="menu_help">ヘルプ</string>
     <string name="menu_item_s">アイテム クラスS</string>
     <string name="menu_item_a">アイテム クラスA</string>
     <string name="menu_item_b">アイテム クラスB</string>
@@ -24,6 +28,11 @@
     <string name="menu_material_b">素材 クラスB</string>
     <string name="menu_material_c">素材 クラスC</string>
     <string name="menu_material_d">素材 クラスD</string>
+    
+    
+    <!-- Toast -->
+    <string name="toast_scan_barcode">バーコードをスキャンして素材を取得します</string>
+    
     
 
     <!-- package Activity -->
@@ -38,6 +47,10 @@
     <string name="status_total_mixin">今までの総ミックスイン回数</string>
     <string name="status_total_get_material">今までに取得した素材数</string>
     <string name="status_total_get_item">今までに生成したアイテム数</string>
+    
+    
+    
+    
 
     <!-- NotFoundScanApp -->
     <string name="activity_not_found_scan_app_title">Mixture</string>
@@ -58,14 +71,25 @@
     <string name="activity_shop_title">ショップ</string>
     <string name="activity_shop_title_offline">オフライン</string>
     <string name="activity_shop_title_online">オンライン</string>
+    
     <string name="fragment_shop_disable_error">現在ショップを利用することはできません。ショップの利用には調合師レベル2以上が必要です。</string>
     <string name="fragment_shop_none_list_error">本日販売できる素材は見つかりませんでした。\nまた明日ご利用ください。</string>
+    
     <string name="dialog_offline_shop_buy_title">購入数を指定してください</string>
     <string name="dialog_shop_buy_qty">個数：</string>
     <string name="dialog_shop_buy_submit_button">購入</string>
     <string name="dialog_shop_buy_cancel_button">キャンセル</string>
     <string name="dialog_shop_max_qty_error_title">Caution!</string>
     <string name="dialog_shop_max_qty_error_message">選択した素材は既に限度数所持をしているため購入することはできません。\n別の素材を選択してください。</string>
+    
+    <string name="dialog_help_shop_title">ショップについて</string>
+    <string name="dialog_help_shop_about">様々な素材を購入することが出来ます。\nオフラインショップとオンラインショップの二種類のショップがあり、それぞれで購入出来る素材が異なります。品揃えはおおよそ一日で更新されるので、こまめにチェックをすることをお薦めします。</string>
+    <string name="dialog_help_shop_offline">オフラインショップ</string>
+    <string name="dialog_help_shop_online">オンラインショップ</string>
+    <string name="dialog_help_shop_about_offline">仮想通貨prで素材を購入することが出来ます。品揃えは今までに取得経験のある素材が並びます。新しい素材をどんどん取得して、品揃えを多くしていきましょう。</string>
+    <string name="dialog_help_shop_about_online">GooglePlayを経由し、現実通貨で素材を購入することが出来ます。様々な素材が品揃えとして並びます。珍しい素材が見つかるかもしれません。</string>
+    
+    
 
     <!-- Collection -->
     <string name="activity_collection_title">コレクション</string>
@@ -106,9 +130,7 @@
     <!-- Menu -->
     <string name="menu_status">ステータス</string>
     <string name="menu_important">だいじなもの</string>
-    <string name="menu_help">ヘルプ</string>
     <string name="menu_about_app">mixtureについて</string>
-    <string name="menu_rate_now">現在のレート</string>
 
     <!-- item detail -->
     <string name="item_detail_header">NOTE</string>
