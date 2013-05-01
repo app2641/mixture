@@ -34,7 +34,7 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 		
 		
 		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
-		mMenuDrawer.setContentView(R.layout.activity_shop);
+		mMenuDrawer.setContentView(R.layout.fragment_shop);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
 		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		super.mMenuDrawer = mMenuDrawer;
@@ -96,7 +96,7 @@ public class ShopActivity extends MixtureFragmentActivity implements ActionBar.T
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.activity_shop, menu);
+		getMenuInflater().inflate(R.menu.fragment_shop, menu);
 		return true;
 	}
 	

@@ -29,7 +29,7 @@ public class OffLineShopBuyDialog extends DialogFragment {
 	public Dialog onCreateDialog (Bundle savedInstanceState)
 	{
 		LayoutInflater inflater = getActivity().getLayoutInflater();
-		View view = inflater.inflate(R.layout.activity_collection, null, false);
+		View view = inflater.inflate(R.layout.fragment_collection, null, false);
 		
 		Bundle bundle = getArguments();
 		int qty = bundle.getInt("qty");

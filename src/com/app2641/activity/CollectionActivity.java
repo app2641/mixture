@@ -53,7 +53,7 @@ public class CollectionActivity extends MixtureFragmentActivity {
         super.onCreate(savedInstanceState);
         
         mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
-		mMenuDrawer.setContentView(R.layout.activity_collection);
+		mMenuDrawer.setContentView(R.layout.fragment_collection);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
 		super.mMenuDrawer = mMenuDrawer;
 		super.mActivityName = "collection";
@@ -90,7 +90,7 @@ public class CollectionActivity extends MixtureFragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_collection, menu);
+        getMenuInflater().inflate(R.menu.fragment_collection, menu);
         return true;
     }
     

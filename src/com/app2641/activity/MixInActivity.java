@@ -35,7 +35,7 @@ public class MixInActivity extends MixtureFragmentActivity implements ActionBar.
 		super.onCreate(savedInstanceState);
 		
 		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
-		mMenuDrawer.setContentView(R.layout.activity_mixin);
+		mMenuDrawer.setContentView(R.layout.fragment_mixin);
 		mMenuDrawer.setMenuView(R.layout.main_menu);
 		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
 		super.mMenuDrawer = mMenuDrawer;
@@ -95,7 +95,7 @@ public class MixInActivity extends MixtureFragmentActivity implements ActionBar.
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.acitvity_mixin, menu);
+		getMenuInflater().inflate(R.menu.fragment_mixin, menu);
 		return true;
 	}
 

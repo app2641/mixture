@@ -97,7 +97,7 @@
     
     
     
-    <!-- StatusActivity -->
+    <!-- StatusFragment -->
     <!-- ステータス画面ヘッダーテキストビュー -->
     <style name="status_accent_header_text" parent="common_width_parent_height_content_layout">
         <item name="android:background">@drawable/accent_bottom_border</item>
