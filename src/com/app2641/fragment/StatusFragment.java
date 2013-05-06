@@ -1,10 +1,12 @@
 package com.app2641.fragment;
 
+import com.app2641.mixture.MainActivity;
 import com.app2641.mixture.R;
 import com.app2641.model.DatabaseHelper;
 import com.app2641.model.ItemModel;
 import com.app2641.model.MaterialModel;
 
+import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 
 public class StatusFragment extends Fragment {
 
+	public final String MENU_STATE = "status";
 	
 	public StatusFragment ()
 	{
@@ -38,8 +41,33 @@ public class StatusFragment extends Fragment {
 	{
 		super.onActivityCreated(savedInstanceState);
 		
+		// アクションバーのナビゲーションモードを変更
+		final ActionBar actionbar = getActivity().getActionBar();
+		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		
 		
 		// Viewに値を設定
+		initView();
+	}
+	
+	
+	
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		((MainActivity) getActivity()).MENU_STATE = this.MENU_STATE;
+		
+		// Viewの再構築
+		initView();
+	}
+	
+	
+	/**
+	 * Viewを構築する
+	 */
+	public void initView ()
+	{
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
 		View view = getView();
 		

@@ -1,44 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/dialog_linear_layout" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/common_match_parent_layout" >
     
-    <TextView
-        style="@style/dialog_text_bold"
-        android:text="@string/dialog_help_dashboard_scan"
-    />
-    <TextView
-        style="@style/dialog_text"
-        android:text="@string/dialog_help_dashboard_scan_description"
-    />
+    <LinearLayout
+        style="@style/dialog_linear_layout" >
     
-    <TextView
-        style="@style/dialog_text_bold"
-        android:layout_marginTop="15dp"
-        android:text="@string/dialog_help_dashboard_mixin"
-    />
-    <TextView
-        style="@style/dialog_text"
-        android:text="@string/dialog_help_dashboard_mixin_description"
-    />
+        <!-- ヘッダーテキスト -->
+    	<TextView
+        	style="@style/dialog_text"
+        	android:layout_marginBottom="20dp"
+        	android:text="@string/dialog_main_menu_help_description" />
     
-    <TextView
-        style="@style/dialog_text_bold"
-        android:layout_marginTop="15dp"
-        android:text="@string/dialog_help_dashboard_shop"
-    />
-    <TextView
-        style="@style/dialog_text"
-        android:text="@string/dialog_help_dashboard_shop_description"
-    />
+    	
+    	<!-- スキャン -->
+    	<TextView
+        	style="@style/dialog_text_bold"
+        	android:text="@string/dialog_main_menu_help_scan"
+    	/>
+    	<TextView
+        	style="@style/dialog_text"
+        	android:text="@string/dialog_main_menu_help_scan_description"
+    	/>
     
-    <TextView
-        style="@style/dialog_text_bold"
-        android:layout_marginTop="15dp"
-        android:text="@string/dialog_help_dashboard_collection"
-    />
-    <TextView
-        style="@style/dialog_text"
-        android:text="@string/dialog_help_dashboard_collection_description"
-    />
-
-</LinearLayout>
+    	
+    	<!-- ミックスイン -->
+    	<TextView
+        	style="@style/dialog_text_bold"
+        	android:layout_marginTop="15dp"
+        	android:text="@string/dialog_main_menu_help_mixin"
+    	/>
+    	<TextView
+        	style="@style/dialog_text"
+        	android:text="@string/dialog_main_menu_help_mixin_description"
+    	/>
+    
+    	
+    	<!-- ショップ -->
+    	<TextView
+        	style="@style/dialog_text_bold"
+        	android:layout_marginTop="15dp"
+        	android:text="@string/dialog_main_menu_help_shop"
+    	/>
+    	<TextView
+        	style="@style/dialog_text"
+        	android:text="@string/dialog_main_menu_help_shop_description"
+    	/>
+    
+    	
+    	<!-- コレクション -->
+    	<TextView
+        	style="@style/dialog_text_bold"
+        	android:layout_marginTop="15dp"
+        	android:text="@string/dialog_main_menu_help_collection"
+    	/>
+    	<TextView
+        	style="@style/dialog_text"
+        	android:text="@string/dialog_main_menu_help_collection_description"
+    	/>
+    	
+    	
+    	<!-- ステータス -->
+    	<TextView
+    	    style="@style/dialog_text_bold"
+    	    android:layout_marginTop="15dp"
+    	    android:text="@string/dialog_main_menu_help_status"/>
+    	<TextView
+        	style="@style/dialog_text"
+        	android:text="@string/dialog_main_menu_help_status_description"
+    	/>
+    
+    </LinearLayout>
+</ScrollView>

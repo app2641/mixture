@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/common_wrap_content_layout"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
     android:src="@drawable/scan_result_rare_batch" />

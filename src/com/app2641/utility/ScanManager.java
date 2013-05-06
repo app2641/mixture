@@ -10,6 +10,7 @@ import com.app2641.model.MaterialModel;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
@@ -37,6 +38,13 @@ public class ScanManager {
 	{
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mContext);
 		boolean master = sp.getBoolean("MASTER", false);
+		boolean first_scan = sp.getBoolean("FIRST_SCAN", false);
+		
+		// first_scanフラグがfalseの場合はレアスキャンさせない。
+		if (first_scan == false) {
+			return false;
+		}
+		
 		
 		// レアスキャンの確率
 		// 調合師の極意を所持している場合は15% 不所持ならば5%
@@ -93,6 +101,9 @@ public class ScanManager {
 						id = code_cursor.getInt(code_cursor.getColumnIndex("rare_id"));
 					}
 					
+					// TOTAL_RARE定数を更新
+					_updateTotalConstant("TOTAL_RARE");
+					
 				} else {
 					// 通常スキャンの場合
 					if (code_cursor.isNull(code_cursor.getColumnIndex("material_id"))) {
@@ -109,6 +120,9 @@ public class ScanManager {
 					} else {
 						id = code_cursor.getInt(code_cursor.getColumnIndex("material_id"));
 					}
+					
+					// TOTAL_SCAN定数を更新
+					_updateTotalConstant("TOTAL_SCAN");
 				}
 			} else {
 				String sql;
@@ -121,12 +135,18 @@ public class ScanManager {
 						"values (?, ?, ?);";
 					bind = new String[]{code, String.valueOf(level), String.valueOf(id)};
 					
+					// TOTAL_RARE定数の更新
+					_updateTotalConstant("TOTA_RARE");
+					
 				} else {
 					// 通常スキャンの場合
 					id = this._generateMaterialId(db);
 					sql = "insert into code (code, level, material_id) " +
 						"values (?, ?, ?);";
 					bind = new String[]{code, String.valueOf(level), String.valueOf(id)};
+					
+					// TOTAL_SCAN定数の更新
+					_updateTotalConstant("TOTAL_SCAN");
 				}
 				
 				db.execSQL(sql, bind);
@@ -738,5 +758,19 @@ public class ScanManager {
 		int rand = random.nextInt(100) + 1;
 		
 		return rand;
+	}
+	
+	
+	/**
+	 * TOTAL系 定数の更新
+	 */
+	private void _updateTotalConstant (String key)
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mContext);
+		int total = sp.getInt(key, 0);
+		
+		Editor editor = sp.edit();
+		editor.putInt(key, (total + 1));
+		editor.commit();
 	}
 }

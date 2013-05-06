@@ -1,13 +1,19 @@
 package com.app2641.activity;
 
+import com.app2641.dialog.FirstRareDialog;
+import com.app2641.dialog.FirstScanDialog;
+import com.app2641.dialog.ScanResultSaleDialog;
 import com.app2641.mixture.R;
 import com.app2641.model.DatabaseHelper;
 import com.app2641.model.MaterialModel;
 
-import net.simonvt.menudrawer.MenuDrawer;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,26 +24,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ScanResultActivity extends MixtureActivity implements OnClickListener {
+public class ScanResultActivity extends FragmentActivity implements OnClickListener {
 	
 	// 素材処理を行ったかどうかのフラグ
 	public boolean do_flag = false;
-	
-	public MenuDrawer mMenuDrawer;
 
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
-		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.MENU_DRAG_WINDOW);
-		mMenuDrawer.setContentView(R.layout.activity_scan_result);
-		mMenuDrawer.setMenuView(R.layout.main_menu);
-		mMenuDrawer.setTouchMode(MenuDrawer.TOUCH_MODE_FULLSCREEN);
-		super.mMenuDrawer = mMenuDrawer;
-		super.mActivityName = "scan";
-		
+		setContentView(R.layout.activity_scan_result);
 		
 		// 素材データをViewにセットする
 		setMaterialView();
@@ -57,15 +54,32 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		sale_btn.setOnClickListener(this);
 		
 		
-		// StatusMainMenuの背景色を変更する
-		TextView mStatusMainMenu = (TextView) findViewById(R.id.main_menu_scan_item);
-		mStatusMainMenu.setBackgroundColor(getResources().getColor(R.color.weight_color));
+		// first_scan / first_rare フラグの有無でダイアログを表示する
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		boolean first_scan = sp.getBoolean("FIRST_SCAN", false);
+		boolean first_rare = sp.getBoolean("FIRST_RARE", false);
+		
+		if (first_scan == false) {
+			Editor editor = sp.edit();
+			editor.putBoolean("FIRST_SCAN", true);
+			editor.commit();
+			
+			FirstScanDialog dialog = new FirstScanDialog();
+			dialog.show(getSupportFragmentManager(), "first_scan");
+			
+		} else if (first_rare == false) {
+			Boolean rare = getIntent().getBooleanExtra("rare", false);
+			
+			if (rare == true) {
+				Editor editor = sp.edit();
+				editor.putBoolean("FIRST_RARE", true);
+				editor.commit();
 				
-		// Homeアイコンを設定する
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-				
-		// MainMenuのOnClickListenerを初期化する
-		initMainMenuOnClickListeners();
+				FirstRareDialog dialog = new FirstRareDialog();
+				dialog.show(getSupportFragmentManager(), "first_rare");
+			}
+		}
+		
 	}
 	
 	
@@ -80,18 +94,11 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 			case R.id.scan_result_get_material_button:
 				// 素材取得処理
 				dispatchGetMaterialAction();
-				finish();
 				break;
 				
 			case R.id.scan_result_sale_material_button:
 				// 素材売却処理
 				dispatchSaleMaterialAction();
-				break;
-				
-			default:
-				// 素材処理を行ったか判断してからMainMenuで移動させる
-				checkMaterialAction();
-				super.onClick(view);
 				break;
 		}
 	}
@@ -107,7 +114,6 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	{
 		// 素材処理を行ったかどうか
 		checkMaterialAction();
-		super.onBackPressed();
 	}
 	
 	
@@ -165,18 +171,15 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	 */
 	public void checkMaterialAction ()
 	{
-		if (do_flag == false) {
-			int qty = getIntent().getIntExtra("qty", 0);
+		int qty = getIntent().getIntExtra("qty", 0);
 			
-			if (qty == getResources().getInteger(R.integer.max_material_qty)) {
-				// 素材所持数が限度数に達していた場合は素材売却処理
-				dispatchSaleMaterialAction();
-				return;
+		if (qty == getResources().getInteger(R.integer.max_material_qty)) {
+			// 素材所持数が限度数に達していた場合は素材売却処理
+			dispatchSaleMaterialAction();
 				
-			} else {
-				// 素材取得処理
-				dispatchGetMaterialAction();
-			}
+		} else {
+			// 素材取得処理
+			dispatchGetMaterialAction();
 		}
 	}
 	
@@ -201,6 +204,8 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 		do_flag = true;
 		
 		Toast.makeText(this, name+"を取得しました", Toast.LENGTH_SHORT).show();
+		
+		finish();
 	}
 	
 	
@@ -210,7 +215,23 @@ public class ScanResultActivity extends MixtureActivity implements OnClickListen
 	 */
 	public void dispatchSaleMaterialAction ()
 	{
-		// do_flag = true;
+		// 所持金の取得
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		int money = sp.getInt("MONEY", 0);
+		
+		// 素材価格の取得
+		Intent intent = getIntent();
+		String name = intent.getStringExtra("name");
+		int price = intent.getIntExtra("price", 0);
+		
+		Bundle bundle = new Bundle();
+		bundle.putString("name", name);
+		bundle.putInt("price", price);
+		bundle.putInt("money", money);
+		
+		ScanResultSaleDialog dialog = new ScanResultSaleDialog();
+		dialog.setArguments(bundle);
+		dialog.show(getSupportFragmentManager(), "scan_result_sale");
 	}
 	
 }

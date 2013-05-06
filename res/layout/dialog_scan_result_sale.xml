@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dialog_linear_layout">
+    
+    <TextView
+        style="@style/dialog_text"
+        android:layout_marginBottom="10dp"
+        android:text="@string/dialog_scan_result_sale_description" />
+    
+    <TextView
+        style="@style/dialog_text"
+        android:layout_marginBottom="3dp"
+        android:gravity="center_horizontal"
+        android:text="@string/dialog_scan_result_sale_price" />
+    
+    <TextView
+        android:id="@+id/dialog_scan_result_sale_money"
+        style="@style/dialog_text"
+        android:gravity="center_horizontal"
+        android:textIsSelectable="false"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+</LinearLayout>

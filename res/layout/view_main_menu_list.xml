@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/common_vertical_linear_layout" >
+    
+    
+    <TextView
+        android:id="@+id/view_main_menu_list_item"
+        style="@style/main_menu_item"
+    />
+    
+
+</LinearLayout>

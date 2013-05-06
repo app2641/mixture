@@ -8,12 +8,28 @@
     
     
     <!-- Main menu -->
+    <string name="main_menu">メインメニュー</string>
     <string name="main_menu_scan">スキャン</string>
     <string name="main_menu_mixin">ミックスイン</string>
     <string name="main_menu_shop">ショップ</string>
     <string name="main_menu_collection">コレクション</string>
     <string name="main_menu_status">ステータス</string>
     <string name="main_menu_help">メインメニューについて</string>
+    <string name="main_menu_money_text">所持金</string>
+    
+    <string name="dialog_main_menu_help_title">メインメニューについて</string>
+    <string name="dialog_main_menu_help_description">メインメニューでは様々なアクションを起こすことが出来ます。以下にそれぞれのアクションについて説明をしていきますので、参考にしてみてください。</string>
+    <string name="dialog_main_menu_help_scan">スキャン</string>
+    <string name="dialog_main_menu_help_scan_description">商品バーコードをスキャンして素材を抽出するアクションです。素材はミックスインするために必要になります。</string>
+    <string name="dialog_main_menu_help_mixin">ミックスイン</string>
+    <string name="dialog_main_menu_help_mixin_description">素材をふたつ選択して合成を行います。組み合わせによって様々なアイテムを作り出すことが出来ます。</string>
+    <string name="dialog_main_menu_help_shop">ショップ</string>
+    <string name="dialog_main_menu_help_shop_description">素材の売買を行うことが出来ます。現実通貨や仮想通貨での購入や、オンラインを利用した購入をすることも出来ます。</string>
+    <string name="dialog_main_menu_help_collection">コレクション</string>
+    <string name="dialog_main_menu_help_collection_description">今までに集めた素材や作り出したアイテムを確認することが出来ます。ぜひとも全コンプリートを目指してください。</string>
+    <string name="dialog_main_menu_help_status">ステータス</string>
+    <string name="dialog_main_menu_help_status_description">現在の調合師レベルや次のレベルまでに必要な経験値など、Mixtureで遊んだ記録が記載されています。</string>
+    
     
     
     <!-- Menu -->
@@ -36,6 +52,36 @@
     
 
     <!-- package Activity -->
+    <!-- NotFoundScanApp -->
+    <string name="activity_not_found_scan_app_title">Mixture</string>
+    <string name="failed_scan_notice">スキャンをするにはバーコードリーダーアプリが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
+    <string name="download_scan_app">GooglePlayからダウンロード</string>
+
+    <!-- ScanResult -->
+    <string name="activity_scan_result_title">スキャンに成功しました！</string>
+    <string name="scan_result_header_information">Information</string>
+    <string name="scan_result_header_description">Description</string>
+    <string name="scan_result_button_get_material">素材を取得</string>
+    <string name="scan_result_button_sale_shop">ショップへ売却</string>
+    
+    <string name="dialog_first_scan_title">おめでとう！</string>
+    <string name="dialog_first_scan_header">はじめてのスキャン</string>
+    <string name="dialog_first_scan_message">商品バーコードから素材を抽出することを「スキャン」と言います。スキャンした素材は、素材として取得するかショップへ売却をして仮想通貨prとして取得するかを選択することが出来ます。</string>
+    <string name="dialog_first_scan_message2">抽出する素材は調合師レベルに応じて変化し、レベルが高いほど貴重な素材を抽出することができます。また、低レベルでも貴重な素材が抽出できる「レアスキャン」というスキャンも低確率で発生することがあります。\nそれでは、抽出した素材を実際に取得してみましょう！</string>
+    
+    <string name="dialog_first_rare_title">おめでとう！</string>
+    <string name="dialog_first_rare_header">はじめてのレアスキャン</string>
+    <string name="dialog_first_rare_message">通常のスキャンでは自身の調合師レベルに相応する素材しか抽出することしか出来ませんが、ごく稀に調合師レベル以上の素材を抽出することが出来ます。低確率でレアや素材を抽出することを「レアスキャン」と呼びます。</string>
+    <string name="dialog_first_rare_message2">抽出されたレア素材は通常の素材と同じく、そのまま取得するかショップへ売却するかを選択することが出来ます。また、オフラインショップではレアスキャンの確率を向上させるアイテムが販売されることがあります。是非ともショップが開放されたら購入しておきたいアイテムです。</string>
+    
+    <string name="dialog_scan_result_sale_title">素材の売却</string>
+    <string name="dialog_scan_result_sale_description">素材をそのままショップに売却をしてもよろしいですか？</string>
+    <string name="dialog_scan_result_sale_price">売却後の所持金</string>
+    
+    
+    
+    
+    <!-- pakage Fragment -->
     <!-- Status -->
     <string name="activity_status_title">ステータス</string>
     <string name="status_preparation_level">現在の調合師レベル</string>
@@ -49,28 +95,13 @@
     <string name="status_total_get_item">今までに生成したアイテム数</string>
     
     
-    
-    
-
-    <!-- NotFoundScanApp -->
-    <string name="activity_not_found_scan_app_title">Mixture</string>
-    <string name="failed_scan_notice">スキャンをするにはバーコードリーダーアプリが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
-    <string name="download_scan_app">GooglePlayからダウンロード</string>
-
-    <!-- ScanResult -->
-    <string name="activity_scan_result_title">スキャンに成功しました！</string>
-    <string name="scan_result_header_information">Information</string>
-    <string name="scan_result_header_description">Description</string>
-    <string name="scan_result_button_get_material">素材を取得</string>
-    <string name="scan_result_button_sale_shop">ショップへ売却</string>
-    
     <!-- Mixin -->
     <string name="activity_mixin_title">ミックスイン</string>
 
     <!-- Shop -->
-    <string name="activity_shop_title">ショップ</string>
-    <string name="activity_shop_title_offline">オフライン</string>
-    <string name="activity_shop_title_online">オンライン</string>
+    <string name="fragment_shop_title">ショップ</string>
+    <string name="fragment_shop_title_offline">オフライン</string>
+    <string name="fragment_shop_title_online">オンライン</string>
     
     <string name="fragment_shop_disable_error">現在ショップを利用することはできません。ショップの利用には調合師レベル2以上が必要です。</string>
     <string name="fragment_shop_none_list_error">本日販売できる素材は見つかりませんでした。\nまた明日ご利用ください。</string>
@@ -100,58 +131,9 @@
     
     
 
-    <!-- title -->
-    <string name="title_activity_network_error">ネットワークエラー</string>
-    <string name="title_activity_dashboard">mixture</string>
-    <string name="title_activity_collection">CollectionActivity</string>
-    <string name="title_activity_shop">ショップ</string>
-
-    <!-- dashboard item -->
-    <string name="dashboard_scan">Scan</string>
-    <string name="dashboard_mix">Mix</string>
-    <string name="dashboard_shop">Shop</string>
-    <string name="dashboard_collection">Collection</string>
-
-    <!-- Dashoard Activity -->
-    <string name="init">初期化中....</string>
-    <string name="get_material">素材を取得</string>
-    <string name="sell_shop">ショップへ売却</string>
-
-    <!-- Shop Acitivity -->
-    <string name="offline">オフライン</string>
-    <string name="online">オンライン</string>
-
-    <!-- NetworkError -->
-    <string name="network_error">アプリケーションサーバーに接続することが出来ませんでした。\nネット環境をお確かめになってから再度接続を試みてください。</string>
-    <string name="close">閉じる</string>
-    <string name="server_maintenance">現在、アプリケーションサーバーがメンテナンス中です。申し訳ございませんが時間をおいて再度アクセスをして下さい。 \nなお、mixtureサイトにてサーバステータスを確認することも出来ます。</string>
-    <string name="confirm_server_status">確認する</string>
-
-    <!-- Menu -->
-    <string name="menu_status">ステータス</string>
-    <string name="menu_important">だいじなもの</string>
-    <string name="menu_about_app">mixtureについて</string>
-
-    <!-- item detail -->
-    <string name="item_detail_header">NOTE</string>
-    <string name="item_detail_header2">DESCRIPTION</string>
-
     <!-- Dialog Message -->
     <string name="dialog_welcome_title">ようこそ、mixtureへ！</string>
     <string name="dialog_welcome_message">mixtureは商品バーコードをスキャンして素材を集め、素材同士を調合して新たなアイテムを生成していくアプリです。まずはスキャンを選択して身近にあるバーコードから素材を取得してみましょう！\n\n画面の使い方が分からない時はアクションバーにあるヘルプボタンから解説を読むことが出来ます。\n\nそれでは、mixtureの世界をぜひ楽しんでいってください！</string>
-    <string name="dialog_help_dashboard_title">ダッシュボードについて</string>
-    <string name="dialog_help_dashboard_scan">スキャン</string>
-    <string name="dialog_help_dashboard_scan_description">商品バーコードをスキャンして素材を取得するアクションです。素材はミックスインするために必要になります。</string>
-    <string name="dialog_help_dashboard_mixin">ミックスイン</string>
-    <string name="dialog_help_dashboard_mixin_description">素材をふたつ選択して合成を行います。組み合わせによって様々なアイテムを作り出すことが出来ます。</string>
-    <string name="dialog_help_dashboard_shop">ショップ</string>
-    <string name="dialog_help_dashboard_shop_description">素材の売買を行うことが出来ます。現実通貨や仮想通貨での購入や、オンラインを利用した購入をすることも出来ます。</string>
-    <string name="dialog_help_dashboard_collection">コレクション</string>
-    <string name="dialog_help_dashboard_collection_description">今までに集めた素材や作り出したアイテムを確認することが出来ます。ぜひとも全コンプリートを目指してください。</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="title_activity_mix_in">MixInActivity</string>
+    
 
 </resources>

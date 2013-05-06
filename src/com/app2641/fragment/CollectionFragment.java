@@ -1,7 +1,9 @@
 package com.app2641.fragment;
 
+import com.app2641.mixture.MainActivity;
 import com.app2641.mixture.R;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class CollectionFragment extends Fragment {
+	
+	public final String MENU_STATE = "collection";
 	
 	public CollectionListPagerAdapter mPagerAdapter;
 	
@@ -38,12 +42,24 @@ public class CollectionFragment extends Fragment {
 	{
 		super.onActivityCreated(savedInstanceState);
 		
+		// アクションバーのナビゲーションモードを変更
+		final ActionBar actionbar = getActivity().getActionBar();
+		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		
 		// ViewPager用のAdapter生成
-		mPagerAdapter = new CollectionListPagerAdapter(getFragmentManager());
+		mPagerAdapter = new CollectionListPagerAdapter(getChildFragmentManager());
 		
 		// 生成したAdapterをViewPagerにセットする
 		mViewPager = (ViewPager) getView().findViewById(R.id.collation_viewpager);
 		mViewPager.setAdapter(mPagerAdapter);
+	}
+	
+	
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		((MainActivity) getActivity()).MENU_STATE = this.MENU_STATE;
 	}
 	
 	

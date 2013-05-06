@@ -2,7 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/main_menu_background" >
+    
+    <TextView
+        style="@style/main_menu_header"
+        android:textSize="18sp"
+        android:text="@string/main_menu" />
     
     <ListView
      	android:id="@id/android:list"
@@ -10,6 +16,20 @@
        	android:layout_height="0dp"
        	android:layout_weight="1"
    	/>
+    
+    
+    <LinearLayout
+        style="@style/common_width_parent_height_content_layout"
+        android:layout_marginBottom="13dp"
+        android:orientation="horizontal">
+        
+        <TextView
+        	android:id="@+id/main_menu_money"
+        	style="@style/main_menu_item"
+        	android:gravity="center"
+        	android:textIsSelectable="false"
+        	android:textColor="@color/main_menu_text" />
+    </LinearLayout>
         
 
 </LinearLayout>

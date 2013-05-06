@@ -4,7 +4,6 @@ package com.app2641.activity;
 import net.simonvt.menudrawer.MenuDrawer;
 
 import com.app2641.dialog.WelcomeDialog;
-import com.app2641.loader.InitApplicationLoader;
 import com.app2641.mixture.R;
 import com.app2641.utility.ScanManager;
 import com.app2641.utility.VersionManager;
@@ -23,17 +22,11 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MixtureActivity extends Activity implements OnClickListener {
+public class MixtureActivity extends Activity {
 
 	public String mActivityName;
 	
 	public MenuDrawer mMenuDrawer;
-	
-	private TextView mScanMenu;
-	private TextView mMixinMenu;
-	private TextView mShopMenu;
-	private TextView mCollectionMenu;
-	private TextView mStatusMenu;
 	
 	// scan後かどうかのフラグ
 	public boolean scan_flag = false;
@@ -139,33 +132,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	
 	
 	
-	/**
-	 * MainMenuにOnClickListenerを実装する
-	 */
-	public void initMainMenuOnClickListeners ()
-	{
-		// Scan
-		mScanMenu = (TextView) findViewById(R.id.main_menu_scan_item);
-		mScanMenu.setOnClickListener(this);
-		
-		// Mixin
-		mMixinMenu = (TextView) findViewById(R.id.main_menu_mixin_item);
-		mMixinMenu.setOnClickListener(this);
-		
-		// Shop
-		mShopMenu = (TextView) findViewById(R.id.main_menu_shop_item);
-		mShopMenu.setOnClickListener(this);
-		
-		// Collection
-		mCollectionMenu = (TextView) findViewById(R.id.main_menu_collection_item);
-		mCollectionMenu.setOnClickListener(this);
-		
-		// Status
-		mStatusMenu = (TextView) findViewById(R.id.main_menu_status_item);
-		mStatusMenu.setOnClickListener(this);
-	}
-	
-	
 	
 	/**
 	 * Activityのnameを返す
@@ -178,39 +144,6 @@ public class MixtureActivity extends Activity implements OnClickListener {
 	
 	
 	
-	/**
-	 * OnClickListenerインターフェイスの実装
-	 */
-	@Override
-	public void onClick (View view)
-	{
-		switch (view.getId()) {
-			// Scan
-			case R.id.main_menu_scan_item:
-				dispatchScanAtivity(view);
-				break;
-			
-			// Mixin
-			case R.id.main_menu_mixin_item:
-				dispatchMixinActivity(view);
-				break;
-				
-			// Shop
-			case R.id.main_menu_shop_item:
-				dispatchShopActivity(view);
-				break;
-				
-			// Collection
-			case R.id.main_menu_collection_item:
-				dispatchCollectionActivity(view);
-				break;
-				
-			// Status
-			case R.id.main_menu_status_item:
-				dispatchStatusActivity(view);
-				break;
-		}
-	}
 	
 	
 	
@@ -263,72 +196,4 @@ public class MixtureActivity extends Activity implements OnClickListener {
 		}
 	}
 	
-	
-	
-	/**
-	 * MainMenu選択処理
-	 * Shopを開始する
-	 */
-	public void dispatchShopActivity (View view)
-	{
-		if (this.getActivityName() == "shop") {
-			// MainMenuを閉じる
-			mMenuDrawer.closeMenu();
-		} else {
-			Intent intent = new Intent(this, ShopActivity.class);
-			intent.setAction(Intent.ACTION_VIEW);
-			startActivity(intent);
-		}
-	}
-	
-	
-	
-	/**
-	 * MainMenu選択処理
-	 * Mixinを開始する
-	 */
-	public void dispatchMixinActivity (View view)
-	{
-		if (this.getActivityName() == "mixin") {
-			mMenuDrawer.closeMenu();
-		} else {
-			Intent intent = new Intent(this, MixInActivity.class);
-			intent.setAction(Intent.ACTION_VIEW);
-			startActivity(intent);
-		}
-	}
-	
-	
-	
-	/**
-	 * MainMenu選択処理
-	 * Collectionを開始する
-	 */
-	public void dispatchCollectionActivity (View view)
-	{
-		if (this.getActivityName() == "collection") {
-			mMenuDrawer.closeMenu();
-		} else {
-			Intent intent = new Intent(this, CollectionActivity.class);
-			intent.setAction(Intent.ACTION_VIEW);
-			startActivity(intent);
-		}
-	}
-	
-	
-	
-	/**
-	 * MainMenu選択処理
-	 * Statusを開始する
-	 */
-	public void dispatchStatusActivity (View view)
-	{
-		if (this.getActivityName() == "status") {
-			mMenuDrawer.closeMenu();
-		} else {
-			Intent intent = new Intent(this, StatusActivity.class);
-			intent.setAction(Intent.ACTION_VIEW);
-			startActivity(intent);
-		}
-	}
 }

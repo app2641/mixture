@@ -1,5 +1,6 @@
 package com.app2641.fragment;
 
+import com.app2641.mixture.MainActivity;
 import com.app2641.mixture.R;
 
 import android.app.ActionBar;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 
 public class MixinFragment extends Fragment implements ActionBar.OnNavigationListener {
 	
+	public final String MENU_STATE = "mixin";
 	
 	public MixinFragment ()
 	{
@@ -52,6 +54,14 @@ public class MixinFragment extends Fragment implements ActionBar.OnNavigationLis
 			}
 		);
 		actionbar.setListNavigationCallbacks(adapter, this);
+	}
+	
+	
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		((MainActivity) getActivity()).MENU_STATE = this.MENU_STATE;
 	}
 
 

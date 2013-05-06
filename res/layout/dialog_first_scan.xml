@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dialog_linear_layout">
+    
+    <TextView
+        style="@style/dialog_text_bold"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:text="@string/dialog_first_scan_header" />
+    
+    <TextView
+        style="@style/dialog_text"
+        android:layout_marginBottom="5dp"
+        android:text="@string/dialog_first_scan_message" />
+    
+    <TextView
+        style="@style/dialog_text"
+        android:text="@string/dialog_first_scan_message2"/>
+    
+
+</LinearLayout>

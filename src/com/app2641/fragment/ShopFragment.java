@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 
 public class ShopFragment extends Fragment implements ActionBar.TabListener {
 	
+	public final String MENU_STATE = "shop";
+	
 	public ViewPager mViewPager;
 	
 	public ShopListPagerAdapter mPagerAdapter;
@@ -50,11 +52,11 @@ public class ShopFragment extends Fragment implements ActionBar.TabListener {
 		
 		// アクションバーのナビゲーションモードを変更
 		final ActionBar actionbar = getActivity().getActionBar();
-		actionbar.setNavigationMode(actionbar.NAVIGATION_MODE_TABS);
+		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
 		
 		// ViewPager用のAdapterを生成する
-		mPagerAdapter = new ShopListPagerAdapter(getFragmentManager());
+		mPagerAdapter = new ShopListPagerAdapter(getChildFragmentManager());
 		
 		// 生成したAdapterをViewPagerにセットする
 		mViewPager = (ViewPager) getView().findViewById(R.id.shop_viewpager);
@@ -68,21 +70,36 @@ public class ShopFragment extends Fragment implements ActionBar.TabListener {
 				
 				// MenuDrawerを表示するかしないか
 				int mode = (position == 0) ? MenuDrawer.TOUCH_MODE_FULLSCREEN: MenuDrawer.TOUCH_MODE_NONE;
-				((MainActivity) getActivity()).mMenuDrawer.setTouchMode(mode);
+				
+				MainActivity act = (MainActivity) getActivity();
+				if (act != null) {
+					act.mMenuDrawer.setTouchMode(mode);
+				}
 			}
 		});
 		
 		
 		// 必要なセクションをタブとして追加する
-		for (int i = 0; i < mPagerAdapter.getCount(); i++) {
-			Tab tab = actionbar.newTab();
-			tab.setText(mPagerAdapter.getPageTitle(i));
-			tab.setTabListener(this);
+		if (actionbar.getTabCount() != mPagerAdapter.getCount()) {
+			for (int i = 0; i < mPagerAdapter.getCount(); i++) {
+				Tab tab = actionbar.newTab();
+				tab.setText(mPagerAdapter.getPageTitle(i));
+				tab.setTabListener(this);
 			
-			actionbar.addTab(tab);
+				actionbar.addTab(tab);
+			}
 		}
 	}
 	
+	
+	
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		((MainActivity) getActivity()).MENU_STATE = this.MENU_STATE;
+	}
+
 	
 	
 	/**
@@ -190,9 +207,9 @@ public class ShopFragment extends Fragment implements ActionBar.TabListener {
 		public CharSequence getPageTitle(int position) {
 			switch (position) {
 			case 0:
-				return getString(R.string.activity_shop_title_offline);
+				return getString(R.string.fragment_shop_title_offline);
 			case 1:
-				return getString(R.string.activity_shop_title_online);
+				return getString(R.string.fragment_shop_title_online);
 			}
 			
 			return null;
