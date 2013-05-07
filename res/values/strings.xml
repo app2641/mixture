@@ -34,6 +34,7 @@
     
     <!-- Menu -->
     <string name="menu_help">ヘルプ</string>
+    <string name="menu_important">だいじなもの</string>
     <string name="menu_item_s">アイテム クラスS</string>
     <string name="menu_item_a">アイテム クラスA</string>
     <string name="menu_item_b">アイテム クラスB</string>
@@ -53,7 +54,7 @@
 
     <!-- package Activity -->
     <!-- NotFoundScanApp -->
-    <string name="activity_not_found_scan_app_title">Mixture</string>
+    <string name="activity_not_found_scan_app_title">スキャンエラー</string>
     <string name="failed_scan_notice">スキャンをするにはバーコードリーダーアプリが必要です。\nGooglePlayよりバーコードリーダーをダウンロードしてください。</string>
     <string name="download_scan_app">GooglePlayからダウンロード</string>
 
@@ -83,7 +84,7 @@
     
     <!-- pakage Fragment -->
     <!-- Status -->
-    <string name="activity_status_title">ステータス</string>
+    <string name="fragment_status_title">ステータス</string>
     <string name="status_preparation_level">現在の調合師レベル</string>
     <string name="status_next_level_exp">次の調合師レベルまでに必要な経験値</string>
     <string name="status_total_exp">今までに獲得した総経験値</string>
@@ -96,7 +97,7 @@
     
     
     <!-- Mixin -->
-    <string name="activity_mixin_title">ミックスイン</string>
+    <string name="fragment_mixin_title">ミックスイン</string>
 
     <!-- Shop -->
     <string name="fragment_shop_title">ショップ</string>
@@ -123,7 +124,7 @@
     
 
     <!-- Collection -->
-    <string name="activity_collection_title">コレクション</string>
+    <string name="fragment_collection_title">コレクション</string>
     
     
     

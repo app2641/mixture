@@ -39,6 +39,7 @@ public class MixinFragment extends Fragment implements ActionBar.OnNavigationLis
 		// ActionBarの設定
 		final ActionBar actionbar = getActivity().getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+		actionbar.setTitle(R.string.fragment_mixin_title);
 		
 		// ActionBarのリスト構築
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(

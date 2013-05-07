@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -44,6 +46,7 @@ public class StatusFragment extends Fragment {
 		// アクションバーのナビゲーションモードを変更
 		final ActionBar actionbar = getActivity().getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionbar.setTitle(R.string.fragment_status_title);
 		
 		
 		// Viewに値を設定
@@ -60,6 +63,14 @@ public class StatusFragment extends Fragment {
 		
 		// Viewの再構築
 		initView();
+	}
+	
+	
+	@Override
+	public void onCreateOptionsMenu (Menu menu, MenuInflater inflater)
+	{
+		menu.clear();
+		inflater.inflate(R.menu.fragment_status, menu);
 	}
 	
 	

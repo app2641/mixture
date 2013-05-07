@@ -53,6 +53,7 @@ public class ShopFragment extends Fragment implements ActionBar.TabListener {
 		// アクションバーのナビゲーションモードを変更
 		final ActionBar actionbar = getActivity().getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionbar.setTitle(R.string.fragment_shop_title);
 		
 		
 		// ViewPager用のAdapterを生成する

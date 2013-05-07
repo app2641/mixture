@@ -45,6 +45,7 @@ public class CollectionFragment extends Fragment {
 		// アクションバーのナビゲーションモードを変更
 		final ActionBar actionbar = getActivity().getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionbar.setTitle(R.string.fragment_collection_title);
 		
 		// ViewPager用のAdapter生成
 		mPagerAdapter = new CollectionListPagerAdapter(getChildFragmentManager());

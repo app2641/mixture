@@ -1,5 +1,6 @@
 package com.app2641.dialog;
 
+import com.app2641.mixture.MainActivity;
 import com.app2641.mixture.R;
 
 import android.app.AlertDialog;
@@ -62,7 +63,9 @@ public class ScanResultSaleDialog extends DialogFragment {
 				String text = name + "を" + String.valueOf(price) + "prで売却をしました";
 				Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
 				
-				getActivity().finish();
+				MainActivity act = (MainActivity) getActivity();
+				act.setMoneyView();
+				act.finish();
 			}
 		});
 		

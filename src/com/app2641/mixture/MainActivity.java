@@ -254,7 +254,7 @@ public class MainActivity extends FragmentActivity {
 		
 		
 		// 所持金をビューにセットする
-		setMoneyView(0);
+		setMoneyView();
 		
 		mMenuDrawer.setMenuView(mMainMenuView);
 	}
@@ -263,12 +263,10 @@ public class MainActivity extends FragmentActivity {
 	/**
 	 * 所持金をビューにセットする
 	 */
-	public void setMoneyView (int money)
+	public void setMoneyView ()
 	{
-		if (money == 0) {
-			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-			money = sp.getInt("MONEY", 0);
-		}
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		int money = sp.getInt("MONEY", 0);
 		
 		TextView money_view = (TextView) mMainMenuView.findViewById(R.id.main_menu_money);
 		money_view.setText("所持金: " + String.valueOf(money) + "pr");
