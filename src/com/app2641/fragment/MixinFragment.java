@@ -4,8 +4,11 @@ import com.app2641.mixture.MainActivity;
 import com.app2641.mixture.R;
 
 import android.app.ActionBar;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -35,7 +38,6 @@ public class MixinFragment extends Fragment implements ActionBar.OnNavigationLis
 	{
 		super.onActivityCreated(savedInstanceState);
 		
-		
 		// ActionBarの設定
 		final ActionBar actionbar = getActivity().getActionBar();
 		actionbar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
@@ -55,6 +57,9 @@ public class MixinFragment extends Fragment implements ActionBar.OnNavigationLis
 			}
 		);
 		actionbar.setListNavigationCallbacks(adapter, this);
+		
+		int position = getDefaultPosition();
+		actionbar.setSelectedNavigationItem(position);
 	}
 	
 	
@@ -68,11 +73,44 @@ public class MixinFragment extends Fragment implements ActionBar.OnNavigationLis
 
 	
 	/**
-	 * Actionbarのリストを選択した時の処理
+	 * ActionBarのリストを選択した時の処理
 	 */
 	@Override
 	public boolean onNavigationItemSelected(int position, long id) {
-		return false;
+		Fragment fragment = new MixinMaterialListPagerFragment();
+		Bundle bundle = new Bundle();
+		String cls = null;
+		
+		switch (position) {
+		case 0:
+			cls = "S";
+			break;
+			
+		case 1:
+			cls = "A";
+			break;
+			
+		case 2:
+			cls = "B";
+			break;
+			
+		case 3:
+			cls = "C";
+			break;
+			
+		case 4:
+			cls = "D";
+			break;
+		}
+		
+		bundle.putString("class", cls);
+		
+		fragment.setArguments(bundle);
+		FragmentTransaction trans = getFragmentManager().beginTransaction();
+		trans.replace(R.id.mixin_container, fragment);
+		trans.commit();
+		
+		return true;
 	}
 	
 	
@@ -100,6 +138,42 @@ public class MixinFragment extends Fragment implements ActionBar.OnNavigationLis
 			break;
 		}
 		return true;
+	}
+	
+	
+	
+	/**
+	 * 現在の調合時レベルに応じたデフォルトのリスト選択ポジションを取得する
+	 */
+	public int getDefaultPosition ()
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getActivity());
+		int level = sp.getInt("LEVEL", 1);
+		int position = 4;
+		
+		switch (level) {
+		case 3:
+		case 4:
+			position = 3;
+			break;
+		
+		case 5:
+		case 6:
+			position = 2;
+			break;
+			
+		case 7:
+		case 8:
+			position = 1;
+			break;
+			
+		case 9:
+		case 10:
+			position = 0;
+			break;
+		}
+		
+		return position;
 	}
 
 }

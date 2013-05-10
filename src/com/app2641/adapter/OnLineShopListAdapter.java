@@ -14,7 +14,7 @@ public class OnLineShopListAdapter extends CursorAdapter {
 
 	
 	public OnLineShopListAdapter(Context context, Cursor c) {
-		super(context, c);
+		super(context, c, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	}
 
 	

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+	<!-- 素材アイコン -->
+	<ImageView
+	    android:id="@+id/material_list_icon_image"
+	    style="@style/common_width_content_height_parent_layout"
+	    android:padding="10dp"
+	    android:src="@drawable/material_icon" />
+	
+	<LinearLayout
+	    android:layout_height="match_parent"
+	    android:layout_width="0dp"
+	    android:layout_weight="2"
+	    android:orientation="vertical"
+	    android:gravity="center_vertical"
+	    android:padding="10dp" >
+	    
+	    <!-- 素材名 -->
+    	<TextView
+        	android:id="@+id/material_list_name_text"
+        	style="@style/common_width_parent_height_content_layout"
+        	android:textIsSelectable="false"
+        	android:textSize="20sp"
+        	android:text="こんにちは" />
+    	
+    	<!-- 最終取得日 -->
+    	<TextView
+    	    android:id="@+id/material_list_last_date_text"
+    	    style="@style/common_width_parent_height_content_layout"
+    	    android:textIsSelectable="false"
+    	    android:text="最終取得: 2013/05/03" />
+    
+    </LinearLayout>
+    
+    <!-- 個数表示 -->
+    <TextView
+        android:id="@+id/material_list_qty_text"
+        style="@style/common_width_content_height_parent_layout"
+        android:padding="10dp"
+        android:gravity="center_vertical"
+        android:textIsSelectable="false"
+        android:textSize="25sp"
+        android:text="3" />
+    
+</LinearLayout>

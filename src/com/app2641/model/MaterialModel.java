@@ -86,4 +86,26 @@ public class MaterialModel extends AbstractModel {
 		
 		return cursor;
 	}
+	
+	
+	
+	/**
+	 * 指定クラスの所持素材を指定ソート順で全取得する
+	 */
+	public Cursor fetchAllByClassWithSort (SQLiteDatabase db, String cls, String sort)
+	{
+		String sql = "select material._id, material.name, material.last_date, material.qty from material " +
+			"where material.class = ? and material.experience = ? ";
+		
+		if (sort == "date") {
+			sql += "order by material.last_date desc";
+		} else if (sort == "name") {
+			sql += "order by material.name desc";
+		} else if (sort == "qty") {
+			sql += "order by material.qty desc";
+		}
+		
+		Cursor cursor = this.executeSQL(db, sql, new String[]{cls, "1"});
+		return cursor;
+	}
 }

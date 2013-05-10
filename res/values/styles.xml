@@ -68,6 +68,21 @@
         <item name="android:orientation">vertical</item>
     </style>
     
+    <style name="common_list_empty_text_view" parent="common_match_parent_layout">
+        <item name="android:padding">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textIsSelectable">false</item>
+    </style>
+    
+    <style name="common_pager_tab_strip" parent="common_width_parent_height_content_layout">
+        <item name="android:layout_gravity">top</item>
+        <item name="android:background">@color/main_color</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+    
     
     
     

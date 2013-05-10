@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class OffLineShopListAdapter extends CursorAdapter {
 
 	public OffLineShopListAdapter(Context context, Cursor c) {
-		super(context, c);
+		super(context, c, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	}
 	
 

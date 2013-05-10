@@ -1,14 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/collation_viewpager"
+    android:id="@+id/mixin_viewpager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CollectionFragment">
+    tools:context=".MixinMaterialListPagerFragment">
 
-    <!--
-    This title strip will display the currently visible page title, as well as the page
-    titles for adjacent pages.
-    -->
+    
     <android.support.v4.view.PagerTitleStrip
         android:id="@+id/pager_title_strip"
         style="@style/common_pager_tab_strip" />

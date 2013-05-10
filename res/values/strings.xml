@@ -98,6 +98,13 @@
     
     <!-- Mixin -->
     <string name="fragment_mixin_title">ミックスイン</string>
+    <string name="fragment_mixin_pager_title_date">取得日付順</string>
+    <string name="fragment_mixin_pager_title_name">名前順</string>
+    <string name="fragment_mixin_pager_title_qty">個数順</string>
+    
+    <string name="fragment_mixin_material_list_empty">素材がありません。</string>
+    
+    
 
     <!-- Shop -->
     <string name="fragment_shop_title">ショップ</string>
