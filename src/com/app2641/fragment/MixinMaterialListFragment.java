@@ -1,9 +1,11 @@
 package com.app2641.fragment;
 
+import com.app2641.activity.SecondMixinListActivity;
 import com.app2641.adapter.MixinMaterialListAdapter;
 import com.app2641.loader.MixinMaterialListLoader;
 import com.app2641.mixture.R;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -61,8 +63,21 @@ public class MixinMaterialListFragment extends ListFragment implements LoaderMan
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				ListView list = (ListView) parent;
 				Cursor cursor = (Cursor) list.getItemAtPosition(position);
+				
+				// ふたつめの素材選択画面へ遷移
+				Intent intent = new Intent(getActivity().getApplicationContext(), SecondMixinListActivity.class);
+				intent.setAction(Intent.ACTION_VIEW);
+				intent.putExtra("id", cursor.getInt(cursor.getColumnIndex("_id")));
+				getActivity().startActivity(intent);
 			}
 		});
+	}
+	
+	
+	@Override
+	public void onResume () {
+		super.onResume();
+		getLoaderManager().restartLoader(0, null, this);
 	}
 	
 	

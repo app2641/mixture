@@ -9,12 +9,12 @@ public class CodeModel extends AbstractModel {
 	/*
 	 * コードとレベルを指定して既に取得したコードが判別する
 	 */
-	public Cursor fetchByMaterialByCode (SQLiteDatabase db, String code, int level)
+	public Cursor fetchByMaterialByCode (SQLiteDatabase db, String code)
 	{
-		String sql = "select _id, material_id, rare_id from code " +
-			"where code = ? and level = ?";
+		String sql = "select _id, material_id, rare_id, level from code " +
+			"where code = ?";
 		
-		String[] bind = new String[]{code, String.valueOf(level)};
+		String[] bind = new String[]{code};
 		Cursor cursor = this.executeSQL(db, sql, bind);
 		
 		return cursor;

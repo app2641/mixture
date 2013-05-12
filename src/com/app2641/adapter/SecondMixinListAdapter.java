@@ -11,24 +11,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MixinMaterialListAdapter extends CursorAdapter {
+public class SecondMixinListAdapter extends CursorAdapter {
 
-	
-	public MixinMaterialListAdapter(Context context, Cursor c) {
+	public SecondMixinListAdapter(Context context, Cursor c) {
 		super(context, c, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	}
 	
 	
-	/**
-	 * CursorデータをViewにバインドする
-	 */
+
 	@Override
 	public void bindView(View view, Context context, Cursor cursor) {
 		ViewHolder holder = (ViewHolder) view.getTag();
-		holder.name.setText(cursor.getString(cursor.getColumnIndex("name")));
-//		holder.date.setText(cursor.getString(cursor.getColumnIndex("last_date")));
+		holder.name.setText(cursor.getString(cursor.getColumnIndex("m2_name")));
+//		holder.date.setText(cursor.getString(cursor.getColumnIndex("m2_last_date")));
 		holder.date.setText("最終取得日: 2013/04/02");
-		holder.qty.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex("qty"))));
+		holder.qty.setText(String.valueOf(cursor.getInt(cursor.getColumnIndex("m2_qty"))));
 		
 		int icon_id = context.getResources().getIdentifier("material_icon", "drawable", context.getPackageName());
 		holder.icon.setImageResource(icon_id);
@@ -36,13 +33,10 @@ public class MixinMaterialListAdapter extends CursorAdapter {
 
 	
 	
-	/**
-	 * CursorデータをバインドするViewを生成する
-	 */
 	@Override
 	public View newView(Context context, Cursor cursor, ViewGroup container) {
 		LayoutInflater inflater = LayoutInflater.from(context);
-		View view = inflater.inflate(R.layout.view_mixin_material_list_item, null);
+		View view = inflater.inflate(R.layout.view_second_mixin_list_item, null);
 		
 		ViewHolder holder = new ViewHolder();
 		holder.icon = (ImageView) view.findViewById(R.id.material_list_icon_image);
@@ -53,6 +47,7 @@ public class MixinMaterialListAdapter extends CursorAdapter {
 		
 		return view;
 	}
+
 	
 	
 	/**
@@ -64,5 +59,4 @@ public class MixinMaterialListAdapter extends CursorAdapter {
 		public TextView date;
 		public TextView qty;
 	}
-
 }

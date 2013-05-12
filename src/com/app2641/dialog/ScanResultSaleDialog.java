@@ -63,9 +63,7 @@ public class ScanResultSaleDialog extends DialogFragment {
 				String text = name + "を" + String.valueOf(price) + "prで売却をしました";
 				Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
 				
-				MainActivity act = (MainActivity) getActivity();
-				act.setMoneyView();
-				act.finish();
+				getActivity().finish();
 			}
 		});
 		

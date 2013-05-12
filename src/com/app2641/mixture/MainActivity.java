@@ -77,6 +77,16 @@ public class MainActivity extends FragmentActivity {
 	}
 	
 	
+	@Override
+	public void onResume ()
+	{
+		super.onResume();
+		
+		// 所持金表示の更新
+		setMoneyView();
+	}
+	
+	
 	/**
 	 * オプションメニュー押下時の処理
 	 */
@@ -185,6 +195,7 @@ public class MainActivity extends FragmentActivity {
 		
 		// イベントフラグ
 		editor.putBoolean("FIRST_SCAN", false);	// はじめてのスキャン
+		editor.putBoolean("SECOND_SCAN", false); // 2度目のスキャン
 		editor.putBoolean("FIRST_RARE", false);	// はじめてのレアスキャン
 		editor.putBoolean("FIRST_MIXIN", false);	// はじめてのミックスイン
 		editor.putBoolean("FIRST_LEVELUP", false);	// はじめてのレベルアップ
@@ -339,7 +350,6 @@ public class MainActivity extends FragmentActivity {
 			return;
 		}
 		
-		
 		try {
 			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 			intent.putExtra("SCAN_MODE", "ONE_D_MODE");
@@ -390,7 +400,6 @@ public class MainActivity extends FragmentActivity {
 			// スキャン結果フラグメントへ置換する
 			Intent intent = new Intent(getApplicationContext(), ScanResultActivity.class);
 			intent.setAction(Intent.ACTION_VIEW);
-//			intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 			intent.putExtra("id", ((Integer) mValues.get("id")));
 			intent.putExtra("name", ((String) mValues.get("name")));
 			intent.putExtra("description", ((String) mValues.get("description")));

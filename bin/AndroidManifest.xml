@@ -44,6 +44,13 @@
             android:name="com.app2641.activity.ScanResultActivity"
             android:label="@string/activity_scan_result_title"
             android:screenOrientation="portrait"/>
+        
+        
+        <!-- SecondMixinListActivity -->
+        <activity
+            android:name="com.app2641.activity.SecondMixinListActivity"
+            android:label="@string/activity_second_mixin_list_title"
+            android:screenOrientation="portrait" />
                 
         
         <!-- AdMobActivity -->

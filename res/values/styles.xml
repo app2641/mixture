@@ -137,6 +137,64 @@
     </style>
     
     
+    <!-- ShopFragment -->
+    <!-- リストアイテム -->
+    <style name="shop_list_item_name">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textIsSelectable">false</item>
+    </style>
+    
+    <!-- 購入ダイアログ素材名ビュー -->
+    <style name="dialog_shop_buy_name" parent="common_width_parent_height_content_layout">
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+    
+    <!-- 購入ダイアログホライゾンリニアレイアウト -->
+    <style name="dialog_shop_buy_horizon_lenear_layout" parent="common_width_parent_height_content_layout">
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    
+    <!-- 購入ダイアログ個数テキスト -->
+    <style name="dialog_shop_buy_qty">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textIsSelectable">false</item>
+    </style>
+    
+    <!-- 購入ダイアログ個数スピナー -->
+    <style name="dialog_shop_buy_qty_spinner" parent="common_wrap_content_layout">
+        <item name="android:layout_gravity">right</item>
+    </style>
+    
+    <!-- 購入ダイアログ価格計算テキスト -->
+    <style name="dialog_shop_buy_calculate" parent="dialog_shop_buy_qty">
+        <item name="android:textSize">17sp</item>
+    </style>
+    
+    <style name="dialog_shop_buy_balance" parent="dialog_shop_buy_qty_spinner">
+        <item name="android:textSize">17sp</item>
+    </style>
+    
+    
+    <!-- MixinShakeFragment -->
+    <style name="mixin_shake_style" parent="common_wrap_content_layout">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:drawableTop">@drawable/mixin_shake_icon</item>
+        <item name="android:drawablePadding">15dp</item>
+        <item name="android:textIsSelectable">false</item>
+    </style>
+    
+    
+    
     
     <!-- NotFoundScanAppActivity -->
     <style name="not_found_scan_app_text" parent="common_wrap_content_layout">
@@ -196,9 +254,6 @@
         <item name="android:background">@drawable/accent_bottom_border</item>
     </style>
     
-    
-    
-    
     <!-- フッターのボタン -->
     <style name="scan_result_action_button">
         <item name="android:layout_width">0dp</item>
@@ -208,67 +263,12 @@
     
     
     
-    <!-- ShopActivity -->
-    <!-- リストアイテム -->
-    <style name="shop_list_item_name">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:textIsSelectable">false</item>
-    </style>
-    
-    <!-- 購入ダイアログ素材名ビュー -->
-    <style name="dialog_shop_buy_name" parent="common_width_parent_height_content_layout">
-        <item name="android:textIsSelectable">false</item>
-        <item name="android:textSize">17sp</item>
-    </style>
-    
-    <!-- 購入ダイアログホライゾンリニアレイアウト -->
-    <style name="dialog_shop_buy_horizon_lenear_layout" parent="common_width_parent_height_content_layout">
-        <item name="android:layout_marginTop">20dp</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-    
-    <!-- 購入ダイアログ個数テキスト -->
-    <style name="dialog_shop_buy_qty">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:textIsSelectable">false</item>
-    </style>
-    
-    <!-- 購入ダイアログ個数スピナー -->
-    <style name="dialog_shop_buy_qty_spinner" parent="common_wrap_content_layout">
-        <item name="android:layout_gravity">right</item>
-    </style>
-    
-    <!-- 購入ダイアログ価格計算テキスト -->
-    <style name="dialog_shop_buy_calculate" parent="dialog_shop_buy_qty">
-        <item name="android:textSize">17sp</item>
-    </style>
-    
-    <style name="dialog_shop_buy_balance" parent="dialog_shop_buy_qty_spinner">
-        <item name="android:textSize">17sp</item>
-    </style>
     
     
     
     
     
     
-
-
-
-    <!-- item/material detail scroll view -->
-    <style name="item_detail_scroll_view">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:fillViewport">true</item>
-    </style>
 
 
 

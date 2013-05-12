@@ -47,9 +47,6 @@
     <string name="menu_material_d">素材 クラスD</string>
     
     
-    <!-- Toast -->
-    <string name="toast_scan_barcode">バーコードをスキャンして素材を取得します</string>
-    
     
 
     <!-- package Activity -->
@@ -67,8 +64,13 @@
     
     <string name="dialog_first_scan_title">おめでとう！</string>
     <string name="dialog_first_scan_header">はじめてのスキャン</string>
-    <string name="dialog_first_scan_message">商品バーコードから素材を抽出することを「スキャン」と言います。スキャンした素材は、素材として取得するかショップへ売却をして仮想通貨prとして取得するかを選択することが出来ます。</string>
-    <string name="dialog_first_scan_message2">抽出する素材は調合師レベルに応じて変化し、レベルが高いほど貴重な素材を抽出することができます。また、低レベルでも貴重な素材が抽出できる「レアスキャン」というスキャンも低確率で発生することがあります。\nそれでは、抽出した素材を実際に取得してみましょう！</string>
+    <string name="dialog_first_scan_message">商品バーコードから素材を抽出することを「スキャン」と言います。抽出した素材は、素材として取得するかショップへ売却をして仮想通貨prとして取得するかを選択することが出来ます。</string>
+    <string name="dialog_first_scan_message2">それでは、抽出した素材を実際に取得してみましょう！</string>
+    
+    <string name="dialog_second_scan_title">おめでとう！</string>
+    <string name="dialog_second_scan_header">二度目のスキャン</string>
+    <string name="dialog_second_scan_message">二つ目の素材の抽出に成功しました。取得した素材は異なる素材同士を掛けあわせて新たなアイテムを生成することが出来ます。</string>
+    <string name="dialog_second_scan_message2">それでは、メインメニューからミックスインを選択して実際に素材同士を掛けあわせてみましょう！</string>
     
     <string name="dialog_first_rare_title">おめでとう！</string>
     <string name="dialog_first_rare_header">はじめてのレアスキャン</string>
@@ -78,6 +80,11 @@
     <string name="dialog_scan_result_sale_title">素材の売却</string>
     <string name="dialog_scan_result_sale_description">素材をそのままショップに売却をしてもよろしいですか？</string>
     <string name="dialog_scan_result_sale_price">売却後の所持金</string>
+    
+    
+    <!-- SecondMixinList -->
+    <string name="activity_second_mixin_list_title">ミックスイン</string>
+    <string name="activity_second_mixin_list_empty">ミックスイン可能な素材がありません。</string>
     
     
     

@@ -3,6 +3,7 @@ package com.app2641.activity;
 import com.app2641.dialog.FirstRareDialog;
 import com.app2641.dialog.FirstScanDialog;
 import com.app2641.dialog.ScanResultSaleDialog;
+import com.app2641.dialog.SecondScanDialog;
 import com.app2641.mixture.R;
 import com.app2641.model.DatabaseHelper;
 import com.app2641.model.MaterialModel;
@@ -57,15 +58,25 @@ public class ScanResultActivity extends FragmentActivity implements OnClickListe
 		// first_scan / first_rare フラグの有無でダイアログを表示する
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		boolean first_scan = sp.getBoolean("FIRST_SCAN", false);
+		boolean second_scan = sp.getBoolean("SECOND_SCAN", false);
 		boolean first_rare = sp.getBoolean("FIRST_RARE", false);
+		int id = getIntent().getIntExtra("id", 1);
 		
-		if (first_scan == false) {
+		if (first_scan == false && id == 1) {
 			Editor editor = sp.edit();
 			editor.putBoolean("FIRST_SCAN", true);
 			editor.commit();
 			
 			FirstScanDialog dialog = new FirstScanDialog();
 			dialog.show(getSupportFragmentManager(), "first_scan");
+			
+		} else if (second_scan == false && id == 3) {
+			Editor editor = sp.edit();
+			editor.putBoolean("SECOND_SCAN", true);
+			editor.commit();
+			
+			SecondScanDialog dialog = new SecondScanDialog();
+			dialog.show(getSupportFragmentManager(), "second_scan");
 			
 		} else if (first_rare == false) {
 			Boolean rare = getIntent().getBooleanExtra("rare", false);
@@ -200,6 +211,7 @@ public class ScanResultActivity extends FragmentActivity implements OnClickListe
 		
 		MaterialModel model = new MaterialModel();
 		model.updateQty(db, (qty + 1), id);
+		db.close();
 		
 		do_flag = true;
 		

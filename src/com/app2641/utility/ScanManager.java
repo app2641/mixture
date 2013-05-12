@@ -1,6 +1,5 @@
 package com.app2641.utility;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.app2641.model.CodeModel;
@@ -21,6 +20,11 @@ public class ScanManager {
 	
 	public int level;
 	
+	public boolean first_scan;
+	public boolean second_scan;
+	
+	public boolean master;
+	
 	
 	public ScanManager (Context context)
 	{
@@ -28,6 +32,9 @@ public class ScanManager {
 		
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 		level = sp.getInt("LEVEL", 1);
+		first_scan = sp.getBoolean("FIRST_SCAN", false);
+		second_scan = sp.getBoolean("SECOND_SCAN", false);
+		master = sp.getBoolean("MASTER", false);
 	}
 	
 	
@@ -36,12 +43,8 @@ public class ScanManager {
 	 */
 	private boolean _getRareScanFlag ()
 	{
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(mContext);
-		boolean master = sp.getBoolean("MASTER", false);
-		boolean first_scan = sp.getBoolean("FIRST_SCAN", false);
-		
-		// first_scanフラグがfalseの場合はレアスキャンさせない。
-		if (first_scan == false) {
+		// first_scan/second_scanフラグがfalseの場合はレアスキャンさせない。
+		if (first_scan == false || second_scan == false) {
 			return false;
 		}
 		
@@ -79,7 +82,7 @@ public class ScanManager {
 			
 			// 指定コードに対応する素材を取得する
 			CodeModel code_model = new CodeModel();
-			Cursor code_cursor = code_model.fetchByMaterialByCode(db, code, level);
+			Cursor code_cursor = code_model.fetchByMaterialByCode(db, code);
 			int id;
 			
 			// 指定コードで取得した実績があるかどうか
@@ -90,15 +93,21 @@ public class ScanManager {
 						id = this._generateRareId(db);
 						int code_id = code_cursor.getInt(code_cursor.getColumnIndex("_id"));
 						
-						// コードとrare_idを紐付ける
-						String sql = "update code set rare_id = ? " +
-							"where _id = ?;";
-						String[] bind = new String[]{String.valueOf(id), String.valueOf(code_id)};
-						
-						db.execSQL(sql, bind);
+						// コードとrare_id, levelを紐付ける
+						this._updateRareCode(db, code_id, id);
 						
 					} else {
-						id = code_cursor.getInt(code_cursor.getColumnIndex("rare_id"));
+						// レベルに応じたコードレコードになっているかどうか
+						if (code_cursor.getInt(code_cursor.getColumnIndex("level")) == level) {
+							id = code_cursor.getInt(code_cursor.getColumnIndex("rare_id"));
+						} else {
+							id = this._generateRareId(db);
+							int code_id = code_cursor.getInt(code_cursor.getColumnIndex("_id"));
+							
+							// コードレコードのレベルをupdateする
+							this._updateRareCode(db, code_id, id);
+						}
+						
 					}
 					
 					// TOTAL_RARE定数を更新
@@ -110,15 +119,21 @@ public class ScanManager {
 						id = this._generateMaterialId(db);
 						int code_id = code_cursor.getInt(code_cursor.getColumnIndex("_id"));
 						
-						// コードとmaterial_idを紐付ける
-						String sql = "update code set material_id = ? " +
-							"where _id = ?;";
-						String[] bind = new String[]{String.valueOf(id), String.valueOf(code_id)};
-						
-						db.execSQL(sql, bind);
+						// コードレコードのレベルをupdateする
+						this._updateMaterialCode(db, code_id, id);
 						
 					} else {
-						id = code_cursor.getInt(code_cursor.getColumnIndex("material_id"));
+						// レベルに応じたコードレコードになっているかどうか
+						if (code_cursor.getInt(code_cursor.getColumnIndex("level")) == level) {
+							id = code_cursor.getInt(code_cursor.getColumnIndex("material_id"));
+						} else {
+							id = this._generateMaterialId(db);
+							int code_id = code_cursor.getInt(code_cursor.getColumnIndex("_id"));
+							
+							// コードレコードのレベルをupdateする
+							this._updateMaterialCode(db, code_id, id);
+						}
+						
 					}
 					
 					// TOTAL_SCAN定数を更新
@@ -129,7 +144,7 @@ public class ScanManager {
 				String[] bind;
 				
 				if (rare_flag == true) {
-					// レアスキャンが成功した場合
+					// コードレコードのないレアスキャンの場合
 					id = this._generateRareId(db);
 					sql = "insert into code (code, level, rare_id) " +
 						"values (?, ?, ?);";
@@ -139,8 +154,15 @@ public class ScanManager {
 					_updateTotalConstant("TOTA_RARE");
 					
 				} else {
-					// 通常スキャンの場合
-					id = this._generateMaterialId(db);
+					// コードレコードのない通常スキャンの場合
+					if (first_scan == false) {
+						id = 1; // 野草
+					} else if (second_scan == false) {
+						id = 3; // 黒いTシャツ
+					} else {
+						id = this._generateMaterialId(db);
+					}
+					
 					sql = "insert into code (code, level, material_id) " +
 						"values (?, ?, ?);";
 					bind = new String[]{code, String.valueOf(level), String.valueOf(id)};
@@ -772,5 +794,33 @@ public class ScanManager {
 		Editor editor = sp.edit();
 		editor.putInt(key, (total + 1));
 		editor.commit();
+	}
+	
+	
+	
+	/**
+	 * コードレコードのレベルとmaterial_idを更新する
+	 */
+	private void _updateMaterialCode (SQLiteDatabase db, int code_id, int material_id)
+	{
+		String sql = "update code set material_id = ?, level = ? " +
+			"where _id = ?";
+		String[] bind = new String[]{String.valueOf(material_id), String.valueOf(level), String.valueOf(code_id)};
+		
+		db.execSQL(sql, bind);
+	}
+	
+	
+	
+	/**
+	 * コードレコードのレベルとrare_idを更新する
+	 */
+	private void _updateRareCode (SQLiteDatabase db, int code_id, int rare_id)
+	{
+		String sql = "update code set rare_id = ?, level = ? " +
+			"where _id = ?;";
+		String[] bind = new String[]{String.valueOf(rare_id), String.valueOf(level), String.valueOf(code_id)};
+			
+		db.execSQL(sql, bind);
 	}
 }
