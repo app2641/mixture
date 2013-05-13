@@ -46,10 +46,10 @@
             android:screenOrientation="portrait"/>
         
         
-        <!-- SecondMixinListActivity -->
+        <!-- ShakeActivity -->
         <activity
-            android:name="com.app2641.activity.SecondMixinListActivity"
-            android:label="@string/activity_second_mixin_list_title"
+            android:name="com.app2641.activity.MixinShakeActivity"
+            android:label="@string/activity_mixin_shake_title"
             android:screenOrientation="portrait" />
                 
         

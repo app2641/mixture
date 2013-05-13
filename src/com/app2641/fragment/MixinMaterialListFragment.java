@@ -1,6 +1,6 @@
 package com.app2641.fragment;
 
-import com.app2641.activity.SecondMixinListActivity;
+import com.app2641.activity.MixinShakeActivity;
 import com.app2641.adapter.MixinMaterialListAdapter;
 import com.app2641.loader.MixinMaterialListLoader;
 import com.app2641.mixture.R;
@@ -65,7 +65,7 @@ public class MixinMaterialListFragment extends ListFragment implements LoaderMan
 				Cursor cursor = (Cursor) list.getItemAtPosition(position);
 				
 				// ふたつめの素材選択画面へ遷移
-				Intent intent = new Intent(getActivity().getApplicationContext(), SecondMixinListActivity.class);
+				Intent intent = new Intent(getActivity().getApplicationContext(), MixinShakeActivity.class);
 				intent.setAction(Intent.ACTION_VIEW);
 				intent.putExtra("id", cursor.getInt(cursor.getColumnIndex("_id")));
 				getActivity().startActivity(intent);

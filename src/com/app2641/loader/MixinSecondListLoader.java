@@ -6,14 +6,13 @@ import com.app2641.model.MaterialModel;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.content.CursorLoader;
 
-public class SecondeMixinListLoader extends CursorLoader {
+public class MixinSecondListLoader extends SimpleCursorLoader {
 	
 	public int first_id;
 	
 
-	public SecondeMixinListLoader(Context context, int first_id) {
+	public MixinSecondListLoader(Context context, int first_id) {
 		super(context);
 		
 		this.first_id = first_id;

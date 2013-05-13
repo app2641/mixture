@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class SecondMixinListAdapter extends CursorAdapter {
+public class MixinSecondListAdapter extends CursorAdapter {
 
-	public SecondMixinListAdapter(Context context, Cursor c) {
+	public MixinSecondListAdapter(Context context, Cursor c) {
 		super(context, c, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 	}
 	
